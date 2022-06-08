@@ -11,7 +11,7 @@ export default function Input(props) {
 				<input
 					type={props.type}
 					className="auth-input"
-					placeholder={`  ${props.placeholder}`}
+					placeholder={`${props.placeholder}`}
 					onChange={(e) => props.setData(e)}
 				/>
 			) : (
@@ -19,7 +19,7 @@ export default function Input(props) {
 					<input
 						type={showPassword ? "text" : "password"}
 						className="auth-input-password"
-						placeholder={`  ${props.placeholder}`}
+						placeholder={`${props.placeholder}`}
 						onChange={(e) => props.setData(e)}
 					/>
 					<button
