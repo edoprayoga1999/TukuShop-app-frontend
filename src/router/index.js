@@ -1,11 +1,20 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import {
+	BrowserRouter,
+	Routes,
+	Route,
+	Navigate,
+	Outlet,
+} from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 import Home from "../pages/main/Home";
 import NotFound from "../pages/NotFound";
 import Login from "../pages/auth/Login";
 import Cart from "../pages/main/buyer/Cart";
+import Register from "../pages/auth/Register";
+import Forgot from "../pages/auth/Forgot";
+import ResetPassword from "../pages/auth/ResetPassword";
 
 const PrivateRoute = () => {
 	const token = localStorage.getItem("token");
@@ -34,12 +43,16 @@ const router = () => {
 						path="/cart"
 						element={
 							<PrivateRoute>
-								<Authorize level='1'>
+								<Authorize level="1">
 									<Cart />
 								</Authorize>
-							</PrivateRoute>}
+							</PrivateRoute>
+						}
 					/>
 					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/forgot" element={<Forgot />} />
+					<Route path="/reset" element={<ResetPassword />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>

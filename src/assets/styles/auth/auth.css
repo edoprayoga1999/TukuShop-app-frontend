@@ -1,0 +1,47 @@
+.auth {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.auth .content {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 100px;
+}
+
+.auth .content .form-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.auth .content .auth-caption {
+    color: #32C33B;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+.auth .content .auth-caption:hover {
+    color: #32C33B;
+}
+
+.auth .content .forgot {
+    position: relative;
+    color: #32C33B;
+    text-decoration: none;
+    text-align: end;
+    margin-top: -20px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.auth .content .forgot:hover {
+    color: #32C33B;
+}
