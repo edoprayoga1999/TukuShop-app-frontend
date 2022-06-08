@@ -10,10 +10,6 @@
     outline: none;
 }
 
-.auth-input:hover {
-    border-bottom: 2px solid #32C33B;
-}
-
 .auth-password {
     display: flex;
     justify-content: flex-end;
@@ -32,10 +28,6 @@
     border-radius: 5px;
     padding-left: 10px;
     outline: none;
-}
-
-.auth-input-password:hover {
-    border-bottom: 2px solid #32C33B;
 }
 
 .auth-show-password {
