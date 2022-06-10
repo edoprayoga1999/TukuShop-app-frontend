@@ -1,0 +1,32 @@
+.product .content{
+    display: flex;
+    height: 80vh;
+    width: 80%;
+}
+.product .detail{
+    margin-left: 20px;
+}
+.product .review{
+    width: 80%;
+    height: 50vh;
+}
+.product .review .rating{
+    display: flex;
+}
+
+@media screen and (max-width: 550px) {
+    .product .content{
+    flex-direction: column;
+    height: 140vh;
+    width: 70%;
+}
+.product .detail{
+    margin-left: 0px;
+}
+.product .review{
+    height: 70vh;
+}
+.product .review .rating{
+    flex-direction: column;
+}
+}
