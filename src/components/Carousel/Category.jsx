@@ -47,7 +47,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -62,7 +62,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -77,7 +77,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -92,7 +92,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -107,7 +107,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -122,7 +122,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -137,7 +137,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -152,7 +152,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -167,7 +167,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -182,7 +182,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
@@ -197,7 +197,7 @@ export default function Category() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>T-Shirt</h5>
+						<h4 style={{color: "#FFF"}}>T-Shirt</h4>
 					</div>
 				</SwiperSlide>
 			</Swiper>

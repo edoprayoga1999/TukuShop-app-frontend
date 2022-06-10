@@ -15,6 +15,7 @@ import Cart from "../pages/main/buyer/Cart";
 import Register from "../pages/auth/Register";
 import Forgot from "../pages/auth/Forgot";
 import ResetPassword from "../pages/auth/ResetPassword";
+import Category from "../pages/main/buyer/Category";
 
 const PrivateRoute = () => {
 	const token = localStorage.getItem("token");
@@ -49,6 +50,7 @@ const router = () => {
 							</PrivateRoute>
 						}
 					/>
+					<Route path="/category/:id" element={<Category />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/forgot" element={<Forgot />} />
