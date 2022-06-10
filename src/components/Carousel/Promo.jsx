@@ -35,7 +35,7 @@ export default function Promo() {
 				<SwiperSlide>
 					<div className="d-flex align-items-center justify-content-center"
 						style={{
-							height: "150px",
+							height: "180px",
 							width: "455px",
 							backgroundSize: "cover",
 							backgroundPosition: "center",
@@ -44,13 +44,13 @@ export default function Promo() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>Black edition</h5>
+						<h2 style={{color: "#FFF"}}>Black edition</h2>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
 					<div className="d-flex align-items-center justify-content-center"
 						style={{
-							height: "150px",
+							height: "180px",
 							width: "455px",
 							backgroundSize: "cover",
 							backgroundPosition: "center",
@@ -59,13 +59,13 @@ export default function Promo() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>Trends in 2020</h5>
+						<h2 style={{color: "#FFF"}}>Trends in 2020</h2>
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
 					<div className="d-flex align-items-center justify-content-center"
 						style={{
-							height: "150px",
+							height: "180px",
 							width: "455px",
 							backgroundSize: "cover",
 							backgroundPosition: "center",
@@ -74,7 +74,7 @@ export default function Promo() {
 							borderRadius: "10px"
 						}}
 					>
-						<h5 style={{color: "#FFF"}}>Autumn Theme</h5>
+						<h2 style={{color: "#FFF"}}>Autumn Theme</h2>
 					</div>
 				</SwiperSlide>
 			</Swiper>
