@@ -3,10 +3,10 @@ import {
 	BrowserRouter,
 	Routes,
 	Route,
-	Navigate,
-	Outlet,
+	// Navigate,
+	// Outlet,
 } from "react-router-dom";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 
 import Home from "../pages/main/Home";
 import NotFound from "../pages/NotFound";
@@ -17,39 +17,30 @@ import Forgot from "../pages/auth/Forgot";
 import ResetPassword from "../pages/auth/ResetPassword";
 import Category from "../pages/main/buyer/Category";
 
-const PrivateRoute = () => {
-	const token = localStorage.getItem("token");
-	if (token) {
-		return <Outlet />;
-	} else {
-		return <Navigate to="/login" />;
-	}
-};
+// const PrivateRoute = () => {
+// 	const token = localStorage.getItem("token");
+// 	if (token) {
+// 		return <Outlet />;
+// 	} else {
+// 		return <Navigate to="/login" />;
+// 	}
+// };
 
-const Authorize = (props) => {
-	const decoded = jwtDecode(localStorage.getItem("token"));
-	if (parseInt(props.level) === decoded.level) {
-		return <Outlet />;
-	} else {
-		return <Navigate to="/" />;
-	}
-};
+// const Authorize = (props) => {
+// 	const decoded = jwtDecode(localStorage.getItem("token"));
+// 	if (parseInt(props.level) === decoded.level) {
+// 		return <Outlet />;
+// 	} else {
+// 		return <Navigate to="/" />;
+// 	}
+// };
 const router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/">
 					<Route index element={<Home />} />
-					<Route
-						path="/cart"
-						element={
-							<PrivateRoute>
-								<Authorize level="1">
-									<Cart />
-								</Authorize>
-							</PrivateRoute>
-						}
-					/>
+					<Route path="/cart" element={<Cart />} />
 					<Route path="/category/:id" element={<Category />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
