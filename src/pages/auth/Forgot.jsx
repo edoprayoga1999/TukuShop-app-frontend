@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/auth/auth.css";
 import Input from "../../components/auth/Input";
@@ -10,6 +10,9 @@ export default function Forgot() {
 	const [form, setForm] = useState({
 		email: "",
 	});
+	useEffect(() => {
+		document.title = "TukuShop - Forgot Password";
+	}, []);
 	const onSubmit = () => {
 		console.log(form);
 

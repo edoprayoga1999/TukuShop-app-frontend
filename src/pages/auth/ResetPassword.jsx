@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/auth/auth.css";
 import Input from "../../components/auth/Input";
@@ -11,6 +11,9 @@ export default function ResetPassword() {
 		password: "",
 		confirmPassword: "",
 	});
+	useEffect(() => {
+		document.title = "TukuShop - Confirm Password";
+	}, []);
 	const onSubmit = () => {
 		console.log(form);
 	};
