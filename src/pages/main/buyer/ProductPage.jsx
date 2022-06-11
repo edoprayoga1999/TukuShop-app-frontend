@@ -24,10 +24,13 @@ export default function ProductPage() {
 				className="product d-flex flex-column container-fluid align-items-center"
 				style={{ padding: "0px" }}
 			>
-				<Navbar login={false} />
+				<Navbar login={true} />
 
 				<section className="content row">
-					<div className="form-image col-xl-4 col-lg-4 col-md-12 col-sm-12">
+					<div
+						className="form-image col-xl-4 col-lg-4 col-md-12 col-sm-12"
+		
+					>
 						<div>
 							<img
 								src={photo ? photo : logo}
@@ -39,8 +42,10 @@ export default function ProductPage() {
 							/>
 						</div>
 						<div
-							className="row d-flex"
+							className="scroll d-flex"
 							style={{
+								overflowX: "scroll",
+								paddingLeft: "150px",
 								justifyContent: "center",
 								alignItems: "center",
 								width: "100%",
@@ -102,7 +107,7 @@ export default function ProductPage() {
 					</div>
 
 					<div className="detail col-xl-7 col-lg-7 col-md-12 col-sm-12">
-						<h1 style={{ marginBottom: "10px" }}>Baju muslim pira</h1>
+						<h2 style={{ marginBottom: "10px" }}>Baju muslim pira</h2>
 						<small style={{ color: "#9B9B9B", marginBottom: "15px" }}>
               Zalora Cloth
 						</small>
@@ -119,7 +124,7 @@ export default function ProductPage() {
 						<small style={{ color: "#9B9B9B", marginBottom: "10px" }}>
               Price
 						</small>
-						<h1 style={{ fontWeight: "700", marginBottom: "40px" }}>$ 20.0</h1>
+						<h2 style={{ fontWeight: "700", marginBottom: "40px" }}>$ 20.0</h2>
 						<small
 							style={{
 								fontWeight: "600",
@@ -337,9 +342,9 @@ export default function ProductPage() {
 
 				<section
 					className="description"
-					style={{ height: "70vh", width: "80%", marginBottom: "30px" }}
+					style={{ width: "80%", marginBottom: "30px" }}
 				>
-					<h1 style={{ marginBottom: "30px" }}>Informasi Produk</h1>
+					<h2 style={{ marginBottom: "30px" }}>Informasi Produk</h2>
 					<h5 style={{ marginBottom: "5px" }}>Condition</h5>
 					<h5 style={{ marginBottom: "30px", color: "red" }}>New</h5>
 					<h5 style={{ marginBottom: "5px" }}>Description</h5>
@@ -359,14 +364,12 @@ export default function ProductPage() {
 				</section>
 
 				<section className="review">
-					<h1 style={{ marginBottom: "30px" }}>Product Review</h1>
+					<h2 style={{ marginBottom: "10px" }}>Product Review</h2>
 					<div
 						className="rating d-flex w-100"
 						style={{
-							height: "275px",
 							margin: "0px 6px",
 							alignItems: "flex-start",
-
 						}}
 					>
 						<div
@@ -374,9 +377,9 @@ export default function ProductPage() {
 								margin: "10px 30px 30px 0px",
 							}}
 						>
-							<h1
+							<div
 								style={{
-									fontSize: "120px",
+									fontSize: "42px",
 									fontWeight: "500",
 									display: "flex",
 									alignItems: "flex-end",
@@ -384,75 +387,79 @@ export default function ProductPage() {
 								}}
 							>
                 5.0
-								<p
+								<div
 									style={{
+										display: "inline-block",
 										color: "#9B9B9B",
-										fontSize: "50px",
+										fontSize: "16px",
 										fontWeight: "400",
 									}}
 								>
                   /10
-								</p>
-							</h1>
+								</div>
+							</div>
 							<div className="d-flex">
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 							</div>
 						</div>
 						<div className="d-flex flex-column">
-							<label className="d-flex" style={{ alignItems: "center" }}>
+							<label
+								className="d-flex"
+								style={{ alignItems: "center", justifyContent: "center" }}
+							>
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   5
@@ -469,9 +476,9 @@ export default function ProductPage() {
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   4
@@ -481,17 +488,17 @@ export default function ProductPage() {
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   4
@@ -505,9 +512,9 @@ export default function ProductPage() {
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   0
@@ -517,17 +524,17 @@ export default function ProductPage() {
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   3
@@ -541,9 +548,9 @@ export default function ProductPage() {
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   0
@@ -553,17 +560,17 @@ export default function ProductPage() {
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   2
@@ -577,9 +584,9 @@ export default function ProductPage() {
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   0
@@ -589,17 +596,17 @@ export default function ProductPage() {
 								<img
 									src={starIcon}
 									style={{
-										height: "36px",
-										width: "36px",
+										height: "20px",
+										width: "20px",
 										margin: "0px 6px",
 									}}
 								/>
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   1
@@ -613,9 +620,9 @@ export default function ProductPage() {
 								<p
 									style={{
 										color: "#9B9B9B",
-										height: "36px",
-										paddingTop: "5px",
-										margin: "10px",
+										height: "12px",
+										marginRight: "10px",
+										marginLeft: "10px",
 									}}
 								>
                   0

@@ -56,7 +56,7 @@ const router = () => {
 					<Route path="/register" element={<Register />} />
 					<Route path="/forgot" element={<Forgot />} />
 					<Route path="/reset" element={<ResetPassword />} />
-					<Route path="/detailProduct" element={<ProductPage />} />
+					<Route path="/product/:id" element={<ProductPage />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>

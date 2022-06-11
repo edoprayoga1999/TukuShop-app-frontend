@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import "../../assets/styles/auth/auth.css";
 import Button from "../../components/auth/CekButton";
 import Input from "../../components/auth/Input";
@@ -20,6 +20,9 @@ export default function Register() {
 		storeName: "",
 		password: "",
 	});
+	useEffect(() => {
+		document.title = "TukuShop - Login";
+	}, []);
 	const onSubmit = () => {
 		if (isActive) {
 			console.log(buyer);

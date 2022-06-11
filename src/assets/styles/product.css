@@ -1,32 +1,31 @@
-.product .content{
-    display: flex;
-    height: 80vh;
-    width: 80%;
+.product .content {
+  display: flex;
+  margin-bottom: 30px;
+  width: 80%;
 }
-.product .detail{
-    margin-left: 20px;
+.product .content .scroll::-webkit-scrollbar {
+  display: none;
 }
-.product .review{
-    width: 80%;
-    height: 50vh;
+.product .detail {
+  margin-left: 20px;
 }
-.product .review .rating{
-    display: flex;
+.product .review {
+  width: 80%;
+}
+.product .review .rating {
+  display: flex;
 }
 
 @media screen and (max-width: 550px) {
-    .product .content{
+  .product .content {
     flex-direction: column;
-    height: 140vh;
+    padding-bottom: 15vh;
     width: 70%;
-}
-.product .detail{
+  }
+  .product .detail {
     margin-left: 0px;
-}
-.product .review{
-    height: 70vh;
-}
-.product .review .rating{
+  }
+  .product .review .rating {
     flex-direction: column;
-}
+  }
 }
