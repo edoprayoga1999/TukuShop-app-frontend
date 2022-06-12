@@ -18,6 +18,7 @@ import ResetPassword from "../pages/auth/ResetPassword";
 import Category from "../pages/main/buyer/Category";
 import Chat from "../pages/main/Chat";
 import ProductPage from "../pages/main/buyer/ProductPage";
+import Profile from "../pages/main/buyer/Profile";
 import Checkout from "../pages/main/buyer/Checkout";
 
 // const PrivateRoute = () => {
@@ -52,6 +53,7 @@ const router = () => {
 					<Route path="/reset" element={<ResetPassword />} />
 					<Route path="/chat" element={<Chat />} />
 					<Route path="/product/:id" element={<ProductPage />} />
+					<Route path="/profile" element={<Profile />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
