@@ -16,6 +16,7 @@ import Register from "../pages/auth/Register";
 import Forgot from "../pages/auth/Forgot";
 import ResetPassword from "../pages/auth/ResetPassword";
 import Category from "../pages/main/buyer/Category";
+import Chat from "../pages/main/Chat";
 import ProductPage from "../pages/main/buyer/ProductPage";
 
 // const PrivateRoute = () => {
@@ -47,6 +48,7 @@ const router = () => {
 					<Route path="/register" element={<Register />} />
 					<Route path="/forgot" element={<Forgot />} />
 					<Route path="/reset" element={<ResetPassword />} />
+					<Route path="/chat" element={<Chat />} />
 					<Route path="/product/:id" element={<ProductPage />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
