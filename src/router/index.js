@@ -18,6 +18,7 @@ import ResetPassword from "../pages/auth/ResetPassword";
 import Category from "../pages/main/buyer/Category";
 import Chat from "../pages/main/Chat";
 import ProductPage from "../pages/main/buyer/ProductPage";
+import Checkout from "../pages/main/buyer/Checkout";
 
 // const PrivateRoute = () => {
 // 	const token = localStorage.getItem("token");
@@ -43,6 +44,7 @@ const router = () => {
 				<Route path="/">
 					<Route index element={<Home />} />
 					<Route path="/cart" element={<Cart />} />
+					<Route path="/checkout" element={<Checkout />} />
 					<Route path="/category/:id" element={<Category />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
