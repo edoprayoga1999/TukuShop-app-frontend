@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/auth/auth.css";
 import Button from "../../components/auth/CekButton";
@@ -17,6 +17,9 @@ export default function Login() {
 		email: "",
 		password: "",
 	});
+	useEffect(() => {
+		document.title = "TukuShop - Login";
+	}, []);
 	const onSubmit = () => {
 		if (isActive) {
 			console.log(buyer);
