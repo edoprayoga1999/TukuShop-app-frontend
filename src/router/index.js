@@ -17,6 +17,7 @@ import Forgot from "../pages/auth/Forgot";
 import ResetPassword from "../pages/auth/ResetPassword";
 import Category from "../pages/main/buyer/Category";
 import ProductPage from "../pages/main/buyer/ProductPage";
+import Profile from "../pages/main/buyer/Profile";
 
 const PrivateRoute = () => {
 	const token = localStorage.getItem("token");
@@ -57,6 +58,7 @@ const router = () => {
 					<Route path="/forgot" element={<Forgot />} />
 					<Route path="/reset" element={<ResetPassword />} />
 					<Route path="/product/:id" element={<ProductPage />} />
+					<Route path="/profile" element={<Profile />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
