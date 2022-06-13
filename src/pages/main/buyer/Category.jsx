@@ -19,8 +19,6 @@ export default function Category() {
 		dispatch(getListProductByCategory(urlParams.id));
 	}, []);
 
-	console.log(listProductByCategory);
-
 	return (<>
 		<div className="d-flex flex-column container-fluid align-items-center" style={{padding: "0px"}}>
 			<Navbar login={true} />

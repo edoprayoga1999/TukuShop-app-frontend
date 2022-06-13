@@ -4,6 +4,7 @@ import listCategoryReducer from "./listCategory";
 import listNewProductReducer from "./listNewProduct";
 import listProductReducer from "./listProduct";
 import listProductByCategoryReducer from "./listProductByCategory";
+import detailProductReducer from "./detailProduct";
 
 export default combineReducers({
 	listUser: listUserReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
 	listNewProduct: listNewProductReducer,
 	listProduct: listProductReducer,
 	listProductByCategory: listProductByCategoryReducer,
+	detailProduct: detailProductReducer,
 });
