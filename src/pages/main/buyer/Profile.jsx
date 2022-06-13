@@ -15,7 +15,7 @@ import Order from "../../../components/profile/Order";
 
 export default function Profile() {
 	useEffect(() => {
-		document.title = "TukuShop - Category";
+		document.title = "TukuShop - My Profile";
 	}, []);
 	const [profile, setprofile] = useState(true);
 	const [address, setAddress] = useState(false);
@@ -46,7 +46,7 @@ export default function Profile() {
 				<Navbar login={false} />
 				<div
 					className="d-flex"
-					style={{ width: "100%", height: "100vh", marginTop: "-50px" }}
+					style={{ width: "100%", marginTop: "-50px" }}
 				>
 					<div
 						className="d-flex flex-column"

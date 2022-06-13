@@ -1,12 +1,17 @@
-import React, { useEffect,useState } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/auth/auth.css";
 import Input from "../../components/auth/Input";
 import Navigation from "../../components/auth/Navigation";
 import Submit from "../../components/auth/SubmitButton";
 import Title from "../../components/auth/Title";
+import swal from "sweetalert2";
+import { toastr } from "../../utils/toastr";
+import { forgotPassword } from "../../redux/action/auth";
 
 export default function Forgot() {
+	const [loading, setLoading] = useState(false);
 	const [form, setForm] = useState({
 		email: "",
 	});
@@ -14,8 +19,22 @@ export default function Forgot() {
 		document.title = "TukuShop - Forgot Password";
 	}, []);
 	const onSubmit = () => {
-		console.log(form);
-
+		if (form.email == "") {
+			swal
+				.fire({
+					title: "Error!",
+					text: "email field can't be empty",
+					icon: "error",
+				})
+				.then(() => {
+					setLoading(false);
+				});
+			return;
+		}
+		//forgotPassword(form)
+		//	.then((res) => {
+		//	swal
+		//})
 	};
 
 	return (
@@ -30,9 +49,9 @@ export default function Forgot() {
 					/>
 				</form>
 				<Link to="/forgot" className="forgot">
-          Forgot password?
+					Forgot password?
 				</Link>
-				<Submit onSubmit={onSubmit} caption="Reset"/>
+				<Submit onSubmit={onSubmit} caption="Reset" />
 				<Navigation
 					caption="Don't have a Tokopedia account?"
 					to="/register"
