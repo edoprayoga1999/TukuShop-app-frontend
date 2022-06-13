@@ -18,6 +18,5 @@ export default combineReducers({
 	listProduct: listProductReducer,
 	listProductByCategory: listProductByCategoryReducer,
 	detailProduct: detailProductReducer,
-	myCart: myCartReducers,
-	listProductByCategory: listProductByCategoryReducer
+	myCart: myCartReducers
 });
