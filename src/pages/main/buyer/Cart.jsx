@@ -1,15 +1,40 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
+import { getMyCart } from "../../../redux/action/cart";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Cart() {
+	const navigate = useNavigate();
+	const token = localStorage.getItem("token");
+	const dispatch = useDispatch();
+	const listCart = useSelector((state) => state.myCart);
+	const [totalPrice, setTotalPrice] = useState(0);
 	useEffect(() => {
 		document.title = "TukuShop - Cart";
+		dispatch(getMyCart(token));
+	}, []);
+	useEffect(() => {
+		setTotalPrice(() => 0);
+		if (listCart.data.length) {
+			let price = 0;
+			for (let i = 0; i < listCart.data.length; i++) {
+				const priceNow = totalPrice + (listCart.data[i].cartqty * parseInt(listCart.data[i].productprice));
+				price += priceNow;
+			}
+			setTotalPrice((totalPrice) => totalPrice + price );
+			// listCart.data.map((item) => {
+			// 	const price = totalPrice + (item.cartqty * parseInt(item.productprice));
+			// 	console.log(price);
+			// 	setTotalPrice(price);
+			// });
+		}
 	}, []);
 	return (<>
 		<div className="d-flex flex-column container-fluid align-items-center" style={{ padding: "0px" }}>
-			<Navbar login={true} />
+			<Navbar login={token} />
 			<div className="d-flex flex-column mb-5" style={{ width: "80%" }}>
 				<h2 className="mb-4">My bag</h2>
 				<div className="row">
@@ -21,78 +46,60 @@ export default function Cart() {
 								<input type="checkbox" style={{ marginRight: "25px" }} />
 								<div className="d-flex align-items-center" style={{ width: "100%" }}>
 									<h6 style={{ marginTop: "auto", marginBottom: "auto" }}>Select all items&nbsp;</h6>
-									<h6 style={{ marginTop: "auto", marginBottom: "auto", color: "#9B9B9B" }}>(2 items selected)</h6>
+									<h6 style={{ marginTop: "auto", marginBottom: "auto", color: "#9B9B9B" }}>
+										{listCart.isLoading ? "(Loading...)" : 
+											listCart.isError ? "(Error)" : 
+												listCart.data.length > 0 ? `(${listCart.data.length} items selected)` : "(No item in your cart)"
+										}
+									</h6>
 									<h6 style={{ marginTop: "auto", marginBottom: "auto", color: "#DB3022", marginLeft: "auto", marginRight: "0px" }}>Delete</h6>
 								</div>
 							</div>
-							<div className="w-100 mb-4"
-								style={{ padding: "24px", borderRadius: "5px", boxShadow: "0px 0px 8px rgba(115, 115, 115, 0.25)" }}
-							>
-								<div className="d-flex align-items-center w-100">
-									<input type="checkbox" style={{ marginRight: "25px" }} />
-									<div className="row w-100">
-										<div className="col-lg-7 col-md-12 mb-4">
+							{listCart.isLoading ? (<div>Loading...</div>) : 
+								listCart.isError ? (<div>Error</div>) : 
+									listCart.data.length > 0 ? listCart.data.map((item, index) => {
+										return (<div key={index} className="w-100 mb-4"
+											style={{ padding: "24px", borderRadius: "5px", boxShadow: "0px 0px 8px rgba(115, 115, 115, 0.25)" }}
+										>
 											<div className="d-flex align-items-center w-100">
-												<div
-													style={{ height: "100px", width: "100px", marginRight: "15px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: "url('/tshirt.jpg')", borderRadius: "10px" }}
-												/>
-												<div className="d-flex flex-column">
-													<h6>Men&apos;s formal suit - Black</h6>
-													<small style={{ color: "#9B9B9B" }}>Zalora Cloth</small>
+												<input type="checkbox" style={{ marginRight: "25px" }} />
+												<div className="row w-100">
+													<div className="col-lg-7 col-md-12 mb-4">
+														<div className="d-flex align-items-center w-100">
+															<div
+																style={{ height: "100px", width: "100px", marginRight: "15px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: "url('/tshirt.jpg')", borderRadius: "10px" }}
+															/>
+															<div className="d-flex flex-column">
+																<h6>{item.productname}</h6>
+																<small style={{ color: "#9B9B9B" }}>{item.storename}</small>
+															</div>
+														</div>
+													</div>
+													<div className="col-lg-5 col-md-12">
+														<div className="d-flex align-items-center w-100 h-100">
+															<div className="d-flex align-items-center">
+																<button style={{ borderRadius: "50%", border: "none" }}>
+																	<FontAwesomeIcon icon={faMinus} />
+																</button>
+																<h6 className="mx-4 my-auto">{item.cartqty}</h6>
+																<button style={{ borderRadius: "50%", border: "none" }}>
+																	<FontAwesomeIcon icon={faPlus} />
+																</button>
+															</div>
+															<h6 style={{ marginLeft: "auto", marginRight: "0px" }}>
+																{new Intl.NumberFormat("id-ID", {
+																	style: "currency",
+																	currency: "IDR",
+																	minimumFractionDigits: 0,
+																}).format(parseInt(item.productprice) * item.cartqty)}
+															</h6>
+														</div>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div className="col-lg-5 col-md-12">
-											<div className="d-flex align-items-center w-100 h-100">
-												<div className="d-flex align-items-center">
-													<button style={{ borderRadius: "50%", border: "none" }}>
-														<FontAwesomeIcon icon={faMinus} />
-													</button>
-													<h6 className="mx-4 my-auto">1</h6>
-													<button style={{ borderRadius: "50%", border: "none" }}>
-														<FontAwesomeIcon icon={faPlus} />
-													</button>
-												</div>
-												<h6 style={{marginLeft: "auto", marginRight: "0px"}}>$ 20.0</h6>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="w-100 mb-4"
-								style={{ padding: "24px", borderRadius: "5px", boxShadow: "0px 0px 8px rgba(115, 115, 115, 0.25)" }}
-							>
-								<div className="d-flex align-items-center w-100">
-									<input type="checkbox" style={{ marginRight: "25px" }} />
-									<div className="row w-100">
-										<div className="col-lg-7 col-md-12 mb-4">
-											<div className="d-flex align-items-center w-100">
-												<div
-													style={{ height: "100px", width: "100px", marginRight: "15px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: "url('/jacket.jpg')", borderRadius: "10px" }}
-												/>
-												<div className="d-flex flex-column">
-													<h6>Men&apos;s Jacket jeans</h6>
-													<small style={{ color: "#9B9B9B" }}>Zalora Cloth</small>
-												</div>
-											</div>
-										</div>
-										<div className="col-lg-5 col-md-12">
-											<div className="d-flex align-items-center w-100 h-100">
-												<div className="d-flex align-items-center">
-													<button style={{ borderRadius: "50%", border: "none" }}>
-														<FontAwesomeIcon icon={faMinus} />
-													</button>
-													<h6 className="mx-4 my-auto">1</h6>
-													<button style={{ borderRadius: "50%", border: "none" }}>
-														<FontAwesomeIcon icon={faPlus} />
-													</button>
-												</div>
-												<h6 style={{marginLeft: "auto", marginRight: "0px"}}>$ 20.0</h6>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+										</div>);
+									}) : null
+							}
 						</div>
 					</div>
 					<div className="col-lg-4 col-md-12">
@@ -103,9 +110,15 @@ export default function Cart() {
 								<h6 style={{ marginBottom : "30px" }}>Shopping summary</h6>
 								<div className="d-flex w-100" style={{ marginBottom: "30px" }}>
 									<h6 style={{ color: "#9B9B9B" }}>Total Price</h6>
-									<h6 style={{ marginLeft: "auto", marginRight: "0px" }}>$ 40.0</h6>
+									<h6 style={{ marginLeft: "auto", marginRight: "0px" }}>
+										{new Intl.NumberFormat("id-ID", {
+											style: "currency",
+											currency: "IDR",
+											minimumFractionDigits: 0,
+										}).format(totalPrice)}
+									</h6>
 								</div>
-								<button style={{ padding: "8px", color: "#FFF", backgroundColor: "#2AA952", border: "none", borderRadius: "25px" }}>Buy</button>
+								<button style={{ padding: "8px", color: "#FFF", backgroundColor: "#2AA952", border: "none", borderRadius: "25px" }} onClick={() => { navigate("/checkout"); }}>Buy</button>
 							</div>
 						</div>
 					</div>
