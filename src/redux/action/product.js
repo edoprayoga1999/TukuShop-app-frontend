@@ -9,9 +9,12 @@ import {
 	GET_LIST_PRODUCT_BY_CATEGORY_PENDING,
 	GET_LIST_PRODUCT_BY_CATEGORY_SUCCESS,
 	GET_LIST_PRODUCT_BY_CATEGORY_FAILED,
+	GET_DETAIL_PRODUCT_PENDING,
+	GET_DETAIL_PRODUCT_SUCCESS,
+	GET_DETAIL_PRODUCT_FAILED,
 } from "./types";
 
-export const getListProduct = () => {
+export const getListProduct = (url) => {
 	return async (dispatch) => {
 		try {
 			dispatch({
@@ -19,7 +22,7 @@ export const getListProduct = () => {
 				payload: null,
 			});
 
-			const res = await axios.get(`${process.env.REACT_APP_API_URL}/product?limit=24`);
+			const res = await axios.get(url);
 
 			dispatch({
 				type: GET_LIST_PRODUCT_SUCCESS,
@@ -67,8 +70,9 @@ export const getListNewProduct = () => {
 	};
 };
 
-export const getListProductByCategory = (categoryId) => {
+export const getListProductByCategory = (categoryId, page = 1) => {
 	return async (dispatch) => {
+		console.log(page);
 		try {
 			const token = localStorage.getItem("token");
 
@@ -77,7 +81,7 @@ export const getListProductByCategory = (categoryId) => {
 				payload: null,
 			});
 
-			const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/${categoryId}/category`, {
+			const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/${categoryId}/category?limit=24&page=${page}`, {
 				headers: {
 					token
 				}
@@ -95,6 +99,40 @@ export const getListProductByCategory = (categoryId) => {
 
 			dispatch({
 				type: GET_LIST_PRODUCT_BY_CATEGORY_FAILED,
+				payload: error.message,
+			});
+		}
+	};
+};
+
+export const getDetailProduct = (productId) => {
+	return async (dispatch) => {
+		try {
+			const token = localStorage.getItem("token");
+
+			dispatch({
+				type: GET_DETAIL_PRODUCT_PENDING,
+				payload: null,
+			});
+
+			const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/${productId}`, {
+				headers: {
+					token,
+				}
+			});
+
+			dispatch({
+				type: GET_DETAIL_PRODUCT_SUCCESS,
+				payload: res.data,
+			});
+		} catch (error) {
+			console.log(error.message);
+			if (error.response) {
+				error.message = error.response.data.error;
+			}
+
+			dispatch({
+				type: GET_DETAIL_PRODUCT_FAILED,
 				payload: error.message,
 			});
 		}
