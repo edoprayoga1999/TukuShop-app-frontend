@@ -1,30 +1,67 @@
 /* eslint-disable indent */
 import moment from "moment";
 import swal from "sweetalert2";
+import { toastr } from "../../utils/toastr";
 import React, { useState } from "react";
 import { updateUserBuyer } from "../../redux/action/users";
 
 export default function EditProfileBuyer(props) {
   const [photo, setPhoto] = useState("");
+  const [loading, setLoading] = useState(false);
   const [date, setDate] = useState({
-    year: "",
-    month: "",
-    day: "",
+    year: moment(props.data.birth).format("YYYY"),
+    month: moment(props.data.birth).format("MM"),
+    day: moment(props.data.birth).format("DD"),
   });
 
   const onSubmit = async (e) => {
     e.preventDefault();
     props.setEdit();
+    setLoading(true);
+    if (props.data.name == "" || props.data.name == null) {
+      swal
+        .fire({
+          title: "Error!",
+          text: "Name field can't be empty",
+          icon: "error",
+        })
+        .then(() => {
+          setLoading(false);
+        });
+      return;
+    }
+    if (props.data.gender == null) {
+      swal
+        .fire({
+          title: "Error!",
+          text: "Select gender can't be empty",
+          icon: "error",
+        })
+        .then(() => {
+          setLoading(false);
+        });
+      return;
+    }
+    if (props.data.phone == "" || props.data.phone == null) {
+      swal
+        .fire({
+          title: "Error!",
+          text: "Phone field can't be empty",
+          icon: "error",
+        })
+        .then(() => {
+          setLoading(false);
+        });
+      return;
+    }
+
     const formData = new FormData();
     formData.append("photo", photo);
     formData.append("email", props.data.email);
     formData.append("gender", props.data.gender);
     formData.append("name", props.data.name);
     formData.append("phone", props.data.phone);
-    formData.append(
-      "birth",
-      date.year ? moment(date).format("YYYY-MM-DD") : props.data.birth
-    );
+    formData.append("birth", moment(date).format("YYYY-MM-DD"));
 
     updateUserBuyer(formData)
       .then((response) => {
@@ -34,13 +71,27 @@ export default function EditProfileBuyer(props) {
         });
       })
       .catch((err) => {
-        console.log(err.response);
-        swal.fire("Error!", "Error update profile", "error");
+        if (err.response.data.message == "Validation Failed") {
+          const error = err.response.data.error;
+          error.map((e) => {
+            toastr(e.msg, "error");
+          });
+        } else {
+          const message = err.response.data.error;
+          swal.fire({
+            title: "Error!",
+            text: message,
+            icon: "error",
+          });
+        }
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
   return (
     <div className="content" hidden={props.hidden ? "" : "hidden"}>
-      <div className="edit-profile">
+      <form className="edit-profile" onSubmit={(e) => onSubmit(e)}>
         <h2>My Profile</h2>
         <label
           style={{
@@ -442,25 +493,49 @@ export default function EditProfileBuyer(props) {
               type="file"
               id="files"
               onChange={(e) => setPhoto(e.target.files[0])}
+              disabled={props.edit ? "disable" : ""}
             />
           </div>
         </div>
-        <button
-          style={{
-            height: "40px",
-            border: "none",
-            borderRadius: "25px",
-            fontSize: "20px",
-            backgroundColor: "#42D86C",
-            color: "#FFFFFF",
-            margin: "50px 5px 75px 150px",
-            width: "120px",
-          }}
-          onClick={(e) => onSubmit(e)}
-        >
-          Save
-        </button>
-      </div>
+        {loading ? (
+          <button
+            type="submit"
+            style={{
+              height: "40px",
+              border: "none",
+              borderRadius: "25px",
+              fontSize: "20px",
+              backgroundColor: "#42D86C",
+              color: "#FFFFFF",
+              margin: "50px 5px 75px 150px",
+              width: "120px",
+            }}
+            disabled
+          >
+            <span
+              className="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            />
+          </button>
+        ) : (
+          <button
+            type="submit"
+            style={{
+              height: "40px",
+              border: "none",
+              borderRadius: "25px",
+              fontSize: "20px",
+              backgroundColor: "#42D86C",
+              color: "#FFFFFF",
+              margin: "50px 5px 75px 150px",
+              width: "120px",
+            }}
+          >
+            Save
+          </button>
+        )}
+      </form>
     </div>
   );
 }

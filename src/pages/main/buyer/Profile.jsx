@@ -21,7 +21,6 @@ import DetailTransaction from "../../../components/profile/DetailTransaction";
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
   const data = useSelector((state) => {
     return state.detailUser;
   });
@@ -37,10 +36,10 @@ export default function Profile() {
 
   useEffect(() => {
     document.title = "TukuShop - My Profile";
-    setLoading(true);
+
+    
     const get = async () => {
       dispatch(getDetailUser());
-      setLoading(false);
     };
 
     get();
