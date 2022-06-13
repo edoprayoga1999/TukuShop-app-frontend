@@ -13,11 +13,12 @@ import "../../../assets/styles/product.css";
 import { getDetailProduct, getListProductByCategory } from "../../../redux/action/product";
 
 export default function ProductPage() {
+
+	const token = localStorage.getItem("token");
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { detailProduct, listProductByCategory } = useSelector((state) => state);
 	const urlParams = useParams();
-
 	const dataColor = ["black", "#D84242", "#4290D8", "#42D86C"];
 	const [photo, setPhoto] = useState("");
 	const [color, setColor] = useState(dataColor[0]);
@@ -76,7 +77,7 @@ export default function ProductPage() {
 				className="product d-flex flex-column container-fluid align-items-center"
 				style={{ padding: "0px" }}
 			>
-				<Navbar login={true} />
+				<Navbar login={token} />
 
 				<section className="content row">
 					{detailProduct.data.id ? (

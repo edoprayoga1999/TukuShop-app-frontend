@@ -20,8 +20,8 @@ import { getDetailUser } from "../../../redux/action/users";
 import DetailTransaction from "../../../components/profile/DetailTransaction";
 
 export default function Profile() {
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
   const data = useSelector((state) => {
     return state.detailUser;
   });
@@ -37,19 +37,18 @@ export default function Profile() {
 
   useEffect(() => {
     document.title = "TukuShop - My Profile";
-    setLoading(true);
+
     const get = async () => {
       dispatch(getDetailUser());
-      setLoading(false);
     };
 
     get();
   }, []);
-	
+
   useEffect(() => {
     setForm({ ...form, photo: data.data.photo });
   }, [data]);
-	
+
   console.log(data);
   const [profile, setprofile] = useState(true);
   const [edit, setEdit] = useState(true);
@@ -90,7 +89,7 @@ export default function Profile() {
         className="profile d-flex flex-column container-fluid align-items-center"
         style={{ padding: "0px" }}
       >
-        <Navbar login={false} />
+        <Navbar login={token} />
         <div className="d-flex" style={{ width: "100%", marginTop: "-50px" }}>
           <div
             className="d-flex flex-column"

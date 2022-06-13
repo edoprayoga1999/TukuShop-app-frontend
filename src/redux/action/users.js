@@ -99,23 +99,24 @@ export const getDetailReceiver = (id) => {
 };
 
 export const updateUserBuyer = async (formData) => {
-  try {
-    const id = localStorage.getItem("userId");
+  return new Promise((resolve, reject) => {
     const token = localStorage.getItem("token");
-    console.log(formData);
-    await axios.put(
-      `${process.env.REACT_APP_API_URL}/user/${id}/buyer`,
-      formData,
-      {
+    const id = localStorage.getItem("userId");
+
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/user/${id}/buyer`, formData, {
         headers: {
-          token,
           "Content-Type": "multipart/form-data",
+          token: token,
         },
-      }
-    );
-  } catch (error) {
-    console.log(error);
-  }
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };
 
 export const getListUserChat = (level) => {

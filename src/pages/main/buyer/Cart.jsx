@@ -19,9 +19,10 @@ export default function Cart() {
 	useEffect(() => {
 		setTotalPrice(() => 0);
 		if (listCart.data.length) {
+			console.log(listCart.data);
 			let price = 0;
 			for (let i = 0; i < listCart.data.length; i++) {
-				const priceNow = totalPrice + (listCart.data[i].cartqty * parseInt(listCart.data[i].productprice));
+				const priceNow = totalPrice + (listCart.data[i].dataCart.cartqty * parseInt(listCart.data[i].dataCart.productprice));
 				price += priceNow;
 			}
 			setTotalPrice((totalPrice) => totalPrice + price );
@@ -67,11 +68,11 @@ export default function Cart() {
 													<div className="col-lg-7 col-md-12 mb-4">
 														<div className="d-flex align-items-center w-100">
 															<div
-																style={{ height: "100px", width: "100px", marginRight: "15px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: "url('/tshirt.jpg')", borderRadius: "10px" }}
+																style={{ height: "100px", width: "100px", marginRight: "15px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", backgroundImage: "url('https://drive.google.com/uc?export=view&id="+ item.productImages[0]?.photo +"')", borderRadius: "10px" }}
 															/>
 															<div className="d-flex flex-column">
-																<h6>{item.productname}</h6>
-																<small style={{ color: "#9B9B9B" }}>{item.storename}</small>
+																<h6>{item.dataCart.productname}</h6>
+																<small style={{ color: "#9B9B9B" }}>{item.dataCart.storename}</small>
 															</div>
 														</div>
 													</div>
@@ -81,7 +82,7 @@ export default function Cart() {
 																<button style={{ borderRadius: "50%", border: "none" }}>
 																	<FontAwesomeIcon icon={faMinus} />
 																</button>
-																<h6 className="mx-4 my-auto">{item.cartqty}</h6>
+																<h6 className="mx-4 my-auto">{item.dataCart.cartqty}</h6>
 																<button style={{ borderRadius: "50%", border: "none" }}>
 																	<FontAwesomeIcon icon={faPlus} />
 																</button>
@@ -91,7 +92,7 @@ export default function Cart() {
 																	style: "currency",
 																	currency: "IDR",
 																	minimumFractionDigits: 0,
-																}).format(parseInt(item.productprice) * item.cartqty)}
+																}).format(parseInt(item.dataCart.productprice) * item.dataCart.cartqty)}
 															</h6>
 														</div>
 													</div>
