@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
 	Modal,
 	ModalHeader,
 	ModalBody,
-	ModalFooter
+	ModalFooter,
+	Dropdown,
+	DropdownItem,
+	DropdownToggle,
+	DropdownMenu
 } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../../assets/images/logo.svg";
 import logoOnly from "../../assets/images/logo-only.svg";
@@ -17,10 +23,17 @@ import filterIcon from "../../assets/images/filter.svg";
 import Style from "../../assets/styles/Home.module.css";
 
 export default function Navbar(props) {
+	const navigate = useNavigate();
 	const login = props.login;
 	const [modalOpen, setModalOpen] = useState(false);
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const dropdownToggler = () => setDropdownOpen(!dropdownOpen);
 	const modalToggler = () => {
 		setModalOpen(!modalOpen);
+	};
+	const logout = () => {
+		localStorage.clear();
+		navigate("/login");
 	};
 	return (
 		<div className="d-flex align-items-center justify-content-center w-100" style={{ paddingTop: "30px", paddingBottom: "30px", boxShadow: "0px 6px 40px rgba(173, 173, 173, 0.25)", marginBottom: "50px" }}>
@@ -40,23 +53,45 @@ export default function Navbar(props) {
 					<img src={cartIcon} />
 				</Link>
 				<img src={bellIcon} className={Style.bellIcon} />
-				<img src={mailIcon} className={Style.mailIcon} />
-				<div
-					style={{
-						width: "35px",
-						height: "35px",
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-						backgroundRepeat: "no-repeat",
-						backgroundImage: "url('/user.jpg')",
-						borderRadius: "99px"
-					}}
-				/></>) : (<>
-					<Link to ="/cart" className={Style.iconCart}>
+				<Link to="/chat" className={Style.mailIcon} >
+					<img src={mailIcon} />
+				</Link>
+				<Dropdown isOpen={dropdownOpen} toggle={dropdownToggler}>
+					<DropdownToggle style={{border: "none", backgroundColor: "#FFF"}}>
+						<div
+							style={{
+								width: "35px",
+								height: "35px",
+								backgroundSize: "cover",
+								backgroundPosition: "center",
+								backgroundRepeat: "no-repeat",
+								backgroundImage: "url('/user.jpg')",
+								borderRadius: "99px"
+							}}
+						/>
+					</DropdownToggle>
+					<DropdownMenu>
+						<Link to='/profile/buyer' style={{textDecoration: "none"}}>
+							<DropdownItem>
+								<FontAwesomeIcon icon={faUser}/> My Profile
+							</DropdownItem>
+						</Link>
+						<DropdownItem onClick={() => { logout(); }} style={{ color: "red" }}>
+							<FontAwesomeIcon icon={faRightFromBracket}/> Logout
+						</DropdownItem>
+					</DropdownMenu>
+				</Dropdown>
+				</>) : (<>
+					<Link to="/cart" className={Style.iconCart}>
 						<img src={cartIcon} />
 					</Link>
-					<button className={Style.signinButton}>Login</button>
-					<button className={Style.signupButton}>Signup</button></>)}				
+					<Link to="/login">
+						<button className={Style.signinButton}>Login</button>
+					</Link>
+					<Link to="/register">
+						<button className={Style.signupButton}>Signup</button>
+					</Link>
+				</>)}				
 			</div>
 			<Modal
 				toggle={modalToggler}

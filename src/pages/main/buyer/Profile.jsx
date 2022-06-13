@@ -15,7 +15,7 @@ import Order from "../../../components/profile/Order";
 
 export default function Profile() {
 	useEffect(() => {
-		document.title = "TukuShop - Category";
+		document.title = "TukuShop - My Profile";
 	}, []);
 	const [profile, setprofile] = useState(true);
 	const [address, setAddress] = useState(false);
