@@ -39,7 +39,7 @@ const router = () => {
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/forgot" element={<Forgot />} />
-					<Route path="/reset" element={<ResetPassword />} />
+          <Route path="/auth/reset/:token" element={<ResetPassword />} />
 				</Route>
 				<Route path="/cart" element={<PrivateRoute />}>
 					<Route index element={<Cart />} />

@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { getListCategory } from "../../redux/action/category";
 import { getListNewProduct, getListProduct } from "../../redux/action/product";
+import Pagination from "../../components/Pagination";
 
 import Navbar from "../../components/Navbar";
 import ProductList from "../../components/Section/ProductList";
@@ -11,7 +13,13 @@ import Promo from "../../components/Carousel/Promo";
 export default function Home() {
 	const token = localStorage.getItem("token");
 	const dispatch = useDispatch();
-	const { listCategory, listNewProduct, listProduct } = useSelector((state) => state);
+	const { listCategory, listNewProduct, listProduct } = useSelector(
+		(state) => state
+	);
+	const [queryParams] = useSearchParams();
+	const navigate = useNavigate();
+
+	const [search, setSearch] = useState("");
 
 	useEffect(() => {
 		document.title = "TukuShop - Home";
@@ -20,8 +28,36 @@ export default function Home() {
 	useEffect(() => {
 		dispatch(getListCategory());
 		dispatch(getListNewProduct());
-		dispatch(getListProduct());
 	}, []);
+
+	useEffect(() => {
+		let url = `${process.env.REACT_APP_API_URL}/product?limit=24`;
+
+		setSearch("");
+		if (queryParams.get("search")) {
+			setSearch(queryParams.get("search"));
+			url += `&search=${queryParams.get("search")}`;
+		}
+
+		if (queryParams.get("page")) {
+			url += `&page=${queryParams.get("page")}`;
+		}
+
+		dispatch(getListProduct(url));
+	}, [dispatch, navigate, queryParams]);
+
+	const applyFilter = (page = "") => {
+		let url = "/?";
+
+		if (search) {
+			url += `&search=${search}`;
+		}
+
+		if (page) {
+			url += `&page=${page}`;
+		}
+		return navigate(url);
+	};
 
 	return (
 		<>
@@ -42,7 +78,11 @@ export default function Home() {
 							<span className="visually-hidden">Loading...</span>
 						</div>
 					) : (
-						<ProductList listProduct={listNewProduct.data} />
+						<>
+							{
+								listNewProduct.data.length ? <ProductList listProduct={listNewProduct.data} /> : <h4>Data not found</h4>
+							}
+						</>
 					)}
 				</div>
 				<div className="d-flex flex-column mb-5" style={{ width: "80%" }}>
@@ -55,7 +95,19 @@ export default function Home() {
 							<span className="visually-hidden">Loading...</span>
 						</div>
 					) : (
-						<ProductList listProduct={listProduct.data} />
+						<>
+							{listProduct.data.length ? (
+								<>
+									<ProductList listProduct={listProduct.data} />
+									<Pagination
+										pagination={listProduct.pagination}
+										applyFilter={applyFilter}
+									/>
+								</>
+							) : (
+								<h4>Data not found</h4>
+							)}
+						</>
 					)}
 				</div>
 			</div>

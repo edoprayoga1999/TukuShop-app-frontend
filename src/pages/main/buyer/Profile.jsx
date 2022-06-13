@@ -22,7 +22,7 @@ import DetailTransaction from "../../../components/profile/DetailTransaction";
 export default function Profile() {
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token");
   const data = useSelector((state) => {
     return state.detailUser;
   });
@@ -38,19 +38,18 @@ export default function Profile() {
 
   useEffect(() => {
     document.title = "TukuShop - My Profile";
-    setLoading(true);
+
     const get = async () => {
       dispatch(getDetailUser());
-      setLoading(false);
     };
 
     get();
   }, []);
-	
+
   useEffect(() => {
     setForm({ ...form, photo: data.data.photo });
   }, [data]);
-	
+
   console.log(data);
   const [profile, setprofile] = useState(true);
   const [edit, setEdit] = useState(true);
