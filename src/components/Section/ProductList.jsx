@@ -27,7 +27,11 @@ export default function ProductList({ listProduct = [] }) {
 									backgroundSize: "cover",
 									backgroundPosition: "center",
 									backgroundRepeat: "no-repeat",
-									backgroundImage: "url('/tshirt.jpg')",
+									backgroundImage: `url(${
+										product.product_images.length
+											? `https://drive.google.com/uc?export=view&id=${product.product_images[0].photo}`
+											: "/category.webp"
+									})`,
 									borderRadius: "10px 10px 0px 0px",
 								}}
 							/>
