@@ -46,7 +46,7 @@ export default function Profile() {
 				<Navbar login={false} />
 				<div
 					className="d-flex"
-					style={{ width: "100%", height: "100vh", marginTop: "-50px" }}
+					style={{ width: "100%", marginTop: "-50px" }}
 				>
 					<div
 						className="d-flex flex-column"
