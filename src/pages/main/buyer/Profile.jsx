@@ -20,6 +20,7 @@ import { getDetailUser } from "../../../redux/action/users";
 import DetailTransaction from "../../../components/profile/DetailTransaction";
 
 export default function Profile() {
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const data = useSelector((state) => {
@@ -90,7 +91,7 @@ export default function Profile() {
         className="profile d-flex flex-column container-fluid align-items-center"
         style={{ padding: "0px" }}
       >
-        <Navbar login={false} />
+        <Navbar login={token} />
         <div className="d-flex" style={{ width: "100%", marginTop: "-50px" }}>
           <div
             className="d-flex flex-column"

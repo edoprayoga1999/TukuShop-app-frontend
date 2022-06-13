@@ -9,6 +9,7 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "../../../assets/styles/product.css";
 
 export default function ProductPage() {
+	const token = localStorage.getItem("token");
 	const dataColor = ["black", "#D84242", "#4290D8", "#42D86C"];
 	const [photo, setPhoto] = useState("");
 	const [color, setColor] = useState(dataColor[0]);
@@ -24,7 +25,7 @@ export default function ProductPage() {
 				className="product d-flex flex-column container-fluid align-items-center"
 				style={{ padding: "0px" }}
 			>
-				<Navbar login={true} />
+				<Navbar login={token} />
 
 				<section className="content row">
 					<div

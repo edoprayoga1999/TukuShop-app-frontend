@@ -11,6 +11,7 @@ import {
 import Style from "../../../assets/styles/Checkout.module.css";
 
 export default function Checkout() {
+	const token = localStorage.getItem("token");
 	const [paymentWindow, setPaymentWindow] = useState(false);
 	const [addressWindow, setAddressWindow] = useState(false);
 	const [newAddressWindow, setNewAddressWindow] = useState(false);
@@ -34,7 +35,7 @@ export default function Checkout() {
 	}, []);
 	return (<>
 		<div className="d-flex flex-column container-fluid align-items-center" style={{ padding: "0px" }}>
-			<Navbar login={true} />
+			<Navbar login={token} />
 			<div className="d-flex flex-column mb-5" style={{ width: "80%" }}>
 				<h2 className="mb-4">Checkout</h2>
 				<div className="row">

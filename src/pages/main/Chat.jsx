@@ -4,13 +4,14 @@ import Navbar from "../../components/Navbar";
 import Style from "../../assets/styles/Chat.module.css";
 
 export default function Chat() {
+	const token = localStorage.getItem("token");
 	const [chatWindow, setChatWindow] = useState(false);
 	useEffect(() => {
 		document.title = "TukuShop - Chat Page";
 	}, []);
 	return (<>
 		<div className="d-flex flex-column container-fluid align-items-center" style={{ padding: "0px", height: "100vh" }}>
-			<Navbar login={true} />
+			<Navbar login={token} />
 			<div className="d-flex flex-column mb-5 h-100" style={{ width: "80%" }}>
 				<div className="row h-100">
 					<div className="col-4 h-100">
