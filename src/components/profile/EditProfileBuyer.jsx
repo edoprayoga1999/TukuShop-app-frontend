@@ -71,6 +71,7 @@ export default function EditProfileBuyer(props) {
         });
       })
       .catch((err) => {
+        console.log(err);
         if (err.response.data.message == "Validation Failed") {
           const error = err.response.data.error;
           error.map((e) => {
