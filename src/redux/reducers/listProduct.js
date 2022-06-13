@@ -9,6 +9,7 @@ const initialState = {
 	isError: false,
 	data: [],
 	error: null,
+	pagination: []
 };
 
 const listNewProductReducer = (state = initialState, action) => {
@@ -21,6 +22,7 @@ const listNewProductReducer = (state = initialState, action) => {
 			isLoading: false,
 			isError: false,
 			data: action.payload.data,
+			pagination: action.payload.pagination,
 		};
 	case GET_LIST_PRODUCT_FAILED:
 		return {

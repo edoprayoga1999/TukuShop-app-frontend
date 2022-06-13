@@ -62,7 +62,7 @@ export default function ProductPage() {
 						title: "Success",
 						text: "Success add to cart!",
 					});
-					navigate("/cart");
+					return navigate("/cart");
 				})
 				.catch((error) => {
 					console.log(error.message);

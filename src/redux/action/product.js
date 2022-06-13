@@ -14,7 +14,7 @@ import {
 	GET_DETAIL_PRODUCT_FAILED,
 } from "./types";
 
-export const getListProduct = () => {
+export const getListProduct = (url) => {
 	return async (dispatch) => {
 		try {
 			dispatch({
@@ -22,7 +22,7 @@ export const getListProduct = () => {
 				payload: null,
 			});
 
-			const res = await axios.get(`${process.env.REACT_APP_API_URL}/product?limit=24`);
+			const res = await axios.get(url);
 
 			dispatch({
 				type: GET_LIST_PRODUCT_SUCCESS,
@@ -70,8 +70,9 @@ export const getListNewProduct = () => {
 	};
 };
 
-export const getListProductByCategory = (categoryId) => {
+export const getListProductByCategory = (categoryId, page = 1) => {
 	return async (dispatch) => {
+		console.log(page);
 		try {
 			const token = localStorage.getItem("token");
 
@@ -80,7 +81,7 @@ export const getListProductByCategory = (categoryId) => {
 				payload: null,
 			});
 
-			const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/${categoryId}/category?limit=24`, {
+			const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/${categoryId}/category?limit=24&page=${page}`, {
 				headers: {
 					token
 				}
