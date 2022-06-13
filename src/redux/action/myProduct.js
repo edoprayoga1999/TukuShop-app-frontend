@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import axios from "axios";
 import {
 	GET_MY_PRODUCT_PENDING,
 	GET_MY_PRODUCT_SUCCESS,
@@ -26,7 +27,6 @@ export const getMyProduct = () => {
 				payload: res,
 			});
 		} catch (error) {
-			console.log(error);
 			dispatch({
 				type: GET_MY_PRODUCT_FAILED,
 				payload: error.message,

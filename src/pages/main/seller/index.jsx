@@ -34,7 +34,7 @@ export default function Index() {
 	useEffect(() => {
 		document.title = "TukuShop - Profile";
 		dispatch(getDetailSeller());
-		//dispatch(getMyProduct());
+		dispatch(getMyProduct());
 		//console.log(myProduct);
 	}, []);
 	//useEffect(() => {
@@ -511,7 +511,7 @@ export default function Index() {
 						</div>
 
 						<EditProfileSeller hidden={profile} data={detailSeller} />
-						<ListProduct hidden={product} />
+						<ListProduct hidden={product} data={myProduct} />
 						<AddProduct hidden={addProduct} />
 						<Order hidden={order} />
 						<Order hidden={orderCancel} />
