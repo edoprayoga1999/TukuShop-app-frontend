@@ -59,7 +59,6 @@ export default function Login() {
 			}
 			login(buyer)
 				.then((res) => {
-					// console.log(res.token.jwt);
 					swal
 						.fire({
 							title: "Success!",
@@ -189,7 +188,7 @@ export default function Login() {
 					<Submit onSubmit={onSubmit} caption="Login" loading={false} />
 				)}
 				<Navigation
-					caption="Don't have a Tokopedia account?"
+					caption="Don't have a Tukushop account?"
 					to="/register"
 					toCaption="Register"
 				/>

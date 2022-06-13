@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Navbar from "../../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Cart() {
+	useEffect(() => {
+		document.title = "TukuShop - Cart";
+	}, []);
 	return (<>
 		<div className="d-flex flex-column container-fluid align-items-center" style={{ padding: "0px" }}>
 			<Navbar login={true} />

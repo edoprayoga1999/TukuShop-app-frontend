@@ -31,7 +31,6 @@ export default function Register() {
 		document.title = "TukuShop - Register";
 	}, []);
 	const onSubmit = () => {
-		// e.preventDefault();
 		if (isActive) {
 			// register buyer
 			setLoading(true);
@@ -39,7 +38,7 @@ export default function Register() {
 				swal
 					.fire({
 						title: "Error!",
-						text: "name field can't be empty",
+						text: "Name field can't be empty",
 						icon: "error",
 					})
 					.then(() => {
@@ -51,7 +50,7 @@ export default function Register() {
 				swal
 					.fire({
 						title: "Error!",
-						text: "email field can't be empty",
+						text: "Email field can't be empty",
 						icon: "error",
 					})
 					.then(() => {
@@ -63,7 +62,7 @@ export default function Register() {
 				swal
 					.fire({
 						title: "Error!",
-						text: "password field can't be empty",
+						text: "Password field can't be empty",
 						icon: "error",
 					})
 					.then(() => {
@@ -76,7 +75,7 @@ export default function Register() {
 					swal
 						.fire({
 							title: "Success!",
-							text: res.message,
+							text: "Registration is successful, please activate your account via the link we have sent to your email",
 							icon: "success",
 						})
 						.then(() => {
@@ -168,7 +167,7 @@ export default function Register() {
 					swal
 						.fire({
 							title: "Success!",
-							text: res.message,
+							text: "Registration is successful, please activate your account via the link we have sent to your email",
 							icon: "success",
 						})
 						.then(() => {
