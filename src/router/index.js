@@ -51,7 +51,7 @@ const router = () => {
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/forgot" element={<Forgot />} />
-					<Route path="/reset" element={<ResetPassword />} />
+					<Route path="/auth/reset/:token" element={<ResetPassword />} />
 					<Route path="/chat" element={<Chat />} />
 					<Route path="/product/:id" element={<ProductPage />} />
 					<Route path="/profile/buyer" element={<Profile />} />

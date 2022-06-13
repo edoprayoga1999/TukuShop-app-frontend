@@ -12,7 +12,7 @@ import detailSellerReducer from "./detailSeller";
 export default combineReducers({
 	listUser: listUserReducer,
 	detailUser: detailUserReducer,
-  detailSeller: detailSellerReducer,
+	detailSeller: detailSellerReducer,
 	listCategory: listCategoryReducer,
 	listNewProduct: listNewProductReducer,
 	listProduct: listProductReducer,
