@@ -11,6 +11,7 @@ import Category from "../../components/Carousel/Category";
 import Promo from "../../components/Carousel/Promo";
 
 export default function Home() {
+	const token = localStorage.getItem("token");
 	const dispatch = useDispatch();
 	const { listCategory, listNewProduct, listProduct } = useSelector(
 		(state) => state
@@ -64,7 +65,7 @@ export default function Home() {
 				className="d-flex flex-column container-fluid align-items-center"
 				style={{ padding: "0px" }}
 			>
-				<Navbar login={false} />
+				<Navbar login={token} />
 				<Promo />
 				<Category listCategory={listCategory} />
 				<div className="d-flex flex-column mb-5" style={{ width: "80%" }}>

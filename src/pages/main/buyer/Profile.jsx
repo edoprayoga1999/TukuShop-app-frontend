@@ -20,6 +20,7 @@ import { getDetailUser } from "../../../redux/action/users";
 import DetailTransaction from "../../../components/profile/DetailTransaction";
 
 export default function Profile() {
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const data = useSelector((state) => {
