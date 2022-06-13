@@ -19,7 +19,11 @@ import Category from "../pages/main/buyer/Category";
 import Chat from "../pages/main/Chat";
 import ProductPage from "../pages/main/buyer/ProductPage";
 import Profile from "../pages/main/buyer/Profile";
+<<<<<<< HEAD
 import Index from "../pages/main/seller";
+=======
+import Checkout from "../pages/main/buyer/Checkout";
+>>>>>>> 324e76d4011d71fda60c4edf52f0cb1199801b29
 
 // const PrivateRoute = () => {
 // 	const token = localStorage.getItem("token");
@@ -45,6 +49,7 @@ const router = () => {
 				<Route path="/">
 					<Route index element={<Home />} />
 					<Route path="/cart" element={<Cart />} />
+					<Route path="/checkout" element={<Checkout />} />
 					<Route path="/category/:id" element={<Category />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
