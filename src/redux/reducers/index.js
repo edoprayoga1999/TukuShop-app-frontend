@@ -6,15 +6,17 @@ import listNewProductReducer from "./listNewProduct";
 import listProductReducer from "./listProduct";
 import myCartReducers from "./myCart";
 import listProductByCategoryReducer from "./listProductByCategory";
+import detailProductReducer from "./detailProduct";
 import detailSellerReducer from "./detailSeller";
 
 export default combineReducers({
 	listUser: listUserReducer,
 	detailUser: detailUserReducer,
-  detailSeller: detailSellerReducer,
+	detailSeller: detailSellerReducer,
 	listCategory: listCategoryReducer,
 	listNewProduct: listNewProductReducer,
 	listProduct: listProductReducer,
-	myCart: myCartReducers,
-	listProductByCategory: listProductByCategoryReducer
+	listProductByCategory: listProductByCategoryReducer,
+	detailProduct: detailProductReducer,
+	myCart: myCartReducers
 });

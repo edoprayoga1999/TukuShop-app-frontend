@@ -3,7 +3,7 @@ import axios from "axios";
 export const registerBuyer = (form) => {
 	return new Promise((resolve, reject) => {
 		axios
-			// eslint-disable-next-line no-undef
+		// eslint-disable-next-line no-undef
 			.post(`${process.env.REACT_APP_API_URL}/auth/register/buyer`, form)
 			.then((res) => {
 				resolve(res.data);
@@ -16,7 +16,7 @@ export const registerBuyer = (form) => {
 export const registerSeller = (form) => {
 	return new Promise((resolve, reject) => {
 		axios
-			// eslint-disable-next-line no-undef
+		// eslint-disable-next-line no-undef
 			.post(`${process.env.REACT_APP_API_URL}/auth/register/seller`, form)
 			.then((res) => {
 				resolve(res.data);
@@ -29,7 +29,7 @@ export const registerSeller = (form) => {
 export const login = (form) => {
 	return new Promise((resolve, reject) => {
 		axios
-			// eslint-disable-next-line no-undef
+		// eslint-disable-next-line no-undef
 			.post(`${process.env.REACT_APP_API_URL}/auth/login`, form)
 			.then((res) => {
 				// local storage set token
@@ -47,8 +47,22 @@ export const login = (form) => {
 export const forgotPassword = (form) => {
 	return new Promise((resolve, reject) => {
 		axios
-			// eslint-disable-next-line no-undef
+		// eslint-disable-next-line no-undef
 			.post(`${process.env.REACT_APP_API_URL}/auth/forgot`, form)
+			.then((res) => {
+				resolve(res.data);
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	});
+};
+
+export const resetPassword = (token, form) => {
+	return new Promise((resolve, reject) => {
+		axios
+		// eslint-disable-next-line no-undef
+			.post(`${process.env.REACT_APP_API_URL}/auth/reset/${token}`, form)
 			.then((res) => {
 				resolve(res.data);
 			})
