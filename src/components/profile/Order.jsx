@@ -206,6 +206,7 @@ export default function Order(props) {
 											width: "100%",
 											padding: "5px 10px",
 										}}
+										onClick={()=>props.setOrder()}
 									>
                     view
 									</button>
@@ -245,6 +246,7 @@ export default function Order(props) {
 											width: "100%",
 											padding: "5px 10px",
 										}}
+										onClick={()=>props.setOrder()}
 									>
                     view
 									</button>
@@ -284,6 +286,7 @@ export default function Order(props) {
 											width: "100%",
 											padding: "5px 10px",
 										}}
+										onClick={()=>props.setOrder()}
 									>
                     view
 									</button>
@@ -323,6 +326,7 @@ export default function Order(props) {
 											width: "100%",
 											padding: "5px 10px",
 										}}
+										onClick={()=>props.setOrder()}
 									>
                     view
 									</button>
