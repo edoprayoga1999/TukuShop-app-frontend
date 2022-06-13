@@ -19,16 +19,16 @@ export default function EditProfileSeller(props) {
 		storePhone: "",
 		storeDescription: "",
 	});
-	const [email, setEmail] = useState(dataSeller.data.data.email);
+	const [email, setEmail] = useState(dataSeller.data?.data?.email);
 	// get data
 	useEffect(() => {
 		if (dataSeller.data.data) {
 			setForm({
-				name: dataSeller.data.data.name,
-				photo: dataSeller.data.data.photo,
-				storeName: dataSeller.data.data.store_name,
-				storePhone: dataSeller.data.data.store_phone,
-				storeDescription: dataSeller.data.data.store_description,
+				name: dataSeller.data?.data?.name,
+				photo: dataSeller.data?.data?.photo,
+				storeName: dataSeller.data?.data?.store_name,
+				storePhone: dataSeller.data?.data?.store_phone,
+				storeDescription: dataSeller.data?.data?.store_description,
 			});
 		}
 	}, []);
@@ -287,7 +287,7 @@ export default function EditProfileSeller(props) {
 					</div>
 					<hr className="line" />
 					<div className="form-image">
-						{dataSeller.data.data.photo ? (
+						{dataSeller?.data?.data?.photo ? (
 							<img
 								src={`https://drive.google.com/uc?export=view&id=${dataSeller.data.data.photo}`}
 								style={{

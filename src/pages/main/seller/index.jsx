@@ -21,16 +21,25 @@ import ListProduct from "../../../components/ProfileSeller/ListProduct";
 import AddProduct from "../../../components/ProfileSeller/AddProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailSeller } from "../../../redux/action/detailSeller";
+import { getMyProduct } from "../../../redux/action/myProduct";
 
 export default function Index() {
 	const dispatch = useDispatch();
 	const detailSeller = useSelector((state) => {
 		return state.detailSeller;
 	});
+	const myProduct = useSelector((state) => {
+		return state.myProduct;
+	});
 	useEffect(() => {
-		document.title = "TukuShop - Category";
+		document.title = "TukuShop - Profile";
 		dispatch(getDetailSeller());
+		//dispatch(getMyProduct());
+		//console.log(myProduct);
 	}, []);
+	//useEffect(() => {
+	//	dispatch(getDetailSeller());
+	//}, [detailSeller]);
 	const [profile, setprofile] = useState(true);
 	const [product, setProduct] = useState(false);
 	const [order, setOrder] = useState(false);
@@ -129,7 +138,7 @@ export default function Index() {
 									marginBottom: "60px",
 								}}
 							>
-								{detailSeller.data.data.photo ? (
+								{detailSeller.data?.data?.photo ? (
 									<img
 										src={`https://drive.google.com/uc?export=view&id=${detailSeller.data.data.photo}`}
 										style={{
@@ -151,7 +160,7 @@ export default function Index() {
 									/>
 								)}
 								<div>
-									<h4>{detailSeller.data.data.name}</h4>
+									<h4>{detailSeller.data?.data?.name}</h4>
 									<label
 										style={{
 											display: "flex",
