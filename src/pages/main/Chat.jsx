@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 import jwt_decode from "jwt-decode";
+import Swal from "sweetalert2";
 import Navbar from "../../components/Navbar";
 
 import Style from "../../assets/styles/Chat.module.css";
@@ -22,8 +23,6 @@ export default function Chat() {
 	const [message, setMessage] = useState("");
 	const [listChat, setListChat] = useState([]);
 	const [activeReceiver, setActiveReceiver] = useState("");
-
-	console.log(listChat);
 
 	useEffect(() => {
 		document.title = "TukuShop - Chat Page";
@@ -94,6 +93,27 @@ export default function Chat() {
 			const elem = document.getElementById("chatMenuMessage");
 			elem.scrollTop = elem.scrollHeight;
 		}, 100);
+	};
+
+	const onDeleteMessage = (chat) => {
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, delete it!"
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const data = {
+					sender: chat.sender_id,
+					receiver: chat.receiver_id,
+					idmessage: chat.id,
+				};
+				socketio.emit("delete-message", data);
+			}
+		});
 	};
 
 	return (
@@ -241,7 +261,7 @@ export default function Chat() {
 													{chat.sender_id === localStorage.getItem("userId") ? (
 														<>
 															{/* sender message */}
-															<div className="d-flex flex-column w-100">
+															<div className="d-flex flex-column w-100" onClick={() => onDeleteMessage(chat)}>
 																<div className="d-flex w-100 justify-content-end align-items-center">
 																	<p
 																		style={{
