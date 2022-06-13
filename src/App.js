@@ -4,7 +4,7 @@ import { store, persistor } from "./redux/store";
 import Router from "./router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-
+import "./assets/styles/utility.css";
 
 function App() {
 	return (
