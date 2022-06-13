@@ -25,6 +25,7 @@ import { getMyProduct } from "../../../redux/action/myProduct";
 
 export default function Index() {
 	const dispatch = useDispatch();
+	  const token = localStorage.getItem("token");
 	const detailSeller = useSelector((state) => {
 		return state.detailSeller;
 	});
@@ -112,7 +113,7 @@ export default function Index() {
 				className="profile d-flex flex-column container-fluid align-items-center"
 				style={{ padding: "0px" }}
 			>
-				<Navbar login={true} />
+				<Navbar login={token} />
 				{detailSeller.isLoading ? (
 					<>
 						<Facebook />
@@ -278,237 +279,237 @@ export default function Index() {
 									Store profile
 								</label>
 
-								<label
-									style={
-										isProductOpen
-											? {
-													display: "flex",
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "black",
-											  }
-											: {
-													display: "flex",
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "#9B9B9B",
-											  }
-									}
-									onClick={() => setOpen("product")}
-								>
-									<FontAwesomeIcon
-										icon={faLocationDot}
-										style={{
-											backgroundColor: "#F36F45",
-											color: "#FFFFFF",
-											height: "25px",
-											width: "25px",
-											borderRadius: "50%",
-											marginRight: "20px",
-											padding: "10px",
-										}}
-									/>
-									Product
-									<FontAwesomeIcon
-										icon={isProductOpen ? faAngleUp : faAngleDown}
-										style={
-											isProductOpen
-												? {
-														height: "18px",
-														margin: "10px 10px",
-														fontSize: "16px",
-														fontWeight: "500",
-														color: "black",
-														width: "163px",
-												  }
-												: {
-														height: "18px",
-														margin: "10px 10px",
-														fontSize: "16px",
-														fontWeight: "500",
-														color: "#9B9B9B",
-														width: "163px",
-												  }
-										}
-									/>
-								</label>
-								<label
-									hidden={isProductOpen ? "" : "hidden"}
-									style={
-										product
-											? {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "black",
-													marginLeft: "65px",
-											  }
-											: {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "#9B9B9B",
-													marginLeft: "65px",
-											  }
-									}
-									onClick={() => setContent("product")}
-								>
-									My product
-								</label>
-								<label
-									hidden={isProductOpen ? "" : "hidden"}
-									style={
-										addProduct
-											? {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "black",
-													marginLeft: "65px",
-											  }
-											: {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "#9B9B9B",
-													marginLeft: "65px",
-											  }
-									}
-									onClick={() => setContent("add product")}
-								>
-									Selling products
-								</label>
+                <label
+                  style={
+                    isProductOpen
+                      ? {
+                          display: "flex",
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "black",
+                        }
+                      : {
+                          display: "flex",
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#9B9B9B",
+                        }
+                  }
+                  onClick={() => setOpen("product")}
+                >
+                  <FontAwesomeIcon
+                    icon={faLocationDot}
+                    style={{
+                      backgroundColor: "#F36F45",
+                      color: "#FFFFFF",
+                      height: "25px",
+                      width: "25px",
+                      borderRadius: "50%",
+                      marginRight: "20px",
+                      padding: "10px",
+                    }}
+                  />
+                  Product
+                  <FontAwesomeIcon
+                    icon={isProductOpen ? faAngleUp : faAngleDown}
+                    style={
+                      isProductOpen
+                        ? {
+                            height: "18px",
+                            margin: "10px 10px",
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            color: "black",
+                            width: "163px",
+                          }
+                        : {
+                            height: "18px",
+                            margin: "10px 10px",
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            color: "#9B9B9B",
+                            width: "163px",
+                          }
+                    }
+                  />
+                </label>
+                <label
+                  hidden={isProductOpen ? "" : "hidden"}
+                  style={
+                    product
+                      ? {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "black",
+                          marginLeft: "65px",
+                        }
+                      : {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#9B9B9B",
+                          marginLeft: "65px",
+                        }
+                  }
+                  onClick={() => setContent("product")}
+                >
+                  My product
+                </label>
+                <label
+                  hidden={isProductOpen ? "" : "hidden"}
+                  style={
+                    addProduct
+                      ? {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "black",
+                          marginLeft: "65px",
+                        }
+                      : {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#9B9B9B",
+                          marginLeft: "65px",
+                        }
+                  }
+                  onClick={() => setContent("add product")}
+                >
+                  Selling products
+                </label>
 
-								<label
-									style={
-										isOrderOpen
-											? {
-													display: "flex",
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "black",
-											  }
-											: {
-													display: "flex",
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "#9B9B9B",
-											  }
-									}
-									onClick={() => setOpen("order")}
-								>
-									<FontAwesomeIcon
-										icon={faLocationDot}
-										style={{
-											backgroundColor: "#F3456F",
-											color: "#FFFFFF",
-											height: "25px",
-											width: "25px",
-											borderRadius: "50%",
-											marginRight: "20px",
-											padding: "10px",
-										}}
-									/>
-									Order
-									<FontAwesomeIcon
-										icon={isOrderOpen ? faAngleUp : faAngleDown}
-										style={
-											isOrderOpen
-												? {
-														height: "18px",
-														margin: "10px 10px",
-														fontSize: "16px",
-														fontWeight: "500",
-														color: "black",
-														width: "195px",
-												  }
-												: {
-														height: "18px",
-														margin: "10px 10px",
-														fontSize: "16px",
-														fontWeight: "500",
-														color: "#9B9B9B",
-														width: "195px",
-												  }
-										}
-									/>
-								</label>
-								<label
-									hidden={isOrderOpen ? "" : "hidden"}
-									style={
-										order
-											? {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "black",
-													marginLeft: "65px",
-											  }
-											: {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "#9B9B9B",
-													marginLeft: "65px",
-											  }
-									}
-									onClick={() => setContent("order")}
-								>
-									My order
-								</label>
-								<label
-									hidden={isOrderOpen ? "" : "hidden"}
-									style={
-										orderCancel
-											? {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "black",
-													marginLeft: "65px",
-											  }
-											: {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "#9B9B9B",
-													marginLeft: "65px",
-											  }
-									}
-									onClick={() => setContent("order cancel")}
-								>
-									Order cancel
-								</label>
-							</div>
-						</div>
+                <label
+                  style={
+                    isOrderOpen
+                      ? {
+                          display: "flex",
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "black",
+                        }
+                      : {
+                          display: "flex",
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#9B9B9B",
+                        }
+                  }
+                  onClick={() => setOpen("order")}
+                >
+                  <FontAwesomeIcon
+                    icon={faLocationDot}
+                    style={{
+                      backgroundColor: "#F3456F",
+                      color: "#FFFFFF",
+                      height: "25px",
+                      width: "25px",
+                      borderRadius: "50%",
+                      marginRight: "20px",
+                      padding: "10px",
+                    }}
+                  />
+                  Order
+                  <FontAwesomeIcon
+                    icon={isOrderOpen ? faAngleUp : faAngleDown}
+                    style={
+                      isOrderOpen
+                        ? {
+                            height: "18px",
+                            margin: "10px 10px",
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            color: "black",
+                            width: "195px",
+                          }
+                        : {
+                            height: "18px",
+                            margin: "10px 10px",
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            color: "#9B9B9B",
+                            width: "195px",
+                          }
+                    }
+                  />
+                </label>
+                <label
+                  hidden={isOrderOpen ? "" : "hidden"}
+                  style={
+                    order
+                      ? {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "black",
+                          marginLeft: "65px",
+                        }
+                      : {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#9B9B9B",
+                          marginLeft: "65px",
+                        }
+                  }
+                  onClick={() => setContent("order")}
+                >
+                  My order
+                </label>
+                <label
+                  hidden={isOrderOpen ? "" : "hidden"}
+                  style={
+                    orderCancel
+                      ? {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "black",
+                          marginLeft: "65px",
+                        }
+                      : {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#9B9B9B",
+                          marginLeft: "65px",
+                        }
+                  }
+                  onClick={() => setContent("order cancel")}
+                >
+                  Order cancel
+                </label>
+              </div>
+            </div>
 
 						<EditProfileSeller hidden={profile} data={detailSeller} />
 						<ListProduct hidden={product} data={myProduct} />
