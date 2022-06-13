@@ -70,8 +70,21 @@
   width: 90%;
   border-radius: 5px;
 }
+.profile .content .product {
+  background-color: #ffffff;
+  padding: 30px;
+  border: 2px solid #9b9b9b;
+  width: 90%;
+  border-radius: 5px;
+  margin: 15px 0px
+}
 .profile .content .order .table-order th,
 .profile .content .order .table-order td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.profile .content .product .table-order th,
+.profile .content .product .table-order td {
   border: 1px solid #ddd;
   padding: 8px;
 }
