@@ -1,4 +1,5 @@
-import React, { useEffect,useState } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/auth/auth.css";
 import Button from "../../components/auth/CekButton";
@@ -6,25 +7,147 @@ import Input from "../../components/auth/Input";
 import Navigation from "../../components/auth/Navigation";
 import Submit from "../../components/auth/SubmitButton";
 import Title from "../../components/auth/Title";
+import swal from "sweetalert2";
+import { toastr } from "../../utils/toastr";
+import { login } from "../../redux/action/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
 	const [isActive, setIsActive] = useState(true);
 	const [buyer, setBuyer] = useState({
 		email: "",
 		password: "",
+		login: "buyer",
 	});
 	const [seller, setSeller] = useState({
 		email: "",
 		password: "",
+		login: "seller",
 	});
 	useEffect(() => {
 		document.title = "TukuShop - Login";
 	}, []);
 	const onSubmit = () => {
 		if (isActive) {
-			console.log(buyer);
+			// login buyer
+			setLoading(true);
+			if (buyer.email == "") {
+				swal
+					.fire({
+						title: "Error!",
+						text: "Email field can't be empty",
+						icon: "error",
+					})
+					.then(() => {
+						setLoading(false);
+					});
+				return;
+			}
+			if (buyer.password == "") {
+				swal
+					.fire({
+						title: "Error!",
+						text: "Password field can't be empty",
+						icon: "error",
+					})
+					.then(() => {
+						setLoading(false);
+					});
+				return;
+			}
+			login(buyer)
+				.then((res) => {
+					// console.log(res.token.jwt);
+					swal
+						.fire({
+							title: "Success!",
+							text: res.message,
+							icon: "success",
+						})
+						.then(() => {
+							// buyer navigate ke home
+							return navigate("/");
+						});
+				})
+				.catch((err) => {
+					if (err.response.data.message == "Validation Failed") {
+						const error = err.response.data.error;
+						error.map((e) => {
+							toastr(e.msg, "error");
+						});
+					} else {
+						const message = err.response.data.error;
+						swal.fire({
+							title: "Error!",
+							text: message,
+							icon: "error",
+						});
+					}
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 		} else if (!isActive) {
-			console.log(seller);
+			// login seller
+			setLoading(true);
+			if (seller.email == "") {
+				swal
+					.fire({
+						title: "Error!",
+						text: "Email field can't be empty",
+						icon: "error",
+					})
+					.then(() => {
+						setLoading(false);
+					});
+				return;
+			}
+			if (seller.password == "") {
+				swal
+					.fire({
+						title: "Error!",
+						text: "Password field can't be empty",
+						icon: "error",
+					})
+					.then(() => {
+						setLoading(false);
+					});
+				return;
+			}
+			login(seller)
+				.then((res) => {
+					swal
+						.fire({
+							title: "Success!",
+							text: res.message,
+							icon: "success",
+						})
+						.then(() => {
+							// ke halaman profile seller
+							return navigate("/profile/seller");
+						});
+				})
+				.catch((err) => {
+					console.log(err);
+					if (err.response.data.message == "Validation Failed") {
+						const error = err.response.data.error;
+						error.map((e) => {
+							toastr(e.msg, "error");
+						});
+					} else {
+						const message = err.response.data.error;
+						swal.fire({
+							title: "Error!",
+							text: message,
+							icon: "error",
+						});
+					}
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 		}
 	};
 
@@ -57,8 +180,14 @@ export default function Login() {
 						setData={(e) => setSeller({ ...seller, password: e.target.value })}
 					/>
 				</form>
-				<Link to="/forgot" className="forgot">Forgot password?</Link>
-				<Submit onSubmit={onSubmit} caption="Login"/>
+				<Link to="/forgot" className="forgot">
+					Forgot password?
+				</Link>
+				{loading ? (
+					<Submit onSubmit={onSubmit} caption="Login" loading={true} />
+				) : (
+					<Submit onSubmit={onSubmit} caption="Login" loading={false} />
+				)}
 				<Navigation
 					caption="Don't have a Tokopedia account?"
 					to="/register"
