@@ -75,9 +75,13 @@ export default function ProductPage() {
 		axios.post(`${process.env.REACT_APP_API_URL}/chat`, {
 			senderId: localStorage.getItem("userId"),
 			receiverId: detailProduct.data.store_id,
+		}, {
+			headers: {
+				token: localStorage.getItem("token"),
+			}
 		}).then(() => {
 			return navigate("/chat");
-		}).catch(() => console.log(error.message));
+		}).catch((error) => console.log(error.message));
 	};
 
 	return (
