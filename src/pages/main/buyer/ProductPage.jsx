@@ -74,7 +74,7 @@ export default function ProductPage() {
 	const createInitialChat = () => {
 		axios.post(`${process.env.REACT_APP_API_URL}/chat`, {
 			senderId: localStorage.getItem("userId"),
-			receiverId: detailProduct.rows[0].store_id,
+			receiverId: detailProduct.data.store_id,
 		}).then(() => {
 			return navigate("/chat");
 		}).catch(() => console.log(error.message));
