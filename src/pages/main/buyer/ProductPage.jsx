@@ -71,6 +71,15 @@ export default function ProductPage() {
 		}
 	};
 
+	const createInitialChat = () => {
+		axios.post(`${processs.env.REACT_APP_API_URL}/chat`, {
+			senderId: localStorage.getItem("userId"),
+			receiverId: detailProduct.rows[0].store_id,
+		}).then(() => {
+			return navigate("/chat");
+		}).catch(() => console.log(error.message));
+	};
+
 	return (
 		<>
 			<div
@@ -335,6 +344,7 @@ export default function ProductPage() {
 											backgroundColor: "#FFFFFF",
 											margin: "5px",
 										}}
+										onClick = {() => createInitialChat()}
 									>
                     Chat
 									</button>
