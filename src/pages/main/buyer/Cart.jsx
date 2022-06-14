@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { Code } from "react-content-loader";
 
 export default function Cart() {
 	const navigate = useNavigate();
@@ -19,7 +20,6 @@ export default function Cart() {
 	useEffect(() => {
 		setTotalPrice(() => 0);
 		if (listCart.data.length) {
-			console.log(listCart.data);
 			let price = 0;
 			for (let i = 0; i < listCart.data.length; i++) {
 				const priceNow = totalPrice + (listCart.data[i].dataCart.cartqty * parseInt(listCart.data[i].dataCart.productprice));
@@ -56,7 +56,7 @@ export default function Cart() {
 									<h6 style={{ marginTop: "auto", marginBottom: "auto", color: "#DB3022", marginLeft: "auto", marginRight: "0px" }}>Delete</h6>
 								</div>
 							</div>
-							{listCart.isLoading ? (<div>Loading...</div>) : 
+							{listCart.isLoading ? (<Code />) : 
 								listCart.isError ? (<div>Error</div>) : 
 									listCart.data.length > 0 ? listCart.data.map((item, index) => {
 										return (<div key={index} className="w-100 mb-4"
