@@ -1,7 +1,7 @@
 import {
-	GET_LIST_PRODUCT_PENDING,
-	GET_LIST_PRODUCT_SUCCESS,
-	GET_LIST_PRODUCT_FAILED,
+	GET_MY_CART_PENDING,
+	GET_MY_CART_SUCCESS,
+	GET_MY_CART_FAILED
 } from "../action/types";
 
 const initialState = {
@@ -9,22 +9,20 @@ const initialState = {
 	isError: false,
 	data: [],
 	error: null,
-	pagination: []
 };
 
-const listNewProductReducer = (state = initialState, action) => {
+const myCartReducers = (state = initialState, action) => {
 	switch (action.type) {
-	case GET_LIST_PRODUCT_PENDING:
+	case GET_MY_CART_PENDING:
 		return { ...state, isLoading: true };
-	case GET_LIST_PRODUCT_SUCCESS:
+	case GET_MY_CART_SUCCESS:
 		return {
 			...state,
 			isLoading: false,
 			isError: false,
 			data: action.payload.data,
-			pagination: action.payload.pagination,
 		};
-	case GET_LIST_PRODUCT_FAILED:
+	case GET_MY_CART_FAILED:
 		return {
 			...state,
 			isLoading: false,
@@ -36,4 +34,4 @@ const listNewProductReducer = (state = initialState, action) => {
 	}
 };
 
-export default listNewProductReducer;
+export default myCartReducers;
