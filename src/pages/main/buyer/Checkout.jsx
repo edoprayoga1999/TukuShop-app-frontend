@@ -20,8 +20,7 @@ import Style from "../../../assets/styles/Checkout.module.css";
 export default function Checkout() {
 	const dispatch = useDispatch();
 	const myAddress = useSelector((state) => state.myAddress);
-	const myCart = useSelector((state) => state.myCart);
-	const [totalPrice, setTotalPrice] = useState(0);
+	const listCart = useSelector((state) => state.myCart);
 	const [formAddress, setFormAddress] = useState({
 		label: "",
 		recipientName: "",
@@ -46,6 +45,14 @@ export default function Checkout() {
 		setNewAddressWindow(!newAddressWindow);
 		setAddressWindow(!addressWindow);
 	};
+	const totalPrice = (data) => {
+		let price = 0;
+		for (let i = 0; i < data.length; i++) {
+			const priceNow = data[i].dataCart.cartqty * parseInt(data[i].dataCart.productprice);
+			price += priceNow;
+		}
+		return price;
+	};
 	const editAddressToggler = (item) => {
 		if (item) {
 			setFormAddress({
@@ -65,17 +72,6 @@ export default function Checkout() {
 		document.title = "TukuShop - Checkout";
 		dispatch(getMyAddress());
 		dispatch(getMyCart(token));
-	}, []);
-	useEffect(() => {
-		setTotalPrice(() => 0);
-		if (myCart.data.length) {
-			let price = 0;
-			for (let i = 0; i < myCart.data.length; i++) {
-				const priceNow = totalPrice + (myCart.data[i].dataCart.cartqty * parseInt(myCart.data[i].dataCart.productprice));
-				price += priceNow;
-			}
-			setTotalPrice((totalPrice) => totalPrice + price );
-		}
 	}, []);
 	return (<>
 		<div className="d-flex flex-column container-fluid align-items-center" style={{ padding: "0px" }}>
@@ -106,12 +102,12 @@ export default function Checkout() {
 										))
 										: (<div>Error</div>)
 							}
-							{myCart.isLoading ? 
+							{listCart.isLoading ? 
 								(<Code />)
-								: myCart.isError ? 
+								: listCart.isError ? 
 									(<div>Error</div>)
-									: myCart.data.length > 0 ?
-										myCart.data.map((item, index) => (
+									: listCart.data.length > 0 ?
+										listCart.data.map((item, index) => (
 											<div key={index} className="w-100 mb-4"
 												style={{ padding: "24px", borderRadius: "5px", boxShadow: "0px 0px 8px rgba(115, 115, 115, 0.25)" }}
 											>
@@ -166,11 +162,18 @@ export default function Checkout() {
 								<div className="d-flex w-100">
 									<h6 style={{ color: "#9B9B9B" }}>Order</h6>
 									<h6 style={{ marginLeft: "auto", marginRight: "0px" }}>
-										{new Intl.NumberFormat("id-ID", {
-											style: "currency",
-											currency: "IDR",
-											minimumFractionDigits: 0,
-										}).format(totalPrice)}
+										{listCart.isLoading ? "Counting..." : 
+											listCart.error === "data not found" ? new Intl.NumberFormat("id-ID", {
+												style: "currency",
+												currency: "IDR",
+												minimumFractionDigits: 0,
+											}).format(totalPrice(0)) : 
+												listCart.isError ? "Error" : 
+													listCart.data.length > 0 ? new Intl.NumberFormat("id-ID", {
+														style: "currency",
+														currency: "IDR",
+														minimumFractionDigits: 0,
+													}).format(totalPrice(listCart.data)) : null }
 									</h6>
 								</div>
 								<div className="d-flex w-100">
@@ -188,11 +191,18 @@ export default function Checkout() {
 								<div className="d-flex w-100 mb-3">
 									<h6>Shopping summary</h6>
 									<h6 style={{ marginLeft: "auto", marginRight: "0px" }}>
-										{new Intl.NumberFormat("id-ID", {
-											style: "currency",
-											currency: "IDR",
-											minimumFractionDigits: 0,
-										}).format(totalPrice + 5000)}
+										{listCart.isLoading ? "Counting..." : 
+											listCart.error === "data not found" ? new Intl.NumberFormat("id-ID", {
+												style: "currency",
+												currency: "IDR",
+												minimumFractionDigits: 0,
+											}).format(0) : 
+												listCart.isError ? "Error" : 
+													listCart.data.length > 0 ? new Intl.NumberFormat("id-ID", {
+														style: "currency",
+														currency: "IDR",
+														minimumFractionDigits: 0,
+													}).format(totalPrice(listCart.data) + 5000) : null }
 									</h6>
 								</div>
 								<button

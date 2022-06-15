@@ -31,7 +31,7 @@ export const getMyCart = (token) => {
 
 			dispatch({
 				type: GET_MY_CART_FAILED,
-				payload: error.message,
+				payload: error.response.data,
 			});
 		}
 	};
