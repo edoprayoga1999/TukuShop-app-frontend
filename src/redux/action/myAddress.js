@@ -5,9 +5,7 @@ import {
 	GET_MY_ADDRESS_SUCCESS
 } from "./types";
 
-const token = localStorage.getItem("token");
-
-export const getMyAddress = () => {
+export const getMyAddress = (token) => {
 	return async (dispatch) => {
 		try {
 			dispatch({
@@ -23,10 +21,9 @@ export const getMyAddress = () => {
 				type: GET_MY_ADDRESS_SUCCESS,
 				payload: res.data,
 			});
-		} catch (err) {
-			console.log(error.message);
+		} catch (error) {
 			if (error.response) {
-				error.message = error.response.data.error;
+				error.message = error.response.data.message;
 			}
 			dispatch({
 				type: GET_MY_ADDRESS_FAILED,
