@@ -32,12 +32,14 @@ export default function ProductPage() {
 	useEffect(() => {
 		dispatch(getDetailProduct(urlParams.id));
 		dispatch(getListProductByCategory(detailProduct.data.category_id));
-	}, []);
+
+		window.scrollTo(0, 0);
+	}, [urlParams]);
 
 	const addToBag = async () => {
 		const token = localStorage.getItem("token");
 
-		if (!quantity) {
+		if (quantity < 1) {
 			Swal.fire({
 				icon: "error",
 				title: "Failed",
