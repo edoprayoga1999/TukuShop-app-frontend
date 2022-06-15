@@ -36,3 +36,20 @@ export const getMyCart = (token) => {
 		}
 	};
 };
+
+export const deleteCart = (cartId, token) => {
+	return new Promise((resolve, reject) => {
+		axios.delete(`${process.env.REACT_APP_API_URL}/cart/${cartId}`, {
+			headers: {
+				token
+			}
+		})
+			.then((response) => {
+				resolve(response.data);
+			})
+			.catch((err) => {
+				console.log(err);
+				reject(err.response.data);
+			});
+	});
+};

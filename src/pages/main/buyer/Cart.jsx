@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import swal from "sweetalert2";
 import { getMyCart } from "../../../redux/action/cart";
+import { deleteCart } from "../../../redux/action/cart";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../../components/Navbar";
@@ -19,6 +21,38 @@ export default function Cart() {
 			price += priceNow;
 		}
 		return price;
+	};
+	const deleteMyCart = (cartId) => {
+		swal.fire({
+			title: "Are you sure delete this cart?",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#d33",
+			cancelButtonColor: "#6c757d",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "Cancel"
+		})
+			.then((response) => {
+				if (response.isConfirmed) {
+					deleteCart(cartId, token)
+						.then(() => {
+							swal.fire(
+								"Success!",
+								"Cart successfully deleted",
+								"success"
+							).then(() => {
+								dispatch(getMyCart(token));
+							});
+						})
+						.catch((err) => {
+							swal.fire(
+								"Failed",
+								err.message,
+								"error"
+							);
+						});
+				}
+			});
 	};
 	useEffect(() => {
 		document.title = "TukuShop - Cart";
@@ -66,6 +100,7 @@ export default function Cart() {
 																<div className="d-flex flex-column">
 																	<h6>{item.dataCart.productname}</h6>
 																	<small style={{ color: "#9B9B9B" }}>{item.dataCart.storename}</small>
+																	<h6 style={{ color: "#DB3022", cursor: "pointer" }} onClick={() => { deleteMyCart(item.dataCart.cartid); }} >Remove item from cart</h6>
 																</div>
 															</div>
 														</div>
