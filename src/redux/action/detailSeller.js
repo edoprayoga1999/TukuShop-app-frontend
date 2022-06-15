@@ -6,11 +6,10 @@ import {
 	GET_DETAIL_SELLER_FAILED,
 } from "./typesDetailUser";
 
-const token = localStorage.getItem("token");
-const id = localStorage.getItem("userId");
-
 export const getDetailSeller = () => {
 	return async (dispatch) => {
+		const token = localStorage.getItem("token");
+		const id = localStorage.getItem("userId");
 		try {
 			dispatch({
 				type: GET_DETAIL_SELLER_PENDING,
@@ -21,7 +20,7 @@ export const getDetailSeller = () => {
 				// eslint-disable-next-line no-undef
 				url: `${process.env.REACT_APP_API_URL}/user/${id}`,
 				method: "GET",
-				headers: { token: token },
+				headers: { token },
 			});
 
 			dispatch({
