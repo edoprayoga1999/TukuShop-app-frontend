@@ -154,7 +154,16 @@ export default function Cart() {
 													}).format(totalPrice(listCart.data)) : null }
 									</h6>
 								</div>
-								{listCart.data.length > 0 ? (<button style={{ padding: "8px", color: "#FFF", backgroundColor: "#2AA952", border: "none", borderRadius: "25px" }} onClick={() => { navigate("/checkout"); }}>Buy</button>) : null}
+								{listCart.data.length > 0 ?
+									(<button style={{ padding: "8px", color: "#FFF", backgroundColor: "#2AA952", border: "none", borderRadius: "25px" }} onClick={() => { navigate("/checkout"); }}>Buy</button>) : 
+									(<button style={{ padding: "8px", color: "#FFF", backgroundColor: "#2AA952", border: "none", borderRadius: "25px" }} onClick={() => { 
+										swal.fire(
+											"Error!",
+											"Your cart is empty",
+											"error"
+										);
+									}}>Buy</button>)
+								}
 							</div>
 						</div>
 					</div>
