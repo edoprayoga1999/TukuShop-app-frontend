@@ -17,7 +17,7 @@ export const getMyOrderSeller = () => {
 
 			const res = await axios({
 				// eslint-disable-next-line no-undef
-				url: `${process.env.REACT_APP_API_URL}/transaction`,
+				url: `${process.env.REACT_APP_API_URL}/transaction?limit=999`,
 				method: "GET",
 				headers: { token },
 			});

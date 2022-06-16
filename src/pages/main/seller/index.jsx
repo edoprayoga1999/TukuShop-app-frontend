@@ -577,6 +577,9 @@ export default function Index() {
 														hidden={orderDetail}
 														key={i}
 														data={item}
+														setOrder={() => {
+															setContent("order");
+														}}
 													/>
 												);
 											}
