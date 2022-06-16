@@ -9,6 +9,7 @@ import listProductByCategoryReducer from "./listProductByCategory";
 import detailProductReducer from "./detailProduct";
 import detailSellerReducer from "./detailSeller";
 import myProductReducer from "./myProduct";
+import myOrderSellerReducer from "./myOrderSeller";
 
 export default combineReducers({
 	listUser: listUserReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
 	listProductByCategory: listProductByCategoryReducer,
 	myProduct: myProductReducer,
 	detailProduct: detailProductReducer,
-	myCart: myCartReducers
+	myCart: myCartReducers,
+	myOrderSeller: myOrderSellerReducer,
 });
