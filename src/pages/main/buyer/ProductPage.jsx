@@ -32,12 +32,22 @@ export default function ProductPage() {
 	useEffect(() => {
 		dispatch(getDetailProduct(urlParams.id));
 		dispatch(getListProductByCategory(detailProduct.data.category_id));
-	}, []);
+
+		window.scrollTo(0, 0);
+	}, [urlParams]);
+
+	useEffect(() => {
+		if(detailProduct.data.product_images.length) {
+			setPhoto(`https://drive.google.com/uc?export=view&id=${detailProduct.data.product_images[0].photo}`);
+		} else {
+			setPhoto("/category.webp");
+		}
+	}, [detailProduct]);
 
 	const addToBag = async () => {
 		const token = localStorage.getItem("token");
 
-		if (!quantity) {
+		if (quantity < 1) {
 			Swal.fire({
 				icon: "error",
 				title: "Failed",
@@ -71,6 +81,19 @@ export default function ProductPage() {
 		}
 	};
 
+	const createInitialChat = () => {
+		axios.post(`${process.env.REACT_APP_API_URL}/chat`, {
+			senderId: localStorage.getItem("userId"),
+			receiverId: detailProduct.data.store_id,
+		}, {
+			headers: {
+				token: localStorage.getItem("token"),
+			}
+		}).then(() => {
+			return navigate("/chat");
+		}).catch((error) => console.log(error.message));
+	};
+
 	return (
 		<>
 			<div
@@ -88,7 +111,7 @@ export default function ProductPage() {
 										src={
 											photo
 												? photo
-												: `https://drive.google.com/uc?export=view&id=${detailProduct.data.product_images[0].photo}`
+												: "/category.webp"
 										}
 										alt="foto"
 										style={{
@@ -335,6 +358,7 @@ export default function ProductPage() {
 											backgroundColor: "#FFFFFF",
 											margin: "5px",
 										}}
+										onClick = {() => createInitialChat()}
 									>
                     Chat
 									</button>
