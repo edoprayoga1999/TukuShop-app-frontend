@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import singa from "../../assets/images/singa.png";
+import defaultImg from "../../assets/images/default.png";
 import swal from "sweetalert2";
 import { toastr } from "../../utils/toastr";
 import { editProfileSeller } from "../../redux/action/editProfileSeller";
@@ -137,7 +138,7 @@ export default function EditProfileSeller(props) {
 						color: "#9B9B9B",
 					}}
 				>
-          Manage your profile information
+					Manage your profile information
 				</label>
 				<hr
 					style={{
@@ -159,10 +160,10 @@ export default function EditProfileSeller(props) {
 									marginRight: "40px",
 								}}
 							>
-                Name
+								Name
 							</div>
 							<input
-								value={form.name}
+								value={form.name ? form.name : ""}
 								onChange={(e) => setForm({ ...form, name: e.target.value })}
 								type="text"
 								placeholder="Your Name"
@@ -185,7 +186,7 @@ export default function EditProfileSeller(props) {
 									marginRight: "40px",
 								}}
 							>
-                Email
+								Email
 							</div>
 							<input
 								value={email}
@@ -211,7 +212,7 @@ export default function EditProfileSeller(props) {
 									marginRight: "40px",
 								}}
 							>
-                Phone Number
+								Phone Number
 							</div>
 							<input
 								value={form.storePhone}
@@ -239,7 +240,7 @@ export default function EditProfileSeller(props) {
 									marginRight: "40px",
 								}}
 							>
-                Store Name
+								Store Name
 							</div>
 							<input
 								value={form.storeName}
@@ -267,7 +268,7 @@ export default function EditProfileSeller(props) {
 									marginRight: "40px",
 								}}
 							>
-                Store Description
+								Store Description
 							</div>
 							<textarea
 								value={form.storeDescription}
@@ -299,7 +300,7 @@ export default function EditProfileSeller(props) {
 							/>
 						) : (
 							<img
-								src={singa}
+								src={defaultImg}
 								style={{
 									width: "100px",
 									height: "100px",
@@ -319,7 +320,7 @@ export default function EditProfileSeller(props) {
 							}}
 							htmlFor="files"
 						>
-              Select Photo
+							Select Photo
 						</label>
 						<input
 							hidden
@@ -366,7 +367,7 @@ export default function EditProfileSeller(props) {
 							width: "120px",
 						}}
 					>
-            Save
+						Save
 					</button>
 				)}
 			</form>
