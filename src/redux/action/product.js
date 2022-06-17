@@ -138,3 +138,23 @@ export const getDetailProduct = (productId) => {
 		}
 	};
 };
+
+export const addProduct = async (formData) => {
+	return new Promise((resolve, reject) => {
+		const token = localStorage.getItem("token");
+
+		axios
+			.post(`${process.env.REACT_APP_API_URL}/product`, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data",
+					token: token,
+				},
+			})
+			.then((res) => {
+				resolve(res.data);
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	});
+};
