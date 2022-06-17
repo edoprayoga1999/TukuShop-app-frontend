@@ -8,10 +8,10 @@ import singa from "../../../assets/images/singa.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import {
-	faLocationDot,
-	faPen,
-	faAngleUp,
-	faAngleDown,
+  faLocationDot,
+  faPen,
+  faAngleUp,
+  faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 import "../../../assets/styles/profile.css";
 
@@ -24,260 +24,260 @@ import { getDetailSeller } from "../../../redux/action/detailSeller";
 import { getMyProduct } from "../../../redux/action/myProduct";
 
 export default function Index() {
-	const dispatch = useDispatch();
-	  const token = localStorage.getItem("token");
-	const detailSeller = useSelector((state) => {
-		return state.detailSeller;
-	});
-	const myProduct = useSelector((state) => {
-		return state.myProduct;
-	});
-	useEffect(() => {
-		document.title = "TukuShop - Profile";
-		dispatch(getDetailSeller());
-		dispatch(getMyProduct());
-		//console.log(myProduct);
-	}, []);
-	//useEffect(() => {
-	//	dispatch(getDetailSeller());
-	//}, [detailSeller]);
-	const [profile, setprofile] = useState(true);
-	const [product, setProduct] = useState(false);
-	const [order, setOrder] = useState(false);
-	const [addProduct, setAddProduct] = useState(false);
-	const [orderCancel, setOrderCancel] = useState(false);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const detailSeller = useSelector((state) => {
+    return state.detailSeller;
+  });
+  const myProduct = useSelector((state) => {
+    return state.myProduct;
+  });
+  useEffect(() => {
+    document.title = "TukuShop - Profile";
+    dispatch(getDetailSeller());
+    dispatch(getMyProduct());
+    //console.log(myProduct);
+  }, []);
+  //useEffect(() => {
+  //	dispatch(getDetailSeller());
+  //}, [detailSeller]);
+  const [profile, setprofile] = useState(true);
+  const [product, setProduct] = useState(false);
+  const [order, setOrder] = useState(false);
+  const [addProduct, setAddProduct] = useState(false);
+  const [orderCancel, setOrderCancel] = useState(false);
 
-	const [isProfileOpen, setIsprofileOpen] = useState(true);
-	const [isProductOpen, setProductOpen] = useState(false);
-	const [isOrderOpen, setIsOrderOpen] = useState(false);
+  const [isProfileOpen, setIsprofileOpen] = useState(true);
+  const [isProductOpen, setProductOpen] = useState(false);
+  const [isOrderOpen, setIsOrderOpen] = useState(false);
 
-	const setOpen = (item) => {
-		if (item === "profile") {
-			setIsprofileOpen(!isProfileOpen);
-			setProductOpen(false);
-			setIsOrderOpen(false);
-		}
-		if (item === "product") {
-			setIsprofileOpen(false);
-			setProductOpen(!isProductOpen);
-			setIsOrderOpen(false);
-		}
-		if (item === "order") {
-			setIsprofileOpen(false);
-			setProductOpen(false);
-			setIsOrderOpen(!isOrderOpen);
-		}
-	};
+  const setOpen = (item) => {
+    if (item === "profile") {
+      setIsprofileOpen(!isProfileOpen);
+      setProductOpen(false);
+      setIsOrderOpen(false);
+    }
+    if (item === "product") {
+      setIsprofileOpen(false);
+      setProductOpen(!isProductOpen);
+      setIsOrderOpen(false);
+    }
+    if (item === "order") {
+      setIsprofileOpen(false);
+      setProductOpen(false);
+      setIsOrderOpen(!isOrderOpen);
+    }
+  };
 
-	const setContent = (item) => {
-		if (item === "profile") {
-			setprofile(true);
-			setProduct(false);
-			setOrder(false);
-			setAddProduct(false);
-			setOrderCancel(false);
-		}
-		if (item === "product") {
-			setprofile(false);
-			setProduct(true);
-			setOrder(false);
-			setAddProduct(false);
-			setOrderCancel(false);
-		}
-		if (item === "order") {
-			setprofile(false);
-			setProduct(false);
-			setOrder(true);
-			setAddProduct(false);
-			setOrderCancel(false);
-		}
-		if (item === "add product") {
-			setprofile(false);
-			setProduct(false);
-			setOrder(false);
-			setAddProduct(true);
-			setOrderCancel(false);
-		}
-		if (item === "order cancel") {
-			setprofile(false);
-			setProduct(false);
-			setOrder(false);
-			setAddProduct(false);
-			setOrderCancel(true);
-		}
-	};
+  const setContent = (item) => {
+    if (item === "profile") {
+      setprofile(true);
+      setProduct(false);
+      setOrder(false);
+      setAddProduct(false);
+      setOrderCancel(false);
+    }
+    if (item === "product") {
+      setprofile(false);
+      setProduct(true);
+      setOrder(false);
+      setAddProduct(false);
+      setOrderCancel(false);
+    }
+    if (item === "order") {
+      setprofile(false);
+      setProduct(false);
+      setOrder(true);
+      setAddProduct(false);
+      setOrderCancel(false);
+    }
+    if (item === "add product") {
+      setprofile(false);
+      setProduct(false);
+      setOrder(false);
+      setAddProduct(true);
+      setOrderCancel(false);
+    }
+    if (item === "order cancel") {
+      setprofile(false);
+      setProduct(false);
+      setOrder(false);
+      setAddProduct(false);
+      setOrderCancel(true);
+    }
+  };
 
-	return (
-		<>
-			<div
-				className="profile d-flex flex-column container-fluid align-items-center"
-				style={{ padding: "0px" }}
-			>
-				<Navbar login={token} />
-				{detailSeller.isLoading ? (
-					<>
-						<Facebook />
-					</>
-				) : detailSeller.isError ? (
-					<div>Error...</div>
-				) : (
-					<div className="d-flex" style={{ width: "100%", marginTop: "-50px" }}>
-						<div
-							className="d-flex flex-column"
-							style={{
-								width: "30%",
-								backgroundColor: "#F5F5F5",
-								justifyContent: "flex-start",
-								alignItems: "flex-end",
-								paddingTop: "50px",
-							}}
-						>
-							<div
-								className="d-flex"
-								style={{
-									width: "80%",
-									marginBottom: "60px",
-								}}
-							>
-								{detailSeller.data?.data?.photo ? (
-									<img
-										src={`https://drive.google.com/uc?export=view&id=${detailSeller.data.data.photo}`}
-										style={{
-											width: "70px",
-											height: "70px",
-											borderRadius: "50%",
-											margin: "0px 30px 30px 0px",
-										}}
-									/>
-								) : (
-									<img
-										src={singa}
-										style={{
-											width: "70px",
-											height: "70px",
-											borderRadius: "50%",
-											margin: "0px 30px 30px 0px",
-										}}
-									/>
-								)}
-								<div>
-									<h4>{detailSeller.data?.data?.name}</h4>
-									<label
-										style={{
-											display: "flex",
-											alignItems: "center",
-											fontSize: "16px",
-											fontWeight: "500",
-											color: "#9B9B9B",
-										}}
-									>
-										<FontAwesomeIcon
-											icon={faPen}
-											style={{
-												color: "#9B9B9B",
-												height: "20px",
-												width: "20px",
-												borderRadius: "50%",
-												marginRight: "5px",
-											}}
-										/>
-										Ubah Profile
-									</label>
-								</div>
-							</div>
-							<div
-								className="d-flex flex-column"
-								style={{
-									width: "80%",
-								}}
-							>
-								<label
-									style={
-										isProfileOpen
-											? {
-													display: "flex",
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "black",
-											  }
-											: {
-													display: "flex",
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "#9B9B9B",
-											  }
-									}
-									onClick={() => setOpen("profile")}
-								>
-									<FontAwesomeIcon
-										icon={faUser}
-										style={{
-											backgroundColor: "#456BF3",
-											color: "#FFFFFF",
-											height: "25px",
-											width: "25px",
-											borderRadius: "50%",
-											marginRight: "20px",
-											padding: "10px",
-										}}
-									/>
-									My store
-									<FontAwesomeIcon
-										icon={isProfileOpen ? faAngleUp : faAngleDown}
-										style={
-											isProfileOpen
-												? {
-														height: "18px",
-														margin: "10px 10px",
-														fontSize: "16px",
-														fontWeight: "500",
-														color: "black",
-														width: "150px",
-												  }
-												: {
-														height: "18px",
-														margin: "10px 10px",
-														fontSize: "16px",
-														fontWeight: "500",
-														color: "#9B9B9B",
-														width: "150px",
-												  }
-										}
-									/>
-								</label>
-								<label
-									hidden={isProfileOpen ? "" : "hidden"}
-									style={
-										profile
-											? {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "black",
-													marginLeft: "65px",
-											  }
-											: {
-													alignItems: "center",
-													height: "40px",
-													margin: "10px 0px",
-													fontSize: "16px",
-													fontWeight: "500",
-													color: "#9B9B9B",
-													marginLeft: "65px",
-											  }
-									}
-									onClick={() => setContent("profile")}
-								>
-									Store profile
-								</label>
+  return (
+    <>
+      <div
+        className="profile d-flex flex-column container-fluid align-items-center"
+        style={{ padding: "0px" }}
+      >
+        <Navbar login={token} />
+        {detailSeller.isLoading ? (
+          <>
+            <Facebook />
+          </>
+        ) : detailSeller.isError ? (
+          <div>Error...</div>
+        ) : (
+          <div className="d-flex" style={{ width: "100%", marginTop: "-50px" }}>
+            <div
+              className="d-flex flex-column"
+              style={{
+                width: "30%",
+                backgroundColor: "#F5F5F5",
+                justifyContent: "flex-start",
+                alignItems: "flex-end",
+                paddingTop: "50px",
+              }}
+            >
+              <div
+                className="d-flex"
+                style={{
+                  width: "80%",
+                  marginBottom: "60px",
+                }}
+              >
+                {detailSeller.data?.data?.photo ? (
+                  <img
+                    src={`https://drive.google.com/uc?export=view&id=${detailSeller.data.data.photo}`}
+                    style={{
+                      width: "70px",
+                      height: "70px",
+                      borderRadius: "50%",
+                      margin: "0px 30px 30px 0px",
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={singa}
+                    style={{
+                      width: "70px",
+                      height: "70px",
+                      borderRadius: "50%",
+                      margin: "0px 30px 30px 0px",
+                    }}
+                  />
+                )}
+                <div>
+                  <h4>{detailSeller.data?.data?.name}</h4>
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                      color: "#9B9B9B",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPen}
+                      style={{
+                        color: "#9B9B9B",
+                        height: "20px",
+                        width: "20px",
+                        borderRadius: "50%",
+                        marginRight: "5px",
+                      }}
+                    />
+                    Ubah Profile
+                  </label>
+                </div>
+              </div>
+              <div
+                className="d-flex flex-column"
+                style={{
+                  width: "80%",
+                }}
+              >
+                <label
+                  style={
+                    isProfileOpen
+                      ? {
+                          display: "flex",
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "black",
+                        }
+                      : {
+                          display: "flex",
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#9B9B9B",
+                        }
+                  }
+                  onClick={() => setOpen("profile")}
+                >
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    style={{
+                      backgroundColor: "#456BF3",
+                      color: "#FFFFFF",
+                      height: "25px",
+                      width: "25px",
+                      borderRadius: "50%",
+                      marginRight: "20px",
+                      padding: "10px",
+                    }}
+                  />
+                  My store
+                  <FontAwesomeIcon
+                    icon={isProfileOpen ? faAngleUp : faAngleDown}
+                    style={
+                      isProfileOpen
+                        ? {
+                            height: "18px",
+                            margin: "10px 10px",
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            color: "black",
+                            width: "150px",
+                          }
+                        : {
+                            height: "18px",
+                            margin: "10px 10px",
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            color: "#9B9B9B",
+                            width: "150px",
+                          }
+                    }
+                  />
+                </label>
+                <label
+                  hidden={isProfileOpen ? "" : "hidden"}
+                  style={
+                    profile
+                      ? {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "black",
+                          marginLeft: "65px",
+                        }
+                      : {
+                          alignItems: "center",
+                          height: "40px",
+                          margin: "10px 0px",
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#9B9B9B",
+                          marginLeft: "65px",
+                        }
+                  }
+                  onClick={() => setContent("profile")}
+                >
+                  Store profile
+                </label>
 
                 <label
                   style={
@@ -511,14 +511,14 @@ export default function Index() {
               </div>
             </div>
 
-						<EditProfileSeller hidden={profile} data={detailSeller} />
-						<ListProduct hidden={product} data={myProduct} />
-						<AddProduct hidden={addProduct} />
-						<Order hidden={order} />
-						<Order hidden={orderCancel} />
-					</div>
-				)}
-			</div>
-		</>
-	);
+            <EditProfileSeller hidden={profile} data={detailSeller} />
+            <ListProduct hidden={product} data={myProduct} />
+            <AddProduct hidden={addProduct} detail={detailSeller} />
+            <Order hidden={order} />
+            <Order hidden={orderCancel} />
+          </div>
+        )}
+      </div>
+    </>
+  );
 }

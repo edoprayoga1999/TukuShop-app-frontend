@@ -12,6 +12,7 @@ import detailSellerReducer from "./detailSeller";
 import detailReceiverReducer from "./detailReceiver";
 import myAddressReducers from "./myAddress";
 import myProductReducer from "./myProduct";
+import listBrandReducer from "./listBrand";
 
 export default combineReducers({
 	listUser: listUserReducer,
@@ -26,5 +27,6 @@ export default combineReducers({
 	detailProduct: detailProductReducer,
 	myCart: myCartReducers,
 	detailReceiver: detailReceiverReducer,
-	myAddress: myAddressReducers
+	myAddress: myAddressReducers,
+	listBrand: listBrandReducer,
 });
