@@ -20,6 +20,7 @@ import ProductPage from "../pages/main/buyer/ProductPage";
 import Profile from "../pages/main/buyer/Profile";
 import Index from "../pages/main/seller";
 import Checkout from "../pages/main/buyer/Checkout";
+import CheckoutProduct from "../pages/main/buyer/CheckoutProduct";
 
 const PrivateRoute = () => {
 	const token = localStorage.getItem("token");
@@ -46,6 +47,9 @@ const router = () => {
 				</Route>
 				<Route path="/checkout" element={<PrivateRoute />}>
 					<Route index element={<Checkout />} />
+				</Route>
+				<Route path="/checkout/:id" element={<PrivateRoute />}>
+					<Route index element={<CheckoutProduct />} />
 				</Route>
 				<Route path="/category/:id" element={<PrivateRoute />}>
 					<Route index element={<Category />} />

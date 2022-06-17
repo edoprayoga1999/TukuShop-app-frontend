@@ -1,9 +1,9 @@
 /* eslint-disable indent */
 import {
-	GET_MY_PRODUCT_PENDING,
-	GET_MY_PRODUCT_SUCCESS,
-	GET_MY_PRODUCT_FAILED,
-} from "../action/typesMyproduct";
+	GET_MY_ORDER_PENDING,
+	GET_MY_ORDER_SUCCESS,
+	GET_MY_ORDER_FAILED,
+} from "../action/typesMyOrderSeller";
 
 const initialState = {
 	isLoading: false,
@@ -12,9 +12,9 @@ const initialState = {
 	error: null,
 };
 
-const myProductReducer = (state = initialState, action) => {
+const myOrderSellerReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case GET_MY_PRODUCT_PENDING:
+		case GET_MY_ORDER_PENDING:
 			return {
 				...state,
 				isLoading: true,
@@ -22,7 +22,7 @@ const myProductReducer = (state = initialState, action) => {
 				data: [],
 				error: null,
 			};
-		case GET_MY_PRODUCT_SUCCESS:
+		case GET_MY_ORDER_SUCCESS:
 			return {
 				...state,
 				isLoading: false,
@@ -30,7 +30,7 @@ const myProductReducer = (state = initialState, action) => {
 				data: action.payload.data,
 				error: null,
 			};
-		case GET_MY_PRODUCT_FAILED:
+		case GET_MY_ORDER_FAILED:
 			return {
 				...state,
 				isLoading: false,
@@ -43,4 +43,4 @@ const myProductReducer = (state = initialState, action) => {
 	}
 };
 
-export default myProductReducer;
+export default myOrderSellerReducer;

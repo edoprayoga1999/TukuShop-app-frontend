@@ -14,19 +14,21 @@ const initialState = {
 const myAddressReducers = (state = initialState, action) => {
 	switch (action.type) {
 	case GET_MY_ADDRESS_PENDING:
-		return { ...state, isLoading: true };
+		return { ...state, isLoading: true, isError: false, data: [], error: null };
 	case GET_MY_ADDRESS_SUCCESS:
 		return {
 			...state,
 			isLoading: false,
 			isError: false,
 			data: action.payload.data,
+			error: null
 		};
 	case GET_MY_ADDRESS_FAILED:
 		return {
 			...state,
 			isLoading: false,
 			isError: true,
+			data: [],
 			error: action.payload,
 		};
 	default:
