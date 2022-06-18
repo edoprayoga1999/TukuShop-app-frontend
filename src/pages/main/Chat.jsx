@@ -215,25 +215,30 @@ export default function Chat() {
 												borderBottom: "1px solid #8E8E93",
 											}}
 										>
-											<div
-												style={{
-													width: "40px",
-													height: "40px",
-													marginRight: "15px",
-													borderRadius: "50%",
-													backgroundPosition: "center",
-													backgroundSize: "cover",
-													backgroundRepeat: "no-repeat",
-													backgroundImage: `url(${
-														detailReceiver.data.photo
-															? `https://drive.google.com/uc?export=view&id=${detailReceiver.data.photo}`
-															: "https://images227.netlify.app/mernuas/default.jpg"
-													})`,
-												}}
-											/>
-											<h6 style={{ marginTop: "auto", marginBottom: "auto" }}>
-												{detailReceiver.data.store_name} | {detailReceiver.data.name}
-											</h6>
+											{
+												detailReceiver.isLoading ? <div className="spinner-border" role="status">
+													<span className="visually-hidden">Loading...</span>
+												</div> : <>
+													<div
+														style={{
+															width: "40px",
+															height: "40px",
+															marginRight: "15px",
+															borderRadius: "50%",
+															backgroundPosition: "center",
+															backgroundSize: "cover",
+															backgroundRepeat: "no-repeat",
+															backgroundImage: `url(${
+																detailReceiver.data.photo
+																	? `https://drive.google.com/uc?export=view&id=${detailReceiver.data.photo}`
+																	: "https://images227.netlify.app/mernuas/default.jpg"
+															})`,
+														}}
+													/>
+													<h6 style={{ marginTop: "auto", marginBottom: "auto" }}>
+														{detailReceiver.data.store_name} | {detailReceiver.data.name}
+													</h6></>
+											}
 										</div>
 									</>
 								) : (
