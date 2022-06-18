@@ -240,8 +240,6 @@ export default function CheckoutProduct() {
 	};
 
 	const changeQty = (type) => {
-		console.log(type);
-
 		if (type === "plus") {
 			if (detailProduct.data.stock > transactionForm.qty) {
 				setTransactionForm({

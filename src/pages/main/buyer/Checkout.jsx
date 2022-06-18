@@ -33,7 +33,7 @@ export default function Checkout() {
 		address: "",
 		city: "",
 		postalCode: "",
-		isPrimary: false
+		isPrimary: true
 	});
 	const token = localStorage.getItem("token");
 	const [paymentWindow, setPaymentWindow] = useState(false);
@@ -49,7 +49,9 @@ export default function Checkout() {
 		recipientPhone: "",
 		recipientName: "",
 		price: "",
-		qty: ""
+		qty: "",
+		color: "",
+		size: "",
 	});
 	const [cartId, setCartId] = useState("");
 	const [addressId, setAddressId] = useState("");
@@ -307,7 +309,9 @@ export default function Checkout() {
 					...transactionForm,
 					productId: listCart.data[0].dataCart.productid,
 					price: listCart.data[0].dataCart.productprice,
-					qty: listCart.data[0].dataCart.cartqty
+					qty: listCart.data[0].dataCart.cartqty,
+					color: listCart.data[0].dataCart.cartcolor,
+					size: listCart.data[0].dataCart.cartsize
 				});
 				setCartId(listCart.data[0].dataCart.cartid);
 			}

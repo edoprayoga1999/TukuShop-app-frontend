@@ -80,7 +80,12 @@ export default function Navbar(props) {
 		if (category) {
 			url += `&category=${category}`;
 		}
-		return navigate(url);
+
+		window.location.href = "#allProduct";
+
+		setTimeout(() => {
+			return navigate(url);
+		}, 500);
 	};
 
 	const logout = () => {
@@ -107,7 +112,11 @@ export default function Navbar(props) {
 					onSubmit={(e) => {
 						e.preventDefault();
 
-						return navigate(`/?search=${search}`);
+						window.location.href = "#allProduct";
+
+						setTimeout(() => {
+							return navigate(`/?search=${search}`);
+						}, 500);
 					}}
 					className="d-flex align-items-center"
 					style={{
