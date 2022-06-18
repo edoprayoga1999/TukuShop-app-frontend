@@ -72,7 +72,6 @@ export const getListNewProduct = () => {
 
 export const getListProductByCategory = (categoryId, page = 1) => {
 	return async (dispatch) => {
-		console.log(page);
 		try {
 			const token = localStorage.getItem("token");
 

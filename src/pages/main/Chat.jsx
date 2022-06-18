@@ -144,10 +144,7 @@ export default function Chat() {
 								>
 									<h6 style={{ margin: "0px" }}>Chat</h6>
 								</div>
-								{/* <div className="d-flex flex-column justify-content-center align-items-center h-100 w-100" style={{ padding: "20px" }}>
-									<h6>Belum ada chat</h6>
-								</div> */}
-								<div
+								{listUserChat.data.length ? <div
 									className="d-flex flex-column h-100 w-100"
 									style={{ padding: "20px" }}
 									onClick={() => {
@@ -178,7 +175,7 @@ export default function Chat() {
 															})`,
 														}}
 													/>
-
+	
 													<div
 														className="d-flex flex-column"
 														style={{ width: "80%" }}
@@ -186,19 +183,21 @@ export default function Chat() {
 														<h6
 															style={{ marginTop: "auto", marginBottom: "0px" }}
 														>
-															{user.name}
+															{user.store_name}
 														</h6>
 														<p
 															style={{ marginBottom: "auto", color: "#9B9B9B" }}
 														>
-                              Permisi kak, mau tanya...
+																Permisi kak, mau tanya...
 														</p>
 													</div>
 												</div>
 											);
 										}
 									})}
-								</div>
+								</div> : <div className="d-flex flex-column justify-content-center align-items-center h-100 w-100" style={{ padding: "20px" }}>
+									<h6>No chat history yet</h6>
+								</div>}
 							</div>
 						</div>
 						<div className="col-8 h-100">
@@ -233,7 +232,7 @@ export default function Chat() {
 												}}
 											/>
 											<h6 style={{ marginTop: "auto", marginBottom: "auto" }}>
-												{detailReceiver.data.name}
+												{detailReceiver.data.store_name} | {detailReceiver.data.name}
 											</h6>
 										</div>
 									</>
@@ -334,7 +333,9 @@ export default function Chat() {
 										</>
 									) : (
 										<>
-											<div>No Chat Selected</div>
+											<div className="d-flex justify-content-center align-items-center w-100 h-100">
+												<p>No Chat Selected</p>
+											</div>
 										</>
 									)}
 								</div>

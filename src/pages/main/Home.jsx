@@ -120,7 +120,7 @@ export default function Home() {
 						</>
 					)}
 				</div>
-				<div className="d-flex flex-column mb-5" style={{ width: "80%" }}>
+				<div id="allProduct" className="d-flex flex-column mb-5" style={{ width: "80%" }}>
 					<h2>All Product</h2>
 					<small style={{ color: "#9B9B9B", marginBottom: "25px" }}>
             You’ve never seen it before!
