@@ -526,7 +526,7 @@ export default function ProductPage() {
 																	</button>
 																	<button
 																		type="button"
-																		className="btn btn-primary"
+																		className="btn btn-success"
 																		onClick={createInitialChat}
 																	>
                                     Send
@@ -563,6 +563,7 @@ export default function ProductPage() {
 															color: "#FFFFFF",
 															margin: "5px",
 														}}
+														onClick={() => navigate(`/checkout/${detailProduct.data.id}`)}
 													>
                             Buy Now
 													</button>

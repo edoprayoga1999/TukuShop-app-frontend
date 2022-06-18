@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/Navbar";
 import swal from "sweetalert2";
@@ -10,9 +9,7 @@ import {
 	editAddress,
 	deleteAddress,
 } from "../../../redux/action/address";
-import { deleteCart } from "../../../redux/action/cart";
 import { createTransaction } from "../../../redux/action/transaction";
-import { getMyCart } from "../../../redux/action/cart";
 import { getMyAddress } from "../../../redux/action/myAddress";
 
 import { Code } from "react-content-loader";
@@ -21,6 +18,7 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Style from "../../../assets/styles/Checkout.module.css";
 import { getDetailProduct } from "../../../redux/action/product";
+import Color from "../../../components/Product/Color";
 
 export default function CheckoutProduct() {
 	const dispatch = useDispatch();
@@ -38,7 +36,7 @@ export default function CheckoutProduct() {
 		address: "",
 		city: "",
 		postalCode: "",
-		isPrimary: false,
+		isPrimary: true,
 	});
 	const [transactionForm, setTransactionForm] = useState({
 		productId: "",
@@ -50,6 +48,8 @@ export default function CheckoutProduct() {
 		recipientName: "",
 		price: "",
 		qty: 0,
+		color: "",
+		size: "",
 	});
 
 	const [paymentWindow, setPaymentWindow] = useState(false);
@@ -57,6 +57,9 @@ export default function CheckoutProduct() {
 	const [newAddressWindow, setNewAddressWindow] = useState(false);
 	const [editAddressWindow, setEditAddressWindow] = useState(false);
 	const [addressId, setAddressId] = useState("");
+	const [color, setColor] = useState("");
+	const [colorForm, setColorForm] = useState("");
+	const [size, setSize] = useState("");
 
 	const paymentToggler = () => {
 		setPaymentWindow(!paymentWindow);
@@ -268,21 +271,45 @@ export default function CheckoutProduct() {
 			return;
 		}
 		if (!transactionForm.qty) {
-			swal.fire(
-				"Error!",
-				"Select quantity",
-				"warning"
-			);
+			swal.fire({
+				icon: "error",
+				title: "Failed",
+				text: "Select quantity!",
+			});
+			return;
+		}
+		if (!colorForm) {
+			swal.fire({
+				icon: "error",
+				title: "Failed",
+				text: "Color must selected!",
+			});
+			return;
+		}
+
+		if (!size) {
+			swal.fire({
+				icon: "error",
+				title: "Failed",
+				text: "Size must selected!",
+			});
 			return;
 		}
 		if (!transactionForm.paymentMethod) {
-			swal.fire(
-				"Error!",
-				"Select your payment method",
-				"warning"
-			);
+			swal.fire({
+				icon: "error",
+				title: "Failed",
+				text: "Select your payment method!",
+			});
 			return;
 		}
+
+		setTransactionForm({
+			...transactionForm,
+			color: colorForm,
+			size,
+		});
+
 		createTransaction(transactionForm)
 			.then((response) => {
 				console.log(response);
@@ -291,14 +318,7 @@ export default function CheckoutProduct() {
 					"Redirecting you..",
 					"success"
 				).then(() => { 
-					deleteCart(cartId, token)
-						.then(() => {
-							navigate("/profile/buyer");
-						})
-						.catch((err) => {
-							console.log(err);
-							navigate("/profile/buyer");
-						});
+					navigate("/profile/buyer");
 				});
 			})
 			.catch((err) => {
@@ -330,19 +350,18 @@ export default function CheckoutProduct() {
 
 	useEffect(() => {
 		if (myAddress.data.length > 0) {
-			for(let i=0; i< myAddress.data.length; i++) {
-				if (myAddress.data[i].is_primary) {
-					console.log(myAddress.data[i]);
+			myAddress.data.map((item) => { 
+				if (item.is_primary) {
 					setTransactionForm({
 						...transactionForm,
-						city: myAddress.data[i].city,
-						postalCode: myAddress.data[i].postal_code,
-						address: myAddress.data[i].address,
-						recipientPhone: myAddress.data[i].recipient_phone,
-						recipientName: myAddress.data[i].recipient_name,
+						city: item.city,
+						postalCode: item.postal_code,
+						address: item.address,
+						recipientPhone: item.recipient_phone,
+						recipientName: item.recipient_name
 					});
 				}
-			}
+			});
 		}
 	}, [myAddress]);
 
@@ -515,6 +534,95 @@ export default function CheckoutProduct() {
                                   transactionForm.qty
 															)}
 														</h6>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div className="row">
+											<div className="col-12 col-sm-6 col-md-8 mt-4">
+												<div>
+													<small
+														style={{
+															fontWeight: "600",
+															marginBottom: "10px",
+															fontSize: "16px",
+														}}
+													>
+                          Color
+													</small>
+													<div className="d-flex w-100">
+														{detailProduct.data.product_color.map((item) => (
+															<Color
+																key={item.id}
+																color={item.color_value}
+																colorName={item.color_name}
+																cekColor={color}
+																setColor={() => setColor(item.color_value)}
+																setColorForm={setColorForm}
+															/>
+														))}
+													</div>
+												</div>
+											</div>
+											<div className="col-12 col-sm-6 col-md-4 mt-4">
+												<div>
+													<p
+														style={{
+															fontWeight: "600",
+															marginLeft: "0px",
+															fontSize: "16px",
+														}}
+													>
+                          Size
+													</p>
+													<div
+														style={{
+															fontWeight: "600",
+															marginBottom: "15px",
+															fontSize: "16px",
+															height: "40px",
+															display: "flex",
+															alignItems: "center",
+														}}
+													>
+														<select
+															className="form-select"
+															onChange={(e) => setSize(e.target.value)}
+														>
+															<option value="">Select size</option>
+															{detailProduct.data.product_sizes.map(
+																(size) => (
+																	<option
+																		key={size.id}
+																		value={
+																			size.size === 1
+																				? "XS"
+																				: size.size === 2
+																					? "S"
+																					: size.size === 3
+																						? "M"
+																						: size.size === 4
+																							? "L"
+																							: size.size === 5
+																								? "XL"
+																								: "Other"
+																		}
+																	>
+																		{size.size === 1
+																			? "XS"
+																			: size.size === 2
+																				? "S"
+																				: size.size === 3
+																					? "M"
+																					: size.size === 4
+																						? "L"
+																						: size.size === 5
+																							? "XL"
+																							: "Other"}
+																	</option>
+																)
+															)}
+														</select>
 													</div>
 												</div>
 											</div>
