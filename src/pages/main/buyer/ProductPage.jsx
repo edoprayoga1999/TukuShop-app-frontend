@@ -36,21 +36,22 @@ export default function ProductPage() {
 
 	useEffect(() => {
 		dispatch(getDetailProduct(urlParams.id));
-		dispatch(getListProductByCategory(detailProduct.data.category_id));
 
 		window.scrollTo(0, 0);
 	}, [urlParams]);
 
 	useEffect(() => {
-		if (!detailProduct.isLoading) {
-			if (!detailProduct.isError) {
-				if (detailProduct.data.product_images.length) {
-					setPhoto(
-						`https://drive.google.com/uc?export=view&id=${detailProduct.data.product_images[0].photo}`
-					);
-				} else {
-					setPhoto("/category.webp");
-				}
+		dispatch(getListProductByCategory(detailProduct.data.category_id));
+	}, [detailProduct]);
+
+	useEffect(() => {
+		if(detailProduct.data.id) {
+			if (detailProduct.data.product_images.length) {
+				setPhoto(
+					`https://drive.google.com/uc?export=view&id=${detailProduct.data.product_images[0].photo}`
+				);
+			} else {
+				setPhoto("/category.webp");
 			}
 		}
 	}, [detailProduct]);
