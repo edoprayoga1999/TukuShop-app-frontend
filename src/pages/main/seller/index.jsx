@@ -9,10 +9,10 @@ import defaultImg from "../../../assets/images/default.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import {
-	faLocationDot,
-	faPen,
-	faAngleUp,
-	faAngleDown,
+  faLocationDot,
+  faPen,
+  faAngleUp,
+  faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 import "../../../assets/styles/profile.css";
 
@@ -27,6 +27,7 @@ import { getMyProduct } from "../../../redux/action/myProduct";
 import { getMyOrderSeller } from "../../../redux/action/myOrderSeller";
 
 export default function Index() {
+
 	const dispatch = useDispatch();
 	const [loading, setLoading] = useState(true);
 	const [err, setErr] = useState(false);
@@ -73,9 +74,9 @@ export default function Index() {
 	// tes
 	const [orderDetail, setOrderDetail] = useState(false);
 
-	const [isProfileOpen, setIsprofileOpen] = useState(true);
-	const [isProductOpen, setProductOpen] = useState(false);
-	const [isOrderOpen, setIsOrderOpen] = useState(false);
+  const [isProfileOpen, setIsprofileOpen] = useState(true);
+  const [isProductOpen, setProductOpen] = useState(false);
+  const [isOrderOpen, setIsOrderOpen] = useState(false);
 
 	//
 	const [idOrder, setIdOrder] = useState(null);
