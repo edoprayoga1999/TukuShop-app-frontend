@@ -218,7 +218,7 @@ export default function DetailTransaction(props) {
 												onUpdate(e, data.id, data.status);
 											}}
 										>
-											Sent
+											sent
 										</button>
 									</td>
 								</tr>
@@ -235,23 +235,6 @@ export default function DetailTransaction(props) {
 								Back to my store transaction
 							</button>
 						</div>
-						{/*<div
-					className="row mt-3 w-100 bg-warning"
-					style={{ marginLeft: "2px" }}
-				>
-					<div className="col-6 d-flex justify-content-end">
-						<button
-							type="button"
-							className="col-4 btn btn-secondary bg-primary"
-							style={{ marginRight: "15px" }}
-						>
-							Set status to “sent”
-						</button>
-						<button type="button" className="col-4 btn btn-danger">
-							Back to my store transaction
-						</button>
-					</div>
-				</div>*/}
 					</div>
 				</div>
 			)}
