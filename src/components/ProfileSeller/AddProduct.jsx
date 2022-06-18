@@ -1,8 +1,4 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable no-unused-vars */
-/* eslint-disable indent */
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/images/box.png";
 import swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { getBrandList } from "../../redux/action/brands";
@@ -24,15 +20,16 @@ export default function AddProduct(props) {
 		dispatch(getBrandList());
 		dispatch(getListCategory());
 	}, []);
+
 	const [form, setForm] = useState({
-		storeId: props.detail?.data?.data?.store_id,
+		storeId: "",
 		categoryId: "",
 		brandId: "",
 		productName: "",
 		price: "",
 		description: "",
 		stock: "",
-		productSizes: [{ size: "" }],
+		productSizes: [{ size: 0 }],
 		productColors: [{ colorName: "", colorValue: "" }],
 		isNew: "",
 	});
@@ -40,7 +37,7 @@ export default function AddProduct(props) {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setLoading(true);
-		console.log(productPhoto[0]);
+		setForm({ ...form, storeId: props.detail.data.data.store_id });
 		if (form.productName == "") {
 			swal
 				.fire({
@@ -126,7 +123,7 @@ export default function AddProduct(props) {
 				});
 			return;
 		}
-		if (form.productSizes[0].size == "") {
+		if (form.productSizes[0].size == 0) {
 			swal
 				.fire({
 					title: "Error!",
@@ -169,14 +166,12 @@ export default function AddProduct(props) {
 		formData.append("productColors", JSON.stringify(form.productColors));
 		formData.append("isNew", form.isNew);
 
-		console.log(form);
 
 		addProduct(formData)
-			.then((response) => {
+			.then(() => {
 				swal.fire("Success", "Add New Product success", "success");
 			})
 			.catch((err) => {
-				console.log(err);
 				if (err.response.data.message == "Validation Failed") {
 					const error = err.response.data.error;
 					error.map((e) => {
@@ -197,7 +192,6 @@ export default function AddProduct(props) {
 	};
 
 	const addSize = () => {
-		console.log(form);
 		if (form.productSizes[form.productSizes.length - 1].size === "") {
 			swal.fire({
 				title: "Error!",
@@ -228,7 +222,7 @@ export default function AddProduct(props) {
 	const delSize = (index) => {
 		if (
 			form.productSizes[form.productSizes.length - 1] ===
-			form.productSizes[index]
+      form.productSizes[index]
 		) {
 			const newSize = form.productSizes.map((e, i) => {
 				if (i === index) {
@@ -252,7 +246,7 @@ export default function AddProduct(props) {
 	const addColor = () => {
 		if (
 			form.productColors[form.productColors.length - 1].colorValue === "" &&
-			form.productColors[form.productColors.length - 1].colorName === ""
+      form.productColors[form.productColors.length - 1].colorName === ""
 		) {
 			swal.fire({
 				title: "Error!",
@@ -296,7 +290,7 @@ export default function AddProduct(props) {
 	const delColor = (index) => {
 		if (
 			form.productColors[form.productColors.length - 1] ===
-			form.productColors[index]
+      form.productColors[index]
 		) {
 			const newColor = form.productColors.map((e, i) => {
 				if (i === index) {
@@ -341,7 +335,7 @@ export default function AddProduct(props) {
 							marginRight: "40px",
 						}}
 					>
-						Name of goods
+            Name of goods
 					</div>
 					<input
 						type="text"
@@ -377,7 +371,7 @@ export default function AddProduct(props) {
 							marginRight: "40px",
 						}}
 					>
-						Unit price
+            Unit price
 					</div>
 					<input
 						type="text"
@@ -401,7 +395,7 @@ export default function AddProduct(props) {
 							marginRight: "40px",
 						}}
 					>
-						Stock
+            Stock
 					</div>
 					<input
 						type="text"
@@ -425,7 +419,7 @@ export default function AddProduct(props) {
 							marginRight: "40px",
 						}}
 					>
-						Stock
+            Stock
 					</div>
 					<div
 						className="d-flex"
@@ -458,7 +452,7 @@ export default function AddProduct(props) {
 								minWidth: "80px",
 							}}
 						>
-							baru
+              baru
 						</label>
 						<br></br>
 						<input
@@ -483,7 +477,7 @@ export default function AddProduct(props) {
 								marginRight: "40px",
 							}}
 						>
-							bekas
+              bekas
 						</label>
 						<br></br>
 					</div>
@@ -498,54 +492,54 @@ export default function AddProduct(props) {
 							marginRight: "40px",
 						}}
 					>
-						color
+            color
 					</div>
 					{form.productColors
 						? form.productColors.map((item, index) => (
-								<div key={index}>
-									<input
-										type="text"
-										value={form.productColors[index].colorName}
-										onChange={(e) => setColorName(e.target.value, index)}
+							<div key={index}>
+								<input
+									type="text"
+									value={form.productColors[index].colorName}
+									onChange={(e) => setColorName(e.target.value, index)}
+									style={{
+										width: "348px",
+										height: "48px",
+										border: "1px solid #9B9B9B",
+										padding: "12px",
+										borderRadius: "5px",
+									}}
+								/>
+								<input
+									type="color"
+									value={form.productColors[index].colorValue}
+									onChange={(e) => setColorValue(e.target.value, index)}
+									style={{
+										width: "348px",
+										height: "48px",
+										border: "1px solid #9B9B9B",
+										padding: "12px",
+										borderRadius: "5px",
+										margin: "6px 0px",
+									}}
+								/>
+								{form.productColors[index].colorValue !== "" ? (
+									<button
 										style={{
-											width: "348px",
-											height: "48px",
+											height: "40px",
 											border: "1px solid #9B9B9B",
-											padding: "12px",
-											borderRadius: "5px",
+											borderRadius: "25px",
+											fontSize: "20px",
+											backgroundColor: "#FFFFFF",
+											width: "30px",
+											marginLeft: "20px",
 										}}
-									/>
-									<input
-										type="color"
-										value={form.productColors[index].colorValue}
-										onChange={(e) => setColorValue(e.target.value, index)}
-										style={{
-											width: "348px",
-											height: "48px",
-											border: "1px solid #9B9B9B",
-											padding: "12px",
-											borderRadius: "5px",
-											margin: "6px 0px",
-										}}
-									/>
-									{form.productColors[index].colorValue !== "" ? (
-										<button
-											style={{
-												height: "40px",
-												border: "1px solid #9B9B9B",
-												borderRadius: "25px",
-												fontSize: "20px",
-												backgroundColor: "#FFFFFF",
-												width: "30px",
-												marginLeft: "20px",
-											}}
-											onClick={() => delColor(index)}
-										>
-											x
-										</button>
-									) : null}
-								</div>
-						  ))
+										onClick={() => delColor(index)}
+									>
+                      x
+									</button>
+								) : null}
+							</div>
+						))
 						: null}
 					<button
 						style={{
@@ -560,7 +554,7 @@ export default function AddProduct(props) {
 						}}
 						onClick={addColor}
 					>
-						add color
+            add color
 					</button>
 				</div>
 
@@ -574,44 +568,44 @@ export default function AddProduct(props) {
 							marginRight: "40px",
 						}}
 					>
-						size
+            size
 					</div>
 					{form.productSizes
 						? form.productSizes.map((item, index) => (
-								<div key={index} className="d-flex">
-									<div id="dropdown-size">
-										<select
-											className="form-select"
-											style={{ width: "130px" }}
-											value={form.productSizes[index].size}
-											onChange={(e) => setSizeValue(e.target.value, index)}
-										>
-											<option value={0}>Size</option>
-											<option value={1}>XS</option>
-											<option value={2}>S</option>
-											<option value={3}>M</option>
-											<option value={4}>L</option>
-											<option value={5}>XL</option>
-										</select>
-									</div>
-									{form.productSizes[index].size !== "" ? (
-										<button
-											style={{
-												height: "40px",
-												border: "1px solid #9B9B9B",
-												borderRadius: "25px",
-												fontSize: "20px",
-												backgroundColor: "#FFFFFF",
-												width: "30px",
-												marginLeft: "20px",
-											}}
-											onClick={() => delSize(index)}
-										>
-											x
-										</button>
-									) : null}
+							<div key={index} className="d-flex">
+								<div id="dropdown-size">
+									<select
+										className="form-select"
+										style={{ width: "130px" }}
+										value={form.productSizes[index].size}
+										onChange={(e) => setSizeValue(e.target.value, index)}
+									>
+										<option value={0}>Size</option>
+										<option value={1}>XS</option>
+										<option value={2}>S</option>
+										<option value={3}>M</option>
+										<option value={4}>L</option>
+										<option value={5}>XL</option>
+									</select>
 								</div>
-						  ))
+								{form.productSizes[index].size !== "" ? (
+									<button
+										style={{
+											height: "40px",
+											border: "1px solid #9B9B9B",
+											borderRadius: "25px",
+											fontSize: "20px",
+											backgroundColor: "#FFFFFF",
+											width: "30px",
+											marginLeft: "20px",
+										}}
+										onClick={() => delSize(index)}
+									>
+                      x
+									</button>
+								) : null}
+							</div>
+						))
 						: null}
 					<button
 						style={{
@@ -626,7 +620,7 @@ export default function AddProduct(props) {
 						}}
 						onClick={addSize}
 					>
-						add size
+            add size
 					</button>
 				</div>
 
@@ -640,7 +634,7 @@ export default function AddProduct(props) {
 							marginRight: "40px",
 						}}
 					>
-						brand
+            brand
 					</div>
 					<div id="dropdown-brand">
 						<select
@@ -651,10 +645,10 @@ export default function AddProduct(props) {
 							<option value="">brand</option>
 							{data.data
 								? data.data.map((item, index) => (
-										<option key={index} value={item.id}>
-											{item.brand_name}
-										</option>
-								  ))
+									<option key={index} value={item.id}>
+										{item.brand_name}
+									</option>
+								))
 								: null}
 						</select>
 					</div>
@@ -670,7 +664,7 @@ export default function AddProduct(props) {
 							marginRight: "40px",
 						}}
 					>
-						category
+            category
 					</div>
 					<div id="dropdown-brand">
 						<select
@@ -681,10 +675,10 @@ export default function AddProduct(props) {
 							<option value="">category</option>
 							{category.data
 								? category.data.map((item, index) => (
-										<option key={index} value={item.id}>
-											{item.category_name}
-										</option>
-								  ))
+									<option key={index} value={item.id}>
+										{item.category_name}
+									</option>
+								))
 								: null}
 						</select>
 					</div>
@@ -767,14 +761,16 @@ export default function AddProduct(props) {
 					<button
 						type="submit"
 						style={{
+							position: "absolute",
 							height: "40px",
 							border: "none",
 							borderRadius: "25px",
 							fontSize: "20px",
 							backgroundColor: "#42D86C",
 							color: "#FFFFFF",
-							margin: "50px 5px 75px 150px",
-							width: "120px",
+							margin: "50px 5px 75px 0px",
+							width: "100px",
+							right: "80px",
 						}}
 						disabled
 					>
@@ -800,7 +796,7 @@ export default function AddProduct(props) {
 							right: "80px",
 						}}
 					>
-						Jual
+            Jual
 					</button>
 				)}
 			</div>
