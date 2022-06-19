@@ -14,6 +14,7 @@ import {
 
 export default function Chat() {
 	const dispatch = useDispatch();
+	const token = localStorage.getItem("token");
 	const { listUserChat, detailUser, detailReceiver } = useSelector(
 		(state) => state
 	);
@@ -122,7 +123,7 @@ export default function Chat() {
 				className="d-flex flex-column container-fluid align-items-center mb-4"
 				style={{ padding: "0px", height: "100vh" }}
 			>
-				<Navbar login={true} />
+				<Navbar login={token} />
 				<div className="d-flex flex-column mb-5 h-100" style={{ width: "80%" }}>
 					<div className="row h-100">
 						<div className="col-4 h-100">

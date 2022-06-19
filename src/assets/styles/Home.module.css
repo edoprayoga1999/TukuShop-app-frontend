@@ -71,7 +71,13 @@
 .iconCart:hover {
   cursor: pointer;
 }
+.chatMenu {
+  display: none;
+}
 @media screen and (max-width: 576px) {
+  .chatMenu {
+    display: block;
+  }
   .logoOnly {
     display: block;
   }

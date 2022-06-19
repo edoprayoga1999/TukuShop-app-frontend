@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 import { useSelector, useDispatch } from "react-redux";
 import {
 	Modal,
@@ -18,11 +19,12 @@ import logo from "../../assets/images/logo.svg";
 import logoOnly from "../../assets/images/logo-only.svg";
 import searchIcon from "../../assets/images/magnifyingGlass.svg";
 import cartIcon from "../../assets/images/cart.svg";
-import bellIcon from "../../assets/images/bell.svg";
 import mailIcon from "../../assets/images/mail.svg";
 import filterIcon from "../../assets/images/filter.svg";
 import Style from "../../assets/styles/Home.module.css";
 import { getListCategory } from "../../redux/action/category";
+import { getDetailUser } from "../../redux/action/users";
+import { faRocketchat } from "@fortawesome/free-brands-svg-icons";
 
 export default function Navbar(props) {
 	const [search, setSearch] = useState("");
@@ -31,7 +33,7 @@ export default function Navbar(props) {
 	const [category, setCategory] = useState("");
 
 	const dispatch = useDispatch();
-	const { listCategory } = useSelector((state) => state);
+	const { listCategory, detailUser } = useSelector((state) => state);
 
 	const navigate = useNavigate();
 	const login = props.login;
@@ -42,11 +44,15 @@ export default function Navbar(props) {
 	const modalToggler = () => {
 		setModalOpen(!modalOpen);
 	};
-
+	const decode = (token) => {
+		return jwtDecode(token);
+	};
 	useEffect(() => {
 		dispatch(getListCategory());
+		if (login) {
+			dispatch(getDetailUser());
+		}
 	}, []);
-
 	useEffect(() => {
 		setSearch("");
 		if (queryParams.get("search")) {
@@ -147,45 +153,64 @@ export default function Navbar(props) {
 						>
 							<img src={filterIcon} />
 						</div>
-						<Link to="/cart" className={Style.cartIcon}>
-							<img src={cartIcon} />
-						</Link>
-						<img src={bellIcon} className={Style.bellIcon} />
+						{decode(login).level !== 3 ?
+							(<Link to="/cart" className={Style.cartIcon}>
+							</Link>) : 
+							(<Link to="/cart" className={Style.cartIcon}>
+								<img src={cartIcon} />
+							</Link>)
+						}
 						<Link to="/chat" className={Style.mailIcon}>
 							<img src={mailIcon} />
 						</Link>
-						<Dropdown isOpen={dropdownOpen} toggle={dropdownToggler}>
-							<DropdownToggle
-								style={{ border: "none", backgroundColor: "#FFF" }}
-							>
-								<div
-									style={{
-										width: "35px",
-										height: "35px",
-										backgroundSize: "cover",
-										backgroundPosition: "center",
-										backgroundRepeat: "no-repeat",
-										backgroundImage: "url('/user.jpg')",
-										borderRadius: "99px",
-									}}
-								/>
-							</DropdownToggle>
-							<DropdownMenu>
-								<Link to="/profile/buyer" style={{ textDecoration: "none" }}>
-									<DropdownItem>
-										<FontAwesomeIcon icon={faUser} /> My Profile
-									</DropdownItem>
-								</Link>
-								<DropdownItem
-									onClick={() => {
-										logout();
-									}}
-									style={{ color: "red" }}
-								>
-									<FontAwesomeIcon icon={faRightFromBracket} /> Logout
-								</DropdownItem>
-							</DropdownMenu>
-						</Dropdown>
+						{detailUser.isLoading ? 
+							(<div>Loading...</div>) : 
+							detailUser.isError ? 
+								(<div>{detailUser.error}</div>) :
+								detailUser.data ? 
+									(<Dropdown isOpen={dropdownOpen} toggle={dropdownToggler}>
+										<DropdownToggle
+											style={{ border: "none", backgroundColor: "#FFF" }}
+										>
+											<div
+												style={{
+													width: "35px",
+													height: "35px",
+													backgroundSize: "cover",
+													backgroundPosition: "center",
+													backgroundRepeat: "no-repeat",
+													backgroundImage: `url(${
+														detailUser.data.photo
+															? `https://drive.google.com/uc?export=view&id=${detailUser.data.photo}`
+															: "https://images227.netlify.app/mernuas/default.jpg"
+													})`,
+													borderRadius: "99px",
+												}}
+											/>
+										</DropdownToggle>
+										<DropdownMenu>
+											<Link to="/profile/buyer" style={{ textDecoration: "none" }}>
+												<DropdownItem>
+													<FontAwesomeIcon icon={faUser} /> My Profile
+												</DropdownItem>
+											</Link>
+											<Link to="/chat" className={Style.chatMenu} style={{ textDecoration: "none" }}>
+												<DropdownItem>
+													<FontAwesomeIcon icon={faRocketchat} /> Chat Page
+												</DropdownItem>
+											</Link>
+											<DropdownItem
+												onClick={() => {
+													logout();
+												}}
+												style={{ color: "red" }}
+											>
+												<FontAwesomeIcon icon={faRightFromBracket} /> Logout
+											</DropdownItem>
+										</DropdownMenu>
+									</Dropdown>) : 
+									(<div>Error</div>)
+						}
 					</>
 				) : (
 					<>
