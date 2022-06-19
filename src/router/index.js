@@ -83,10 +83,10 @@ const router = () => {
 				<Route path="/checkout" element={<PrivateRoute level={3} />}>
 					<Route index element={<Checkout />} />
 				</Route>
-				<Route path="/checkout/:id" element={<PrivateRoute />}>
+				<Route path="/checkout/:id" element={<PrivateRoute level={3} />}>
 					<Route index element={<CheckoutProduct />} />
 				</Route>
-				<Route path="/category/:id" element={<PrivateRoute />}>
+				<Route path="/category/:id" element={<PrivateRoute level={3} />}>
 					<Route index element={<Category />} />
 				</Route>
 				<Route path="/chat" element={<PrivateRoute except={1} />}>
