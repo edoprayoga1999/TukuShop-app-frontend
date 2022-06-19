@@ -4,6 +4,7 @@ import swal from "sweetalert2";
 import { toastr } from "../../utils/toastr";
 import React, { useState } from "react";
 import { updateUserBuyer } from "../../redux/action/users";
+import defaultImg from "../../assets/images/default.png";
 
 export default function EditProfileBuyer(props) {
   const [photo, setPhoto] = useState("");
@@ -186,7 +187,7 @@ export default function EditProfileBuyer(props) {
                 }
                 disabled={props.edit ? "disable" : ""}
                 type="text"
-                value={props.data.phone}
+                value={props.data.phone == null ? "" : props.data.phone}
                 placeholder="Your Phone Number"
                 style={{
                   width: "348px",
@@ -466,7 +467,7 @@ export default function EditProfileBuyer(props) {
               src={
                 props.data.photo
                   ? `https://drive.google.com/uc?export=view&id=${props.data.photo}`
-                  : null
+                  : defaultImg
               }
               style={{
                 width: "100px",

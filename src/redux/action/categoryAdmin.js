@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 export const addCategory = (form) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.post(`${process.env.REACT_APP_API_URL}/category`, form, {
 			headers: {
@@ -19,6 +18,7 @@ export const addCategory = (form) => {
 	});
 };
 export const editCategory = (id, form) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.put(`${process.env.REACT_APP_API_URL}/category/${id}`, form, {
 			headers: {
@@ -35,6 +35,7 @@ export const editCategory = (id, form) => {
 	});
 };
 export const editStatusCategory = (id, form) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.put(`${process.env.REACT_APP_API_URL}/category-status/${id}`, form, {
 			headers: {
@@ -50,6 +51,7 @@ export const editStatusCategory = (id, form) => {
 	});
 };
 export const deleteCategory = (id) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.delete(`${process.env.REACT_APP_API_URL}/category/${id}`, {
 			headers: {

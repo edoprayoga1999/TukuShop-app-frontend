@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 export const addAddress = (form) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.post(`${process.env.REACT_APP_API_URL}/address`, form, {
 			headers: {
@@ -18,6 +17,7 @@ export const addAddress = (form) => {
 	});
 };
 export const editAddress = (form, id) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.put(`${process.env.REACT_APP_API_URL}/address/${id}`, form, {
 			headers: {
@@ -33,6 +33,7 @@ export const editAddress = (form, id) => {
 	});
 };
 export const deleteAddress = (id) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.delete(`${process.env.REACT_APP_API_URL}/address/${id}`, {
 			headers: {

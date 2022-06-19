@@ -14,6 +14,7 @@ import {
 
 export default function Chat() {
 	const dispatch = useDispatch();
+	const token = localStorage.getItem("token");
 	const { listUserChat, detailUser, detailReceiver } = useSelector(
 		(state) => state
 	);
@@ -122,7 +123,7 @@ export default function Chat() {
 				className="d-flex flex-column container-fluid align-items-center mb-4"
 				style={{ padding: "0px", height: "100vh" }}
 			>
-				<Navbar login={true} />
+				<Navbar login={token} />
 				<div className="d-flex flex-column mb-5 h-100" style={{ width: "80%" }}>
 					<div className="row h-100">
 						<div className="col-4 h-100">
@@ -317,11 +318,13 @@ export default function Chat() {
 																</div>
 															</div>
 															<div
-																className="d-flex justify-content-end"
+																className="d-flex justify-content-end w-100"
 																style={{ marginTop: "-12px" }}
-																onClick={() => onDeleteMessage(chat)}
 															>
-																<span className="text-danger pointer mb-2">
+																<span className="text-primary pointer mb-2 me-2">
+                                  Edit
+																</span>
+																<span onClick={() => onDeleteMessage(chat)} className="text-danger pointer mb-2" style={{marginRight: "60px"}}>
                                   Delete
 																</span>
 															</div>
