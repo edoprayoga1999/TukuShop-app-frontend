@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+
 import detailUserReducer from "./detailUser";
 import listUserReducer from "./listUser";
 import listCategoryReducer from "./listCategory";
@@ -10,6 +11,13 @@ import detailProductReducer from "./detailProduct";
 import detailSellerReducer from "./detailSeller";
 import myAddressReducers from "./myAddress";
 import myProductReducer from "./myProduct";
+import allCategoriesAdmin from "./allCategoryAdminReducer";
+import detailCategoriesAdmin from "./detailCategoryAdminReducer";
+import allBrandsAdmin from "./allBrandAdmin";
+import detailBrandsAdmin from "./detailBrandAdmin";
+import allBuyersAdmin from "./allBuyersAdmin";
+import allSellersAdmin from "./allSellersAdmin";
+import allTransactionAdmin from "./allTransactionAdmin";
 
 export default combineReducers({
 	listUser: listUserReducer,
@@ -22,5 +30,12 @@ export default combineReducers({
 	myProduct: myProductReducer,
 	detailProduct: detailProductReducer,
 	myCart: myCartReducers,
-	myAddress: myAddressReducers
+	myAddress: myAddressReducers,
+	allCategories: allCategoriesAdmin,
+	detailCategories: detailCategoriesAdmin,
+	allBrands: allBrandsAdmin,
+	detailBrands: detailBrandsAdmin,
+	allBuyers: allBuyersAdmin,
+	allSellers: allSellersAdmin,
+	allTransaction: allTransactionAdmin
 });
