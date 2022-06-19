@@ -103,7 +103,7 @@ export default function Chat() {
 			showCancelButton: true,
 			confirmButtonColor: "#3085d6",
 			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, delete it!"
+			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
 			if (result.isConfirmed) {
 				const data = {
@@ -144,60 +144,73 @@ export default function Chat() {
 								>
 									<h6 style={{ margin: "0px" }}>Chat</h6>
 								</div>
-								{listUserChat.data.length ? <div
-									className="d-flex flex-column h-100 w-100"
-									style={{ padding: "20px" }}
-									onClick={() => {
-										setChatWindow(true);
-									}}
-								>
-									{listUserChat.data.map((user) => {
-										if (user.already_chat) {
-											return (
-												<div
-													onClick={() => selectReceiver(user.id)}
-													key={user.id}
-													className="d-flex align-items-center w-100 mb-4 pointer"
-												>
+								{listUserChat.data.length ? (
+									<div
+										className="d-flex flex-column h-100 w-100"
+										style={{ padding: "20px" }}
+										onClick={() => {
+											setChatWindow(true);
+										}}
+									>
+										{listUserChat.data.map((user) => {
+											if (user.already_chat) {
+												return (
 													<div
-														style={{
-															width: "40px",
-															height: "40px",
-															marginRight: "20px",
-															borderRadius: "50%",
-															backgroundPosition: "center",
-															backgroundSize: "cover",
-															backgroundRepeat: "no-repeat",
-															backgroundImage: `url(${
-																user.photo
-																	? `https://drive.google.com/uc?export=view&id=${user.photo}`
-																	: "https://images227.netlify.app/mernuas/default.jpg"
-															})`,
-														}}
-													/>
-	
-													<div
-														className="d-flex flex-column"
-														style={{ width: "80%" }}
+														onClick={() => selectReceiver(user.id)}
+														key={user.id}
+														className="d-flex align-items-center w-100 mb-4 pointer"
 													>
-														<h6
-															style={{ marginTop: "auto", marginBottom: "0px" }}
+														<div
+															style={{
+																width: "40px",
+																height: "40px",
+																marginRight: "20px",
+																borderRadius: "50%",
+																backgroundPosition: "center",
+																backgroundSize: "cover",
+																backgroundRepeat: "no-repeat",
+																backgroundImage: `url(${
+																	user.photo
+																		? `https://drive.google.com/uc?export=view&id=${user.photo}`
+																		: "https://images227.netlify.app/mernuas/default.jpg"
+																})`,
+															}}
+														/>
+
+														<div
+															className="d-flex flex-column"
+															style={{ width: "80%" }}
 														>
-															{user.store_name}
-														</h6>
-														<p
-															style={{ marginBottom: "auto", color: "#9B9B9B" }}
-														>
-																Permisi kak, mau tanya...
-														</p>
+															<h6
+																style={{
+																	marginTop: "auto",
+																	marginBottom: "0px",
+																}}
+															>
+																{user.level === 2 ? user.store_name : user.name}
+															</h6>
+															<p
+																style={{
+																	marginBottom: "auto",
+																	color: "#9B9B9B",
+																}}
+															>
+                                Permisi kak, mau tanya...
+															</p>
+														</div>
 													</div>
-												</div>
-											);
-										}
-									})}
-								</div> : <div className="d-flex flex-column justify-content-center align-items-center h-100 w-100" style={{ padding: "20px" }}>
-									<h6>No chat history yet</h6>
-								</div>}
+												);
+											}
+										})}
+									</div>
+								) : (
+									<div
+										className="d-flex flex-column justify-content-center align-items-center h-100 w-100"
+										style={{ padding: "20px" }}
+									>
+										<h6>No chat history yet</h6>
+									</div>
+								)}
 							</div>
 						</div>
 						<div className="col-8 h-100">
@@ -215,10 +228,12 @@ export default function Chat() {
 												borderBottom: "1px solid #8E8E93",
 											}}
 										>
-											{
-												detailReceiver.isLoading ? <div className="spinner-border" role="status">
+											{detailReceiver.isLoading ? (
+												<div className="spinner-border" role="status">
 													<span className="visually-hidden">Loading...</span>
-												</div> : <>
+												</div>
+											) : (
+												<>
 													<div
 														style={{
 															width: "40px",
@@ -235,10 +250,15 @@ export default function Chat() {
 															})`,
 														}}
 													/>
-													<h6 style={{ marginTop: "auto", marginBottom: "auto" }}>
-														{detailReceiver.data.store_name} | {detailReceiver.data.name}
-													</h6></>
-											}
+													<h6
+														style={{ marginTop: "auto", marginBottom: "auto" }}
+													>
+														{detailReceiver.data.level === 2
+															? `${detailReceiver.data.store_name} | ${detailReceiver.data.name}`
+															: `${detailReceiver.data.name}`}
+													</h6>
+												</>
+											)}
 										</div>
 									</>
 								) : (
@@ -265,7 +285,7 @@ export default function Chat() {
 													{chat.sender_id === localStorage.getItem("userId") ? (
 														<>
 															{/* sender message */}
-															<div className="d-flex flex-column w-100" onClick={() => onDeleteMessage(chat)}>
+															<div className="d-flex flex-column w-100">
 																<div className="d-flex w-100 justify-content-end align-items-center">
 																	<p
 																		style={{
@@ -295,6 +315,15 @@ export default function Chat() {
 																		}}
 																	/>
 																</div>
+															</div>
+															<div
+																className="d-flex justify-content-end"
+																style={{ marginTop: "-12px" }}
+																onClick={() => onDeleteMessage(chat)}
+															>
+																<span className="text-danger pointer mb-2">
+                                  Delete
+																</span>
 															</div>
 														</>
 													) : (
