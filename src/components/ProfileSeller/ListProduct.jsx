@@ -1,16 +1,103 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useEffect, useState } from "react";
 import { Nav, NavItem, NavLink, TabPane, TabContent } from "reactstrap";
 import searchIcon from "../../assets/images/magnifyingGlass.svg";
 import { Facebook } from "react-content-loader";
+import swal from "sweetalert2";
+import { changedStatusProduct } from "../../redux/action/statusProduct";
+import { useDispatch } from "react-redux";
+import { getMyProduct } from "../../redux/action/myProduct";
 
 export default function ListProduct(props) {
+	const dispatch = useDispatch();
 	const myProduct = props.data;
 	useEffect(() => {
-		console.log(myProduct);
+		//myProduct.data.data.map((e) => {
+		//	console.log(e.is_active);
+		//});
 	}, []);
 	const [activeTab, setActiveTab] = useState("1");
+	const goActive = (e, productId) => {
+		swal
+			.fire({
+				title: "Changed status product",
+				text: "Are you sure to change the status to active ?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, I Sure!",
+			})
+			.then(async (nonActivated) => {
+				if (nonActivated.isConfirmed) {
+					try {
+						const res = await changedStatusProduct(productId);
+						dispatch(getMyProduct());
+						swal.fire({
+							title: "Success!",
+							text: res.message,
+							icon: "success",
+						});
+					} catch (err) {
+						if (err.response.data.message == "Validation Failed") {
+							const error = err.response.data.error;
+							error.map((e) => {
+								toastr(e.msg, "error");
+							});
+						} else {
+							const message = err.response.data.error;
+							swal.fire({
+								title: "Error!",
+								text: message,
+								icon: "error",
+							});
+						}
+					}
+				}
+			});
+	};
+	const goNonactive = (e, productId) => {
+		//console.log(productId);
+		swal
+			.fire({
+				title: "Changed status product",
+				text: "Are you sure to change the status to non active ?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, I Sure!",
+			})
+			.then(async (nonActivated) => {
+				if (nonActivated.isConfirmed) {
+					try {
+						const res = await changedStatusProduct(productId);
+						dispatch(getMyProduct());
+						swal.fire({
+							title: "Success!",
+							text: res.message,
+							icon: "success",
+						});
+					} catch (err) {
+						if (err.response.data.message == "Validation Failed") {
+							const error = err.response.data.error;
+							error.map((e) => {
+								toastr(e.msg, "error");
+							});
+						} else {
+							const message = err.response.data.error;
+							swal.fire({
+								title: "Error!",
+								text: message,
+								icon: "error",
+							});
+						}
+					}
+				}
+			});
+	};
 	return (
 		<>
 			{myProduct.isLoading ? (
@@ -150,16 +237,46 @@ export default function ListProduct(props) {
 									className="table-order"
 								>
 									<tr style={{ backgroundColor: "#e5e5e5", color: "#9B9B9B" }}>
-										<th style={{ width: "900px" }}>Product name</th>
-										<th style={{ width: "100px" }}>Price</th>
+										<th style={{ width: "500px" }}>Product name</th>
+										<th style={{ width: "150px" }}>Price</th>
 										<th style={{ width: "100px" }}>Stock</th>
+										<th style={{ width: "100px" }}>Status</th>
+										<th style={{ width: "150px" }}>Action</th>
 									</tr>
 									{myProduct.data.data
-										? myProduct.data.data.map((e, i) => (
+										? myProduct.data.data.map((item, i) => (
 												<tr key={i}>
-													<td>{e.product_name}</td>
-													<td>{e.price}</td>
-													<td>{e.stock}</td>
+													<td>{item.product_name}</td>
+													<td>{item.price}</td>
+													<td>{item.stock}</td>
+													{item.is_active == true ? (
+														<td>Active</td>
+													) : (
+														<td>Non Active</td>
+													)}
+													{item.is_active == true ? (
+														<td>
+															<button
+																className="btn btn-info btn-md bg-danger text-white"
+																onClick={(e) => {
+																	goNonactive(e, item.id);
+																}}
+															>
+																Deactivated
+															</button>
+														</td>
+													) : (
+														<td>
+															<button
+																className="btn btn-info btn-md bg-success text-white"
+																onClick={(e) => {
+																	goActive(e, item.id);
+																}}
+															>
+																Activated
+															</button>
+														</td>
+													)}
 												</tr>
 										  ))
 										: null}

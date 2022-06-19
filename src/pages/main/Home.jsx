@@ -20,6 +20,9 @@ export default function Home() {
 	const navigate = useNavigate();
 
 	const [search, setSearch] = useState("");
+	const [colorFilter, setColorFilter] = useState("");
+	const [sizeFilter, setSizeFilter] = useState("");
+	const [categoryFilter, setCategoryFilter] = useState("");
 
 	useEffect(() => {
 		document.title = "TukuShop - Home";
@@ -39,6 +42,24 @@ export default function Home() {
 			url += `&search=${queryParams.get("search")}`;
 		}
 
+		setColorFilter("");
+		if (queryParams.get("color")) {
+			setColorFilter(queryParams.get("color"));
+			url += `&colorFilter=${queryParams.get("color")}`;
+		}
+
+		setSizeFilter("");
+		if (queryParams.get("size")) {
+			setSizeFilter(queryParams.get("size"));
+			url += `&sizeFilter=${queryParams.get("size")}`;
+		}
+		
+		setCategoryFilter("");
+		if (queryParams.get("category")) {
+			setCategoryFilter(queryParams.get("category"));
+			url += `&categoryFilter=${queryParams.get("category")}`;
+		}
+
 		if (queryParams.get("page")) {
 			url += `&page=${queryParams.get("page")}`;
 		}
@@ -51,6 +72,18 @@ export default function Home() {
 
 		if (search) {
 			url += `&search=${search}`;
+		}
+
+		if (colorFilter) {
+			url += `&color=${colorFilter}`;
+		}
+
+		if (sizeFilter) {
+			url += `&size=${sizeFilter}`;
+		}
+
+		if (categoryFilter) {
+			url += `&category=${categoryFilter}`;
 		}
 
 		if (page) {
@@ -79,13 +112,15 @@ export default function Home() {
 						</div>
 					) : (
 						<>
-							{
-								listNewProduct.data.length ? <ProductList listProduct={listNewProduct.data} /> : <h4>Data not found</h4>
-							}
+							{listNewProduct.data.length ? (
+								<ProductList listProduct={listNewProduct.data} />
+							) : (
+								<h4>Data not found</h4>
+							)}
 						</>
 					)}
 				</div>
-				<div className="d-flex flex-column mb-5" style={{ width: "80%" }}>
+				<div id="allProduct" className="d-flex flex-column mb-5" style={{ width: "80%" }}>
 					<h2>All Product</h2>
 					<small style={{ color: "#9B9B9B", marginBottom: "25px" }}>
             You’ve never seen it before!

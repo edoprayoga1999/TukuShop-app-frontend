@@ -1,33 +1,34 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, { useEffect } from "react";
 import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
-import { getMyOrderBuyer } from "../../redux/action/myOrderBuyer";
 import {
-	cancelStatusTransaction,
-	completedStatusTransaction,
-} from "../../redux/action/orderStatusBuyer";
+	packedStatusTransaction,
+	sentStatusTransaction,
+} from "../../redux/action/orderStatusSeller";
 import { Facebook } from "react-content-loader";
 import swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyOrderSeller } from "../../redux/action/myOrderSeller";
 
 export default function DetailTransaction(props) {
 	const data = props.data;
 	const dispatch = useDispatch();
-	const myOrderBuyer = useSelector((state) => {
-		return state.myOrderBuyer;
+	const myOrderSeller = useSelector((state) => {
+		return state.myOrderSeller;
 	});
 	const idr = new Intl.NumberFormat("id-ID", {
 		style: "currency",
 		currency: "IDR",
 		minimumFractionDigits: 0,
 	});
+	//const status = data.status;
 	const onUpdate = (e, id, status) => {
 		if (status == 1) {
 			swal
 				.fire({
 					title: "Changed status transactions",
-					text: "Are you sure to change the status to cancel ?",
+					text: "Are you sure to change the status to packed ?",
 					icon: "question",
 					showCancelButton: true,
 					confirmButtonColor: "#3085d6",
@@ -37,8 +38,8 @@ export default function DetailTransaction(props) {
 				.then(async (toPacked) => {
 					if (toPacked.isConfirmed) {
 						try {
-							const res = await cancelStatusTransaction(id);
-							dispatch(getMyOrderBuyer()).then(() => {
+							const res = await packedStatusTransaction(id);
+							dispatch(getMyOrderSeller()).then(() => {
 								props.setOrder();
 							});
 							swal.fire({
@@ -64,22 +65,22 @@ export default function DetailTransaction(props) {
 					}
 				});
 		}
-		if (status == 3) {
+		if (status == 2) {
 			swal
 				.fire({
 					title: "Changed status transactions",
-					text: "Are you sure to change the status to completed ?",
+					text: "Are you sure to change the status to sent ?",
 					icon: "question",
 					showCancelButton: true,
 					confirmButtonColor: "#3085d6",
 					cancelButtonColor: "#d33",
 					confirmButtonText: "Yes, I Sure!",
 				})
-				.then(async (toPacked) => {
-					if (toPacked.isConfirmed) {
+				.then(async (toSent) => {
+					if (toSent.isConfirmed) {
 						try {
-							const res = await completedStatusTransaction(id);
-							dispatch(getMyOrderBuyer()).then(() => {
+							const res = await sentStatusTransaction(id);
+							dispatch(getMyOrderSeller()).then(() => {
 								props.setOrder();
 							});
 							swal.fire({
@@ -106,16 +107,19 @@ export default function DetailTransaction(props) {
 				});
 		}
 	};
+	useEffect(() => {}, []);
+
 	return (
 		<>
-			{myOrderBuyer.isLoading ? (
+			{myOrderSeller.isLoading ? (
 				<Facebook />
-			) : myOrderBuyer.isError ? (
-				<div>Error...</div>
+			) : myOrderSeller.isError ? (
+				<div>Error..</div>
 			) : (
 				<div className="content" hidden={props.hidden ? "" : "hidden"}>
-					<div className="order">
+					<div className="order d-flex flex-column justify-content-center">
 						<h2>Order detail</h2>
+
 						<hr
 							style={{
 								border: "1px solid #9B9B9B",
@@ -133,7 +137,6 @@ export default function DetailTransaction(props) {
 						>
 							<tr>
 								<td style={{ width: "30%", fontWeight: "500" }}>Invoice</td>
-
 								<td style={{ width: "70%" }}>{data.invoice}</td>
 							</tr>
 							<tr>
@@ -190,18 +193,18 @@ export default function DetailTransaction(props) {
 									<td style={{ width: "70%" }}>
 										<button
 											type="button"
-											className="btn btn-outline-danger"
+											className="btn btn-outline-primary"
 											style={{ marginRight: "15px" }}
 											onClick={(e) => {
 												onUpdate(e, data.id, data.status);
 											}}
 										>
-											cancel
+											Packed
 										</button>
 									</td>
 								</tr>
 							)}
-							{data.status == 3 && (
+							{data.status == 2 && (
 								<tr>
 									<td style={{ width: "30%", fontWeight: "500" }}>
 										Update status to:{" "}
@@ -215,7 +218,7 @@ export default function DetailTransaction(props) {
 												onUpdate(e, data.id, data.status);
 											}}
 										>
-											completed
+											sent
 										</button>
 									</td>
 								</tr>
@@ -229,7 +232,7 @@ export default function DetailTransaction(props) {
 									props.setOrder();
 								}}
 							>
-								Back to my transaction
+								Back to my store transaction
 							</button>
 						</div>
 					</div>
