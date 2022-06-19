@@ -49,7 +49,7 @@ export default function Checkout() {
 		recipientPhone: "",
 		recipientName: "",
 		price: "",
-		qty: "",
+		qty: 0,
 		color: "",
 		size: "",
 	});
@@ -72,14 +72,25 @@ export default function Checkout() {
 			"error"
 		).then(() => { navigate("/"); });
 	};
-	const totalPrice = (data) => {
-		let price = 0;
-		for (let i = 0; i < data.length; i++) {
-			const priceNow = data[i].dataCart.cartqty * parseInt(data[i].dataCart.productprice);
-			price += priceNow;
+	const setQty = (action) => {
+		if (action === "minus") {
+			if (transactionForm.qty > 0) {
+				setTransactionForm({ ...transactionForm, qty: transactionForm.qty - 1 });
+			}
 		}
-		return price;
+		if (action === "plus") {
+			setTransactionForm({ ...transactionForm, qty: transactionForm.qty + 1 });
+		}
+		console.log(transactionForm);
 	};
+	// const totalPrice = (data) => {
+	// 	let price = 0;
+	// 	for (let i = 0; i < data.length; i++) {
+	// 		const priceNow = data[i].dataCart.cartqty * parseInt(data[i].dataCart.productprice);
+	// 		price += priceNow;
+	// 	}
+	// 	return price;
+	// };
 	const editAddressToggler = (item) => {
 		if (item) {
 			setFormAddress({
@@ -289,7 +300,7 @@ export default function Checkout() {
 				console.log(err);
 				swal.fire(
 					"Failed!",
-					err.response.data.message,
+					err.response.data.error,
 					"error"
 				);
 			})
@@ -389,17 +400,19 @@ export default function Checkout() {
 																	<div className="d-flex flex-column">
 																		<h6>{item.dataCart.productname}</h6>
 																		<small style={{ color: "#9B9B9B" }}>{item.dataCart.storename}</small>
+																		<p className="m-0">Size: {item.dataCart.cartsize}</p>
+																		<p className="m-0">Color: {item.dataCart.cartcolor}</p>
 																	</div>
 																</div>
 															</div>
 															<div className="col-lg-5 col-md-12">
 																<div className="d-flex align-items-center w-100 h-100">
 																	<div className="d-flex align-items-center">
-																		<button style={{ borderRadius: "50%", border: "none" }}>
+																		<button style={{ borderRadius: "50%", border: "none" }} onClick={() => { setQty("minus"); } }>
 																			<FontAwesomeIcon icon={faMinus} />
 																		</button>
-																		<h6 className="mx-4 my-auto">{item.dataCart.cartqty}</h6>
-																		<button style={{ borderRadius: "50%", border: "none" }}>
+																		<h6 className="mx-4 my-auto">{transactionForm.qty}</h6>
+																		<button style={{ borderRadius: "50%", border: "none" }} onClick={() => { setQty("plus"); } }>
 																			<FontAwesomeIcon icon={faPlus} />
 																		</button>
 																	</div>
@@ -408,7 +421,7 @@ export default function Checkout() {
 																			style: "currency",
 																			currency: "IDR",
 																			minimumFractionDigits: 0,
-																		}).format(parseInt(item.dataCart.productprice) * item.dataCart.cartqty)
+																		}).format(parseInt(transactionForm.price) * transactionForm.qty)
 																		}
 																	</h6>
 																</div>
@@ -440,7 +453,7 @@ export default function Checkout() {
 														style: "currency",
 														currency: "IDR",
 														minimumFractionDigits: 0,
-													}).format(totalPrice(listCart.data)) : null }
+													}).format(parseInt(transactionForm.price) * transactionForm.qty) : null }
 									</h6>
 								</div>
 								<div className="d-flex w-100">
@@ -464,7 +477,7 @@ export default function Checkout() {
 														style: "currency",
 														currency: "IDR",
 														minimumFractionDigits: 0,
-													}).format(totalPrice(listCart.data)) : null }
+													}).format(parseInt(transactionForm.price) * transactionForm.qty) : null }
 									</h6>
 								</div>
 								<button
@@ -534,7 +547,7 @@ export default function Checkout() {
 											style: "currency",
 											currency: "IDR",
 											minimumFractionDigits: 0,
-										}).format(totalPrice(listCart.data)) : null }
+										}).format(parseInt(transactionForm.price) * transactionForm.qty) : null }
 						</h6>
 					</div>
 					<div className="d-flex w-100">
@@ -558,7 +571,7 @@ export default function Checkout() {
 												style: "currency",
 												currency: "IDR",
 												minimumFractionDigits: 0,
-											}).format(totalPrice(listCart.data)) : null }
+											}).format(parseInt(transactionForm.price) * transactionForm.qty) : null }
 							</h6>
 						</div>
 						<button style={{ border: "none", borderRadius: "25px", backgroundColor: "#2AA952", color: "#FFF", padding: "8px", width: "160px", marginLeft: "auto" }}

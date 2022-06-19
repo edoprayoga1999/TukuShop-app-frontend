@@ -7,9 +7,9 @@ import {
 	GET_DETAIL_BRANDS_ADMIN_SUCCESS,
 	GET_DETAIL_BRANDS_ADMIN_FAILED
 } from "./types";
-const token = localStorage.getItem("token");
 
 export const addBrand = (form) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.post(`${process.env.REACT_APP_API_URL}/product-brand`, form, {
 			headers: {
@@ -26,6 +26,7 @@ export const addBrand = (form) => {
 	});
 };
 export const editBrand = (id, form) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.put(`${process.env.REACT_APP_API_URL}/product-brand/${id}`, form, {
 			headers: {
@@ -42,6 +43,7 @@ export const editBrand = (id, form) => {
 	});
 };
 export const editStatusBrand = (id, form) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.put(`${process.env.REACT_APP_API_URL}/product-brand-status/${id}`, form, {
 			headers: {
@@ -57,6 +59,7 @@ export const editStatusBrand = (id, form) => {
 	});
 };
 export const deleteBrand = (id) => {
+	const token = localStorage.getItem("token");
 	return new Promise((resolve, reject) => {
 		axios.delete(`${process.env.REACT_APP_API_URL}/product-brand/${id}`, {
 			headers: {
@@ -72,6 +75,7 @@ export const deleteBrand = (id) => {
 	});
 };
 export const getAllBrandsAdmin = (url) => {
+	const token = localStorage.getItem("token");
 	return async (dispatch) => {
 		try {
 			dispatch({
@@ -99,6 +103,7 @@ export const getAllBrandsAdmin = (url) => {
 	};
 };
 export const getDetailBrandsAdmin = (id) => {
+	const token = localStorage.getItem("token");
 	return async (dispatch) => {
 		try {
 			dispatch({
