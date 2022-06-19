@@ -423,6 +423,7 @@ export default function Order(props) {
 									<th style={{ width: "300px" }}>Created at</th>
 									<th style={{ width: "100px" }}>Action</th>
 								</tr>
+								{/*cancelled*/}
 								{order
 									? order?.data?.data?.map((item, i) =>
 											item.status == 0 ? (
