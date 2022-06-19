@@ -265,7 +265,7 @@ export default function Chat() {
 													{chat.sender_id === localStorage.getItem("userId") ? (
 														<>
 															{/* sender message */}
-															<div className="d-flex flex-column w-100" onClick={() => onDeleteMessage(chat)}>
+															<div className="d-flex flex-column w-100">
 																<div className="d-flex w-100 justify-content-end align-items-center">
 																	<p
 																		style={{
@@ -295,6 +295,9 @@ export default function Chat() {
 																		}}
 																	/>
 																</div>
+															</div>
+															<div className="d-flex justify-content-end" style={{marginTop: "-12px"}} onClick={() => onDeleteMessage(chat)}>
+																<span className="text-danger pointer mb-2">Delete</span>
 															</div>
 														</>
 													) : (
