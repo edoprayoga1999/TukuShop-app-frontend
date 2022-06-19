@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+
 import detailUserReducer from "./detailUser";
 import listUserReducer from "./listUser";
 import listUserChatReducer from "./listUserChat";
@@ -12,6 +13,13 @@ import detailSellerReducer from "./detailSeller";
 import detailReceiverReducer from "./detailReceiver";
 import myAddressReducers from "./myAddress";
 import myProductReducer from "./myProduct";
+import allCategoriesAdmin from "./allCategoryAdminReducer";
+import detailCategoriesAdmin from "./detailCategoryAdminReducer";
+import allBrandsAdmin from "./allBrandAdmin";
+import detailBrandsAdmin from "./detailBrandAdmin";
+import allBuyersAdmin from "./allBuyersAdmin";
+import allSellersAdmin from "./allSellersAdmin";
+import allTransactionAdmin from "./allTransactionAdmin";
 import listBrandReducer from "./listBrand";
 import myOrderSellerReducer from "./myOrderSeller";
 import myOrderBuyerReducer from "./myOrderBuyer";
@@ -28,9 +36,16 @@ export default combineReducers({
 	myProduct: myProductReducer,
 	detailProduct: detailProductReducer,
 	myCart: myCartReducers,
+	myAddress: myAddressReducers,
+	allCategories: allCategoriesAdmin,
+	detailCategories: detailCategoriesAdmin,
+	allBrands: allBrandsAdmin,
+	detailBrands: detailBrandsAdmin,
+	allBuyers: allBuyersAdmin,
+	allSellers: allSellersAdmin,
+	allTransaction: allTransactionAdmin,
 	myOrderSeller: myOrderSellerReducer,
 	detailReceiver: detailReceiverReducer,
-	myAddress: myAddressReducers,
 	listBrand: listBrandReducer,
 	myOrderBuyer: myOrderBuyerReducer,
 });
