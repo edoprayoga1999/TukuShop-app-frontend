@@ -321,9 +321,9 @@ export default function Chat() {
 																className="d-flex justify-content-end w-100"
 																style={{ marginTop: "-12px" }}
 															>
-																<span className="text-primary pointer mb-2 me-2">
+																{/* <span className="text-primary pointer mb-2 me-2">
                                   Edit
-																</span>
+																</span> */}
 																<span onClick={() => onDeleteMessage(chat)} className="text-danger pointer mb-2" style={{marginRight: "60px"}}>
                                   Delete
 																</span>
