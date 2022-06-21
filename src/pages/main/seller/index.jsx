@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import React, { useEffect, useState } from "react";
-import { Facebook } from "react-content-loader";
+import { Code, Facebook } from "react-content-loader";
 import Navbar from "../../../components/Navbar";
 import singa from "../../../assets/images/singa.png";
 import defaultImg from "../../../assets/images/default.png";
@@ -556,8 +556,14 @@ export default function Index() {
             {detailSeller.data.data ? (
               <EditProfileSeller hidden={profile} data={detailSeller} />
             ) : null}
-            <ListProduct hidden={product} data={myProduct} />
-            <AddProduct hidden={addProduct} detail={detailSeller} />
+                <ListProduct hidden={product} data={myProduct} />
+                
+            {detailSeller.isLoading ? (
+              <Code />
+            ) : (
+              <AddProduct hidden={addProduct} detail={detailSeller} />
+            )}
+
             <Order
               hidden={order}
               data={myOrderSeller}
