@@ -35,10 +35,13 @@ export default function AddProduct(props) {
 		isNew: "",
 	});
 
+	useEffect(() => {
+		setForm({ ...form, storeId: props.detail.data.data.store_id });
+	}, [props.detail.data]);
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setLoading(true);
-		setForm({ ...form, storeId: props.detail.data.data.store_id });
 		if (form.productName == "") {
 			swal
 				.fire({
@@ -168,7 +171,8 @@ export default function AddProduct(props) {
 		formData.append("isNew", form.isNew);
 
 		addProduct(formData)
-			.then(() => {
+			.then((res) => {
+				console.log(res);
 				swal.fire("Success", "Add New Product success", "success");
 			})
 			.catch((err) => {
