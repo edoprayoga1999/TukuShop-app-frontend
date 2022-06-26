@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+<div align="center">
+  <img src="./readme/logo.svg" />
+</div>
+<h3 align="center">TukuShop</h3>
+<p align="center">
+  <a href="https://tukushop-app.vercel.app/">View Demo</a>
+  ·
+  <a href="https://github.com/HyperCarry-Team/TukuShop-app-frontend/issues">Report Bug</a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-## Available Scripts
+TukuShop is an online store application where you can register as a buyer and/or seller. Features for sellers include creating products and deleting products. Features for shoppers are search for product, buy product, and cancel product purchase. This project is a team project and acts as a Backend Developer. This web application is built using ReactJS, ExpressJS, PostgreSQL, and WebSocket.
 
-In the project directory, you can run:
+### Technology Used
+- [ReactJS](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Axios](https://github.com/axios/axios)
+- [Moment](https://momentjs.com/)
+- [Socket.IO](https://socket.io/)
 
-### `npm start`
+<!-- GETTING STARTED -->
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Installation
+- Clone This Repository
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`https://github.com/HyperCarry-Team/TukuShop-app-frontend.git`
 
-### `npm test`
+- Install Module
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install`
 
-### `npm run build`
+- Setting .env
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+REACT_APP_NODE_ENV=YOUR_CURRENT_ENVIRONMENT
+REACT_APP_API_URL=YOUR_API_URL
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Executing program
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Run this project with `npm run start`.
 
-### `npm run eject`
+<!-- SCREENSHOT -->
+## Screenshot
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Coming Soon
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- RELATED PROJECT -->
+## Related Project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [TukuShop API](https://github.com/HyperCarry-Team/TukuShop-app-backend)
+- [TukuShop Demo](https://tukushop-app.vercel.app/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Our Team
 
-## Learn More
+<center>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/edoprayoga1999">
+          <img width="100" src="https://avatars.githubusercontent.com/u/101086199?v=4" alt="Edo Prayoga"><br/>
+          <sub><b>Edo Prayoga</b></sub> <br/>
+            <sub>Project Manager | Full Stack Web Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/andry-pebrianto">
+          <img width="100" src="https://avatars.githubusercontent.com/u/72940944?s=400&u=ab89473c5b802a06d59c85c85c3071373bce24d5&v=4" alt="Andry Pebrianto"><br/>
+          <sub><b>Andry Pebrianto</b></sub> <br/>
+          <sub>Full Stack Web Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/rikakus">
+          <img width="100" src="https://avatars.githubusercontent.com/u/59488349?v=4" alt="Ian Pangestu Setyanto"><br/>
+          <sub><b>Ian Pangestu Setyanto</b></sub> <br/>
+          <sub>Front End Web Developer</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/janexmgd">
+          <img width="100" src="https://avatars.githubusercontent.com/u/43938494?v=4" alt="Denny Wahyu Prasetyo"><br/>
+          <sub><b>Denny Wahyu Prasetyo</b></sub> <br/>
+          <sub>Full Stack Web Developer</sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</center>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the LICENSE file for details
