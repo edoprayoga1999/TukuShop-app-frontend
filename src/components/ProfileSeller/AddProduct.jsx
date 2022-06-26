@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBrandList } from "../../redux/action/brands";
 import { getListCategory } from "../../redux/action/category";
 import { addProduct } from "../../redux/action/product";
+import { toastr } from "../../utils/toastr";
 
 export default function AddProduct(props) {
 	const dispatch = useDispatch();
@@ -34,10 +35,13 @@ export default function AddProduct(props) {
 		isNew: "",
 	});
 
+	useEffect(() => {
+		setForm({ ...form, storeId: props.detail.data.data.store_id });
+	}, [props.detail.data]);
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setLoading(true);
-		setForm({ ...form, storeId: props.detail.data.data.store_id });
 		if (form.productName == "") {
 			swal
 				.fire({
@@ -87,7 +91,7 @@ export default function AddProduct(props) {
 				});
 			return;
 		}
-		if (form.isNew == "") {
+		if (form.isNew !== true && form.isNew !== false) {
 			swal
 				.fire({
 					title: "Error!",
@@ -166,9 +170,9 @@ export default function AddProduct(props) {
 		formData.append("productColors", JSON.stringify(form.productColors));
 		formData.append("isNew", form.isNew);
 
-
 		addProduct(formData)
-			.then(() => {
+			.then((res) => {
+				console.log(res);
 				swal.fire("Success", "Add New Product success", "success");
 			})
 			.catch((err) => {
