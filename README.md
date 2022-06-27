@@ -133,6 +133,19 @@ REACT_APP_API_URL=YOUR_API_URL
 </table>
 </p>
 
+### Admin
+<p align="center" display=flex>
+  <table>
+  <tr>
+    <td><image src="screenshots/login-page.png" alt="Login Page" width=100%></td>
+    <td><image src="screenshots/register-page.png" alt="Register Page" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Login Page</td>
+    <td>Register Page</td>
+  </tr>
+  </table>
+</p>
 <!-- RELATED PROJECT -->
 ## Related Project
 
