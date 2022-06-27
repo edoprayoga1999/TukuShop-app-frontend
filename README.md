@@ -47,6 +47,7 @@ REACT_APP_API_URL=YOUR_API_URL
 <!-- SCREENSHOT -->
 ## Screenshot
 
+### Buyer and Seller
 <p align="center" display=flex>
   <table>
   <tr>
