@@ -21,7 +21,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-TukuShop is an online store application where you can register as a buyer and/or seller. Features for sellers include creating products and deleting products. Features for shoppers are search for product, buy product, and cancel product purchase. This project is a team project and acts as a Backend Developer. This web application is built using ReactJS, ExpressJS, PostgreSQL, and WebSocket.
+TukuShop is an online store application where you can register as a buyer and/or seller. Features for sellers include creating products and deleting products. Features for shoppers are search for product, buy product, and cancel product purchase. This project is a team project. This web application is built using ReactJS, ExpressJS, PostgreSQL, and WebSocket.
 
 ### Technology Used
 - [ReactJS](https://reactjs.org/)
