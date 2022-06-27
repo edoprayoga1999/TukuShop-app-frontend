@@ -47,7 +47,90 @@ REACT_APP_API_URL=YOUR_API_URL
 <!-- SCREENSHOT -->
 ## Screenshot
 
-Coming Soon
+<p align="center" display=flex>
+  <table>
+  <tr>
+    <td><image src="screenshots/login-page.png" alt="Login Page" width=100%></td>
+    <td><image src="screenshots/register-page.png" alt="Register Page" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Login Page</td>
+    <td>Register Page</td>
+  </tr>
+  
+  <tr>
+    <td><image src="screenshots/login-page.png" alt="Login Page" width=100%></td>
+    <td><image src="screenshots/register-page.png" alt="Register Page" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Forgot Password Page</td>
+    <td>Password Reset Confirmation Page</td>
+  </tr>
+    
+    <tr>
+    <td><image src="screenshots/landing-page.png" alt="Home Page" width=100%></td>
+    <td><image src="screenshots/product-detail.png" alt="My Profile Page" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Landing Page</td>
+    <td>Detail Product Page</td>
+  </tr>
+
+  <tr>
+    <td><image src="screenshots/product-by-category.png" alt="Recruiter Profile Page" width=100%></td>
+    <td><image src="screenshots/chat-page.png" alt="Edit Profile Page" width=100%></td>
+  </tr>
+  <tr>
+      <td>Product By Category Page</td>
+      <td>Chat Page</td>
+  </tr>
+  
+   <tr>
+    <td><image src="screenshots/cart-page.png" alt="Recruiter Profile Page" width=100%></td>
+    <td><image src="screenshots/checkout-page.png" alt="Edit Profile Page" width=100%></td>
+  </tr>
+  <tr>
+      <td>Cart Page</td>
+      <td>Checkout Page</td>
+  </tr>
+  
+   <tr>
+    <td><image src="screenshots/buyer-profile.png" alt="Recruiter Profile Page" width=100%></td>
+    <td><image src="screenshots/address-management-page.png" alt="Edit Profile Page" width=100%></td>
+  </tr>
+  <tr>
+      <td>Buyer Profile Page</td>
+      <td>Address Management Page</td>
+  </tr>
+  
+   <tr>
+    <td><image src="screenshots/order-history-buyer.png" alt="Recruiter Profile Page" width=100%></td>
+    <td><image src="screenshots/seller-profile.png" alt="Edit Profile Page" width=100%></td>
+  </tr>
+  <tr>
+      <td>Buyer Order History Page</td>
+      <td>Seller Profile</td>
+  </tr>
+  
+   <tr>
+    <td><image src="screenshots/store-order-history.png" alt="Recruiter Profile Page" width=100%></td>
+    <td><image src="screenshots/my-product-seller-page.png" alt="Edit Profile Page" width=100%></td>
+  </tr>
+  <tr>
+      <td>Seller Order History Page</td>
+      <td>Seller Product Page</td>
+  </tr>
+  
+   <tr>
+    <td><image src="screenshots/add-product-seller-page.png" alt="Recruiter Profile Page" width=100%></td>
+    <td><image src="screenshots/update-transaction-status.png" alt="Edit Profile Page" width=100%></td>
+  </tr>
+  <tr>
+      <td>Seller Add Product Page</td>
+      <td>Seller Update Transaction Status Page</td>
+  </tr>
+</table>
+</p>
 
 <!-- RELATED PROJECT -->
 ## Related Project
