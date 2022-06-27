@@ -67,7 +67,7 @@ REACT_APP_API_URL=YOUR_API_URL
     <td>Password Reset Confirmation Page</td>
   </tr>
     
-    <tr>
+  <tr>
     <td><image src="screenshots/landing-page.png" alt="Home Page" width=100%></td>
     <td><image src="screenshots/product-detail.png" alt="My Profile Page" width=100%/></td>
   </tr>
