@@ -137,15 +137,37 @@ REACT_APP_API_URL=YOUR_API_URL
 <p align="center" display=flex>
   <table>
   <tr>
-    <td><image src="screenshots/login-page.png" alt="Login Page" width=100%></td>
-    <td><image src="screenshots/register-page.png" alt="Register Page" width=100%/></td>
+    <td><image src="screenshots/admin-login.png" alt="Login Page" width=100%></td>
+    <td><image src="screenshots/admin-home.png" alt="Register Page" width=100%/></td>
   </tr>
    <tr>
-    <td>Login Page</td>
-    <td>Register Page</td>
+    <td>Admin Login Page</td>
+    <td>Admin Home Page</td>
   </tr>
+  
+  <tr>
+    <td><image src="screenshots/admin-category.png" alt="Login Page" width=100%></td>
+    <td><image src="screenshots/admin-brand.png" alt="Register Page" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Admin Category Page</td>
+    <td>Admin Brand Page</td>
+  </tr>
+  
+  <tr>
+    <td><image src="screenshots/admin-product.png" alt="Login Page" width=100%></td>
+    <td><image src="screenshots/admin-transaction.png" alt="Register Page" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Admin Product Page</td>
+    <td>Admin Transaction Page</td>
+  </tr>    
   </table>
 </p>
+
+<image src="screenshots/admin user.png" alt="Landing Page" width=100%>
+    <p align="center">Admin User List Page</p>
+
 <!-- RELATED PROJECT -->
 ## Related Project
 
