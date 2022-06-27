@@ -6,6 +6,15 @@
   <a href="https://tukushop-app.vercel.app/">View Demo</a>
   ·
   <a href="https://github.com/HyperCarry-Team/TukuShop-app-frontend/issues">Report Bug</a>
+  <br />
+    <p align="center">
+    <a href="https://nextjs.org/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/next"></a>
+    <a href="https://reactjs.org/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/react"></a>
+    <a href="https://axios-http.com/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/axios"></a>
+    <a href="https://getbootstrap.com/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/bootstrap"></a>
+    <a href="https://momentjs.com/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/moment"></a>
+    <img src="https://img.shields.io/github/license/edoprayoga1999/Hirejob-app?color=blue">
+    </p>
 </p>
 
 <!-- ABOUT THE PROJECT -->
