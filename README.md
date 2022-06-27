@@ -8,12 +8,13 @@
   <a href="https://github.com/HyperCarry-Team/TukuShop-app-frontend/issues">Report Bug</a>
   <br />
     <p align="center">
-    <a href="https://nextjs.org/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/next"></a>
-    <a href="https://reactjs.org/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/react"></a>
-    <a href="https://axios-http.com/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/axios"></a>
-    <a href="https://getbootstrap.com/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/bootstrap"></a>
-    <a href="https://momentjs.com/"><img src="https://img.shields.io/github/package-json/dependency-version/edoprayoga1999/Hirejob-app/moment"></a>
-    <img src="https://img.shields.io/github/license/edoprayoga1999/Hirejob-app?color=blue">
+    <a href="https://reactjs.org/"><img src="https://img.shields.io/github/package-json/dependency-version/HyperCarry-Team/TukuShop-app-frontend/react"></a>
+    <a href="https://redux.js.org/"><img src="https://img.shields.io/github/package-json/dependency-version/HyperCarry-Team/TukuShop-app-frontend/redux"></a>
+    <a href="https://getbootstrap.com/"><img src="https://img.shields.io/github/package-json/dependency-version/HyperCarry-Team/TukuShop-app-frontend/bootstrap"></a>
+    <a href="https://axios-http.com/"><img src="https://img.shields.io/github/package-json/dependency-version/HyperCarry-Team/TukuShop-app-frontend/axios"></a>
+    <a href="https://momentjs.com/"><img src="https://img.shields.io/github/package-json/dependency-version/HyperCarry-Team/TukuShop-app-frontend/moment"></a>
+    <a href="https://socket.io/"><img src="https://img.shields.io/github/package-json/dependency-version/HyperCarry-Team/TukuShop-app-frontend/socket.io-client"></a>
+    <img src="https://img.shields.io/github/license/HyperCarry-Team/TukuShop-app-frontend?color=blue">
     </p>
 </p>
 
